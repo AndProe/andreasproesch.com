@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BookCard from '../components/BookCard.astro';
+import { getCollection, render } from 'astro:content';
+
+const allBooks = await getCollection('books');
+const sortedBooks = allBooks.sort((a, b) => b.data.rating - a.data.rating);
+
+// Get content (reviews) for each book
+const booksWithReviews = await Promise.all(
+  sortedBooks.map(async (book) => {
+    const { Content } = await render(book);
+    return { ...book, Content };
+  })
+);
+---
+
+<BaseLayout title="Book Recommendations" description="Books that have shaped my thinking on technology, leadership, and life.">
+  <div class="books-page">
+    <header class="page-header">
+      <h1>Book Recommendations</h1>
+      <p class="page-subtitle">
+        Books that have shaped my thinking on technology, leadership, and life.
+        These are the ones I recommend most often.
+      </p>
+    </header>
+
+    {booksWithReviews.length > 0 ? (
+      <div class="books-grid">
+        {booksWithReviews.map(book => (
+          <BookCard
+            title={book.data.title}
+            author={book.data.author}
+            cover={book.data.cover}
+            rating={book.data.rating}
+            review={book.body || ''}
+            purchaseUrl={book.data.purchaseUrl}
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="empty-state">
+        <p>Book recommendations coming soon!</p>
+      </div>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .books-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .page-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .books-grid {
+    display: grid;
+    gap: var(--spacing-lg);
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: var(--spacing-2xl);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+  }
+
+  .empty-state p {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+</style>

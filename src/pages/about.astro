@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About" description="Learn more about Andreas Proesch - technology leader, speaker, and writer.">
+  <div class="about-page">
+    <header class="page-header">
+      <h1>About Me</h1>
+      <p class="page-subtitle">Technology leader with a passion for building great teams and products.</p>
+    </header>
+
+    <div class="about-content">
+      <aside class="about-sidebar">
+        <div class="profile-image">
+          <div class="image-placeholder">
+            <span>Your Photo</span>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://linkedin.com/in/andreasproesch" target="_blank" rel="noopener noreferrer" class="social-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            LinkedIn
+          </a>
+          <a href="https://twitter.com/andreasproesch" target="_blank" rel="noopener noreferrer" class="social-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            Twitter
+          </a>
+          <a href="https://github.com/andreasproesch" target="_blank" rel="noopener noreferrer" class="social-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </aside>
+
+      <main class="about-main">
+        <section class="bio-section">
+          <h2>Background</h2>
+          <p>
+            I'm a technology leader with over [X] years of experience building and scaling
+            engineering teams at companies ranging from startups to Fortune 500 enterprises.
+          </p>
+          <p>
+            Currently, I [describe your current role/position]. Previously, I held leadership
+            positions at [previous companies], where I [key accomplishments].
+          </p>
+          <p>
+            My passion lies at the intersection of technology and business strategy. I believe
+            that the best technical solutions are ones that directly address real business needs
+            and create measurable value.
+          </p>
+        </section>
+
+        <section class="bio-section">
+          <h2>What I Focus On</h2>
+          <ul class="focus-list">
+            <li>
+              <strong>Engineering Leadership</strong> - Building high-performing teams through
+              mentorship, clear communication, and creating environments where people can do
+              their best work.
+            </li>
+            <li>
+              <strong>Technical Strategy</strong> - Aligning technology investments with
+              business objectives to maximize ROI and competitive advantage.
+            </li>
+            <li>
+              <strong>Digital Transformation</strong> - Helping organizations modernize their
+              technology stack and processes to stay competitive.
+            </li>
+            <li>
+              <strong>Knowledge Sharing</strong> - Speaking at conferences and writing about
+              lessons learned in technology leadership.
+            </li>
+          </ul>
+        </section>
+
+        <section class="bio-section">
+          <h2>Beyond Work</h2>
+          <p>
+            When I'm not working, you'll find me [your hobbies/interests]. I'm also an avid
+            reader, and you can see what I've been reading on my <a href="/books">Books</a> page.
+          </p>
+        </section>
+      </main>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .about-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .page-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+  }
+
+  .about-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: var(--spacing-2xl);
+  }
+
+  .about-sidebar {
+    position: sticky;
+    top: calc(60px + var(--spacing-lg));
+    align-self: start;
+  }
+
+  .profile-image {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .image-placeholder {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--color-bg-secondary);
+    border: 2px dashed var(--color-border);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+  }
+
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: 0.75rem 1rem;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .social-link:hover {
+    border-color: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .about-main {
+    min-width: 0;
+  }
+
+  .bio-section {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .bio-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+  }
+
+  .bio-section p {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    font-size: 1.05rem;
+  }
+
+  .bio-section a {
+    color: var(--color-accent);
+  }
+
+  .focus-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .focus-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .focus-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 6px;
+    height: 6px;
+    background: var(--color-accent);
+    border-radius: 50%;
+  }
+
+  .focus-list strong {
+    color: var(--color-text);
+  }
+
+  @media (max-width: 768px) {
+    .about-content {
+      grid-template-columns: 1fr;
+    }
+
+    .about-sidebar {
+      position: static;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-image {
+      width: 200px;
+    }
+
+    .social-links {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>

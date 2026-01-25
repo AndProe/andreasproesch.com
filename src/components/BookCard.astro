@@ -1,0 +1,122 @@
+---
+interface Props {
+  title: string;
+  author: string;
+  cover: string;
+  rating: number;
+  review: string;
+  purchaseUrl?: string;
+}
+
+const { title, author, cover, rating, review, purchaseUrl } = Astro.props;
+
+const stars = Array.from({ length: 5 }, (_, i) => i < rating);
+---
+
+<article class="book-card">
+  <div class="book-cover">
+    <img src={cover} alt={`${title} by ${author}`} loading="lazy" />
+  </div>
+  <div class="book-content">
+    <div class="book-rating">
+      {stars.map(filled => (
+        <span class:list={['star', { filled }]}>&#9733;</span>
+      ))}
+    </div>
+    <h3 class="book-title">{title}</h3>
+    <p class="book-author">by {author}</p>
+    <p class="book-review">{review}</p>
+    {purchaseUrl && (
+      <a href={purchaseUrl} target="_blank" rel="noopener noreferrer" class="book-link">
+        View on Amazon &rarr;
+      </a>
+    )}
+  </div>
+</article>
+
+<style>
+  .book-card {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: var(--spacing-md);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--spacing-md);
+    transition: all 0.3s ease;
+  }
+
+  .book-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .book-cover {
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .book-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-rating {
+    display: flex;
+    gap: 2px;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .star {
+    font-size: 1rem;
+    color: var(--color-border);
+  }
+
+  .star.filled {
+    color: #fbbf24;
+  }
+
+  .book-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+  }
+
+  .book-author {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .book-review {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .book-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    margin-top: var(--spacing-sm);
+  }
+
+  @media (max-width: 480px) {
+    .book-card {
+      grid-template-columns: 100px 1fr;
+      gap: var(--spacing-sm);
+    }
+  }
+</style>

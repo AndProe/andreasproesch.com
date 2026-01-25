@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SpeakingCard from '../components/SpeakingCard.astro';
+import { getCollection } from 'astro:content';
+
+const allEvents = await getCollection('speaking');
+const sortedEvents = allEvents.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const upcomingEvents = sortedEvents.filter(e => e.data.date >= new Date());
+const pastEvents = sortedEvents.filter(e => e.data.date < new Date());
+---
+
+<BaseLayout title="Speaking" description="Conference talks, workshops, and speaking engagements.">
+  <div class="speaking-page">
+    <header class="page-header">
+      <h1>Speaking</h1>
+      <p class="page-subtitle">
+        I speak at conferences and events about technology leadership, engineering culture,
+        and building great products. Interested in having me speak at your event?
+        <a href="/contact">Get in touch</a>.
+      </p>
+    </header>
+
+    {upcomingEvents.length > 0 && (
+      <section class="events-section">
+        <h2 class="section-title">Upcoming Events</h2>
+        <div class="grid grid-2">
+          {upcomingEvents.map(event => (
+            <SpeakingCard
+              title={event.data.title}
+              event={event.data.event}
+              date={event.data.date}
+              location={event.data.location}
+              image={event.data.image}
+              slidesUrl={event.data.slidesUrl}
+              videoUrl={event.data.videoUrl}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section class="events-section">
+      <h2 class="section-title">Past Events</h2>
+      {pastEvents.length > 0 ? (
+        <div class="grid grid-2">
+          {pastEvents.map(event => (
+            <SpeakingCard
+              title={event.data.title}
+              event={event.data.event}
+              date={event.data.date}
+              location={event.data.location}
+              image={event.data.image}
+              slidesUrl={event.data.slidesUrl}
+              videoUrl={event.data.videoUrl}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state">
+          <p>Events coming soon. Check back later!</p>
+        </div>
+      )}
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-content">
+        <h2>Invite Me to Speak</h2>
+        <p>
+          I'm available for keynotes, conference talks, workshops, and panel discussions
+          on topics including technology leadership, team building, and digital transformation.
+        </p>
+        <a href="/contact" class="btn">Get in Touch</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .speaking-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .page-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .page-subtitle a {
+    color: var(--color-accent);
+  }
+
+  .events-section {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--color-accent);
+    border-radius: 2px;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+  }
+
+  .empty-state p {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .cta-section {
+    padding: var(--spacing-2xl) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-content h2 {
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .cta-content p {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: var(--spacing-lg);
+  }
+</style>

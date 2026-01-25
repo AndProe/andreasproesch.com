@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Blog" description="Thoughts on technology leadership, engineering, and building great products.">
+  <div class="blog-page">
+    <header class="page-header">
+      <h1>Blog</h1>
+      <p class="page-subtitle">
+        Thoughts on technology leadership, engineering, and building great products.
+      </p>
+    </header>
+
+    {sortedPosts.length > 0 ? (
+      <div class="grid grid-2">
+        {sortedPosts.map(post => (
+          <BlogCard
+            title={post.data.title}
+            date={post.data.date}
+            description={post.data.description}
+            slug={post.id}
+            image={post.data.image}
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="empty-state">
+        <p>No posts yet. Check back soon!</p>
+      </div>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .blog-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .page-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: var(--spacing-2xl);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+  }
+
+  .empty-state p {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+</style>
