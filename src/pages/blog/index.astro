@@ -1,38 +1,79 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import BlogCard from '../../components/BlogCard.astro';
-import { getCollection } from 'astro:content';
 
-const allPosts = await getCollection('blog', ({ data }) => !data.draft);
-const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const substackPosts = [
+  {
+    title: "Friday 5.0: Automated Investment Research, Learning Systems, Prediction Markets, and Agent Engineering",
+    date: "January 2, 2026",
+    description: "Tips, tools, & technology resources for optimizing daily life that I've found interesting in the recent weeks.",
+    url: "https://proesch.substack.com/p/friday-50-automated-investment-research",
+    image: "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F64867c76-48e3-4ad8-8638-c9a56ef1502f_418x381.jpeg"
+  },
+  {
+    title: "My favourite books of 2025",
+    date: "December 31, 2025",
+    description: "A curated selection of books covering topics like bubbles, optionality, technology history, and supply chain intelligence that shaped my thinking this year.",
+    url: "https://proesch.substack.com/p/my-favourite-books-of-2025",
+    image: "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe5d7f956-5ff4-4ddd-a644-c3f296fd539d_996x1092.jpeg"
+  },
+  {
+    title: "Friday 5.0: AI Cyber Attacks, Tech that shaped the world, Startup Founders, and Hardware Luck",
+    date: "November 21, 2025",
+    description: "Tips, tools, & technology resources that I've found interesting in the recent weeks.",
+    url: "https://proesch.substack.com/p/friday-50-ai-cyber-attacks-tech-that",
+    image: "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa3667d7a-219d-47cb-b0f0-e88ae082c3c0_1500x1500.jpeg"
+  },
+  {
+    title: "Friday 5.0: How to Be Proactive in the Age of AI, when Agency becomes key",
+    date: "September 19, 2025",
+    description: "Collection of resources exploring agency and proactivity within an AI-driven landscape.",
+    url: "https://proesch.substack.com/p/friday-50-how-to-be-proactive-in",
+    image: "https://substackcdn.com/image/youtube/w_728,c_limit/u2nHljZeMQ8"
+  },
+  {
+    title: "Bonus: 10 Books I Wish I Read In My 20s",
+    date: "September 8, 2025",
+    description: "Ten foundational books that shaped my practical approach to life, recommended for younger readers.",
+    url: "https://proesch.substack.com/p/bonus-10-books-i-wish-i-read-in-my",
+    image: "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd36335f2-b80e-4f0b-b5fe-1dfa6c9f38a0_1500x1500.jpeg"
+  }
+];
 ---
 
-<BaseLayout title="Blog" description="Thoughts on technology leadership, engineering, and building great products.">
+<BaseLayout title="Blog" description="Thoughts on AI, technology, and business transformation from Andreas Proesch.">
   <div class="blog-page">
     <header class="page-header">
       <h1>Blog</h1>
       <p class="page-subtitle">
-        Thoughts on technology leadership, engineering, and building great products.
+        I write about AI, technology trends, and lessons learned at the intersection of tech and business.
+        My newsletter <strong>Asymmetric</strong> is published on Substack.
       </p>
+      <a href="https://proesch.substack.com/?utm_campaign=profile_chips" target="_blank" rel="noopener noreferrer" class="subscribe-link">
+        Subscribe on Substack &rarr;
+      </a>
     </header>
 
-    {sortedPosts.length > 0 ? (
-      <div class="grid grid-2">
-        {sortedPosts.map(post => (
-          <BlogCard
-            title={post.data.title}
-            date={post.data.date}
-            description={post.data.description}
-            slug={post.id}
-            image={post.data.image}
-          />
-        ))}
-      </div>
-    ) : (
-      <div class="empty-state">
-        <p>No posts yet. Check back soon!</p>
-      </div>
-    )}
+    <div class="posts-list">
+      {substackPosts.map(post => (
+        <a href={post.url} target="_blank" rel="noopener noreferrer" class="post-card">
+          <div class="post-image">
+            <img src={post.image} alt={post.title} loading="lazy" />
+          </div>
+          <div class="post-content">
+            <time class="post-date">{post.date}</time>
+            <h2 class="post-title">{post.title}</h2>
+            <p class="post-description">{post.description}</p>
+            <span class="read-more">Read on Substack &rarr;</span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="view-all">
+      <a href="https://proesch.substack.com/archive" target="_blank" rel="noopener noreferrer" class="btn-view-all">
+        View all posts on Substack
+      </a>
+    </div>
   </div>
 </BaseLayout>
 
@@ -43,29 +84,154 @@ const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.
   }
 
   .page-header {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
   }
 
   .page-header h1 {
     font-size: 2.5rem;
     margin-bottom: var(--spacing-sm);
+    color: #ffffff;
   }
 
   .page-subtitle {
     font-size: 1.1rem;
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
   }
 
-  .empty-state {
-    text-align: center;
-    padding: var(--spacing-2xl);
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
+  .page-subtitle strong {
+    color: #ffffff;
+  }
+
+  .subscribe-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #ffffff;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+  }
+
+  .subscribe-link:hover {
+    opacity: 1;
+    color: #ffffff;
+  }
+
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .post-card {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    align-items: center;
   }
 
-  .empty-state p {
-    color: var(--color-text-muted);
-    margin: 0;
+  .post-card:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .post-image {
+    width: 120px;
+    height: 80px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .post-card:hover .post-image img {
+    transform: scale(1.05);
+  }
+
+  .post-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .post-date {
+    display: block;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5rem;
+  }
+
+  .post-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .post-description {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  .read-more {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.2s ease;
+  }
+
+  .post-card:hover .read-more {
+    color: #ffffff;
+  }
+
+  .view-all {
+    margin-top: var(--spacing-2xl);
+    text-align: center;
+  }
+
+  .btn-view-all {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .btn-view-all:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+  }
+
+  @media (max-width: 600px) {
+    .post-card {
+      grid-template-columns: 80px 1fr;
+    }
+
+    .post-image {
+      width: 80px;
+      height: 56px;
+    }
   }
 </style>

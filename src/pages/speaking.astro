@@ -1,74 +1,110 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SpeakingCard from '../components/SpeakingCard.astro';
-import { getCollection } from 'astro:content';
-
-const allEvents = await getCollection('speaking');
-const sortedEvents = allEvents.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-const upcomingEvents = sortedEvents.filter(e => e.data.date >= new Date());
-const pastEvents = sortedEvents.filter(e => e.data.date < new Date());
 ---
 
-<BaseLayout title="Speaking" description="Conference talks, workshops, and speaking engagements.">
+<BaseLayout title="Speaking" description="Public speaking on AI Adoption, Digital Transformation, and Tech Trends.">
   <div class="speaking-page">
     <header class="page-header">
-      <h1>Speaking</h1>
+      <h1>Public Speaking</h1>
       <p class="page-subtitle">
-        I speak at conferences and events about technology leadership, engineering culture,
-        and building great products. Interested in having me speak at your event?
-        <a href="/contact">Get in touch</a>.
+        I've seen tech and digital transformations accelerate and win, and I have seen them stall and fail. In the last few years, I have given presentations on the topics of AI transformations and digital adoptions at Corporate Conferences, Board of Director's Strategy Meetings, Executive Leadership Trainings, and other events across Europe and the Middle East.
       </p>
+      <a href="/contact" class="contact-link">Contact me &rarr;</a>
     </header>
 
-    {upcomingEvents.length > 0 && (
-      <section class="events-section">
-        <h2 class="section-title">Upcoming Events</h2>
-        <div class="grid grid-2">
-          {upcomingEvents.map(event => (
-            <SpeakingCard
-              title={event.data.title}
-              event={event.data.event}
-              date={event.data.date}
-              location={event.data.location}
-              image={event.data.image}
-              slidesUrl={event.data.slidesUrl}
-              videoUrl={event.data.videoUrl}
-            />
-          ))}
-        </div>
-      </section>
-    )}
+    <section class="featured-image-section">
+      <div class="featured-image">
+        <img src="/images/speaking-main.jpg" alt="Andreas Proesch speaking at conference" />
+      </div>
+    </section>
 
-    <section class="events-section">
-      <h2 class="section-title">Past Events</h2>
-      {pastEvents.length > 0 ? (
-        <div class="grid grid-2">
-          {pastEvents.map(event => (
-            <SpeakingCard
-              title={event.data.title}
-              event={event.data.event}
-              date={event.data.date}
-              location={event.data.location}
-              image={event.data.image}
-              slidesUrl={event.data.slidesUrl}
-              videoUrl={event.data.videoUrl}
-            />
-          ))}
+    <section class="topics-section">
+      <h2 class="section-title">Speaking Topics</h2>
+      <div class="topics-grid">
+        <div class="topic-card">
+          <div class="topic-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+          </div>
+          <h3>AI Adoption</h3>
+          <p>Moving from AI experimentation to production-grade systems that deliver real business impact.</p>
         </div>
-      ) : (
-        <div class="empty-state">
-          <p>Events coming soon. Check back later!</p>
+        <div class="topic-card">
+          <div class="topic-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3>Digital Transformation</h3>
+          <p>How organizations can leverage technology to fundamentally change how they operate and deliver value.</p>
         </div>
-      )}
+        <div class="topic-card">
+          <div class="topic-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3>Tech Trends</h3>
+          <p>Emerging technologies with asymmetric potential for disruption across markets and industries.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="carousel-section">
+      <h2 class="section-title">From Past Events</h2>
+      <div class="carousel">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <img src="/images/speaking-event-1.jpg" alt="Speaking event" />
+          </div>
+          <div class="carousel-slide">
+            <img src="/images/speaking-event-2.jpg" alt="Speaking event" />
+          </div>
+          <div class="carousel-slide">
+            <img src="/images/speaking-event-3.jpg" alt="Speaking event" />
+          </div>
+          <div class="carousel-slide">
+            <img src="/images/speaking-event-4.jpg" alt="Speaking event" />
+          </div>
+          <div class="carousel-slide">
+            <img src="/images/speaking-event-5.jpg" alt="Speaking event" />
+          </div>
+          <div class="carousel-slide">
+            <img src="/images/speaking-event-6.jpg" alt="Speaking event" />
+          </div>
+          <div class="carousel-slide">
+            <img src="/images/speaking-event-7.jpg" alt="Speaking event" />
+          </div>
+          <div class="carousel-slide">
+            <img src="/images/speaking-event-8.jpg" alt="Speaking event" />
+          </div>
+          <div class="carousel-slide">
+            <img src="/images/speaking-event-9.webp" alt="Speaking event" />
+          </div>
+        </div>
+        <button class="carousel-btn carousel-btn-prev" aria-label="Previous">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <button class="carousel-btn carousel-btn-next" aria-label="Next">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+      </div>
     </section>
 
     <section class="cta-section">
       <div class="cta-content">
         <h2>Invite Me to Speak</h2>
         <p>
-          I'm available for keynotes, conference talks, workshops, and panel discussions
-          on topics including technology leadership, team building, and digital transformation.
+          I'm available for keynotes, conference talks, workshops, and panel discussions.
+          Whether it's a corporate event, industry conference, or academic setting,
+          I share my insights and experiences on technology and business transformation.
         </p>
         <a href="/contact" class="btn">Get in Touch</a>
       </div>
@@ -95,13 +131,40 @@ const pastEvents = sortedEvents.filter(e => e.data.date < new Date());
     font-size: 1.1rem;
     color: var(--color-text-muted);
     line-height: 1.7;
+    max-width: 700px;
+    margin-bottom: var(--spacing-md);
   }
 
-  .page-subtitle a {
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.05rem;
+    font-weight: 500;
     color: var(--color-accent);
   }
 
-  .events-section {
+  .contact-link:hover {
+    color: var(--color-accent-hover);
+  }
+
+  .featured-image-section {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .featured-image {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .featured-image img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .topics-section {
     margin-bottom: var(--spacing-2xl);
   }
 
@@ -123,17 +186,111 @@ const pastEvents = sortedEvents.filter(e => e.data.date < new Date());
     border-radius: 2px;
   }
 
-  .empty-state {
-    text-align: center;
-    padding: var(--spacing-xl);
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  .topic-card {
     background: var(--color-bg-secondary);
     border: 1px solid var(--color-border);
     border-radius: 12px;
+    padding: var(--spacing-md);
+    transition: all 0.3s ease;
   }
 
-  .empty-state p {
+  .topic-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .topic-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .topic-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .topic-card p {
+    font-size: 0.9rem;
     color: var(--color-text-muted);
+    line-height: 1.5;
     margin: 0;
+  }
+
+  .carousel-section {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .carousel {
+    position: relative;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: var(--spacing-md);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: var(--spacing-xs) 0;
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-slide {
+    flex: 0 0 calc(33.333% - var(--spacing-md) * 2 / 3);
+    scroll-snap-align: start;
+  }
+
+  .carousel-slide img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .carousel-btn:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .carousel-btn-prev {
+    left: -22px;
+  }
+
+  .carousel-btn-next {
+    right: -22px;
   }
 
   .cta-section {
@@ -158,4 +315,37 @@ const pastEvents = sortedEvents.filter(e => e.data.date < new Date());
     line-height: 1.7;
     margin-bottom: var(--spacing-lg);
   }
+
+  @media (max-width: 768px) {
+    .topics-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .carousel-slide {
+      flex: 0 0 calc(100% - var(--spacing-md));
+    }
+
+    .carousel-btn {
+      display: none;
+    }
+  }
 </style>
+
+<script>
+  const track = document.querySelector('.carousel-track');
+  const prevBtn = document.querySelector('.carousel-btn-prev');
+  const nextBtn = document.querySelector('.carousel-btn-next');
+
+  if (track && prevBtn && nextBtn) {
+    const slideWidth = track.querySelector('.carousel-slide')?.offsetWidth || 0;
+    const gap = 24; // var(--spacing-md)
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -(slideWidth + gap), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: slideWidth + gap, behavior: 'smooth' });
+    });
+  }
+</script>

@@ -13,11 +13,12 @@ const recentPosts = allPosts
   <section class="hero">
     <div class="hero-content">
       <div class="hero-text">
+        <p class="hero-intro">Hi, I'm</p>
         <h1 class="hero-title">Andreas Proesch</h1>
-        <p class="hero-subtitle">Technology Leader, Speaker & Writer</p>
         <p class="hero-description">
-          I help organizations navigate digital transformation, build high-performing teams,
-          and create technology strategies that drive real business outcomes.
+          For 15+ years I have worked at the intersection of technology and adoption.
+          I have worked in AI advisory, Strategic AI development, strategy, consulting,
+          and commodity trading.
         </p>
         <div class="hero-cta">
           <a href="/about" class="btn">Learn More</a>
@@ -25,9 +26,7 @@ const recentPosts = allPosts
         </div>
       </div>
       <div class="hero-image">
-        <div class="image-placeholder">
-          <span>Your Photo</span>
-        </div>
+        <img src="/images/andreas-proesch.jpg" alt="Andreas Proesch" class="profile-photo" />
       </div>
     </div>
   </section>
@@ -38,14 +37,12 @@ const recentPosts = allPosts
       <div class="feature-card">
         <div class="feature-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
           </svg>
         </div>
-        <h3>Leadership</h3>
-        <p>Building and mentoring high-performing engineering teams that deliver exceptional results.</p>
+        <h3>Technology Operator</h3>
+        <p>Leading frontier industrial DataOps software initiatives, building autonomous industries that are more sustainable, efficient, and productive.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
@@ -55,20 +52,48 @@ const recentPosts = allPosts
             <polyline points="2 12 12 17 22 12"/>
           </svg>
         </div>
-        <h3>Strategy</h3>
-        <p>Developing technology roadmaps that align with business objectives and drive growth.</p>
+        <h3>Advisor</h3>
+        <p>Helping executive management teams, private equity investors, and venture capitalists turn business strategy into business impact.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 19l7-7 3 3-7 7-3-3z"/>
-            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
-            <path d="M2 2l7.586 7.586"/>
-            <circle cx="11" cy="11" r="2"/>
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
           </svg>
         </div>
-        <h3>Speaking</h3>
-        <p>Sharing insights at conferences and events on technology leadership and innovation.</p>
+        <h3>Angel Investor</h3>
+        <p>Investing in early-stage companies at the interface between frontier technologies and business model development.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section expertise">
+    <h2 class="section-title">Areas of Expertise</h2>
+    <div class="expertise-grid">
+      <div class="expertise-item">
+        <span class="expertise-label">AI Transformation</span>
+      </div>
+      <div class="expertise-item">
+        <span class="expertise-label">Co-Innovation</span>
+      </div>
+      <div class="expertise-item">
+        <span class="expertise-label">Agentic AI Adoption</span>
+      </div>
+      <div class="expertise-item">
+        <span class="expertise-label">Robotics & Automation</span>
+      </div>
+      <div class="expertise-item">
+        <span class="expertise-label">Industrial AI</span>
+      </div>
+      <div class="expertise-item">
+        <span class="expertise-label">Energy & Manufacturing</span>
+      </div>
+      <div class="expertise-item">
+        <span class="expertise-label">Tech Trends</span>
+      </div>
+      <div class="expertise-item">
+        <span class="expertise-label">Commodity Markets</span>
       </div>
     </div>
   </section>
@@ -114,10 +139,17 @@ const recentPosts = allPosts
     align-items: center;
   }
 
+  .hero-intro {
+    font-size: 1.1rem;
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+  }
+
   .hero-title {
     font-size: 3.5rem;
     font-weight: 700;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
     background: linear-gradient(135deg, var(--color-text) 0%, var(--color-text-muted) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -125,10 +157,11 @@ const recentPosts = allPosts
   }
 
   .hero-subtitle {
-    font-size: 1.5rem;
-    color: var(--color-accent);
+    font-size: 1.35rem;
+    color: var(--color-text);
     font-weight: 500;
     margin-bottom: var(--spacing-md);
+    line-height: 1.4;
   }
 
   .hero-description {
@@ -136,7 +169,7 @@ const recentPosts = allPosts
     color: var(--color-text-muted);
     line-height: 1.7;
     margin-bottom: var(--spacing-lg);
-    max-width: 500px;
+    max-width: 520px;
   }
 
   .hero-cta {
@@ -149,17 +182,11 @@ const recentPosts = allPosts
     justify-content: center;
   }
 
-  .image-placeholder {
+  .profile-photo {
     width: 350px;
     height: 400px;
-    background: var(--color-bg-secondary);
-    border: 2px dashed var(--color-border);
+    object-fit: cover;
     border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text-muted);
-    font-size: 1.1rem;
   }
 
   .featured {
@@ -200,6 +227,36 @@ const recentPosts = allPosts
     color: var(--color-text-muted);
     font-size: 0.95rem;
     margin: 0;
+    line-height: 1.6;
+  }
+
+  .expertise {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .expertise-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+
+  .expertise-item {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .expertise-item:hover {
+    border-color: var(--color-accent);
+    background: rgba(99, 102, 241, 0.1);
+  }
+
+  .expertise-label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text);
   }
 
   .section-header {
@@ -250,7 +307,7 @@ const recentPosts = allPosts
     }
 
     .hero-subtitle {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
     }
 
     .hero-description {
@@ -265,9 +322,13 @@ const recentPosts = allPosts
       order: -1;
     }
 
-    .image-placeholder {
+    .profile-photo {
       width: 250px;
       height: 300px;
+    }
+
+    .expertise-grid {
+      justify-content: center;
     }
   }
 </style>
