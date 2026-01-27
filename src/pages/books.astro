@@ -1,87 +1,157 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BookCard from '../components/BookCard.astro';
-import { getCollection, render } from 'astro:content';
 
-const allBooks = await getCollection('books');
-const sortedBooks = allBooks.sort((a, b) => b.data.rating - a.data.rating);
-
-// Get content (reviews) for each book
-const booksWithReviews = await Promise.all(
-  sortedBooks.map(async (book) => {
-    const { Content } = await render(book);
-    return { ...book, Content };
-  })
-);
+const books = [
+  { title: "The Venture Mindset", author: "Ilya Strebulaev", image: "/images/books/venture-mindset.jpg" },
+  { title: "Boom", author: "Byrne Hobart", image: "/images/books/boom.jpg" },
+  { title: "Aiming High", author: "Atsuo Inoue", image: "/images/books/aiming-high.jpg" },
+  { title: "Hacking Darwin", author: "Jamie Metzl", image: "/images/books/hacking-darwin.jpg" },
+  { title: "Project Hail Mary", author: "Andy Weir", image: "/images/books/project-hail-mary.jpg" },
+  { title: "The Inevitable", author: "Kevin Kelly", image: "/images/books/the-inevitable.jpg" },
+  { title: "Material World", author: "Ed Conway", image: "/images/books/material-world.jpg" },
+  { title: "The Dark Forest", author: "Cixin Liu", image: "/images/books/dark-forest.jpg" },
+  { title: "The Power Law", author: "Sebastian Mallaby", image: "/images/books/power-law.jpg" },
+  { title: "Startup Boards", author: "Brad Feld", image: "/images/books/startup-boards.jpg" },
+  { title: "VC: An American History", author: "Thomas Nicholas", image: "/images/books/vc-american-history.jpg" },
+  { title: "Build", author: "Tony Fadell", image: "/images/books/build.jpg" },
+  { title: "Chip War", author: "Chris Miller", image: "/images/books/chip-war.jpg" },
+  { title: "How The World Really Works", author: "Vaclav Smil", image: "/images/books/how-world-works.jpg" },
+  { title: "Amp It Up", author: "Frank Slootman", image: "/images/books/amp-it-up.jpg" },
+  { title: "The Square and the Tower", author: "Niall Ferguson", image: "/images/books/square-tower.jpg" },
+  { title: "The Pleasure of Finding Things Out", author: "Richard Feynman", image: "/images/books/finding-things-out.jpg" },
+  { title: "Snow Crash", author: "Neal Stephenson", image: "/images/books/snow-crash.jpg" },
+  { title: "The Singularity is Near", author: "Ray Kurzweil", image: "/images/books/singularity-near.jpg" },
+  { title: "Blitzscaling", author: "Reid Hoffman", image: "/images/books/blitzscaling.jpg" },
+  { title: "Thinking in Bets", author: "Annie Duke", image: "/images/books/thinking-bets.jpg" }
+];
 ---
 
-<BaseLayout title="Book Recommendations" description="Books that have shaped my thinking on technology, leadership, and life.">
+<BaseLayout title="Book Recommendations" description="Books that have shaped my thinking on technology, investing, and the future.">
   <div class="books-page">
     <header class="page-header">
       <h1>Book Recommendations</h1>
       <p class="page-subtitle">
-        Books that have shaped my thinking on technology, leadership, and life.
-        These are the ones I recommend most often.
+        Books that have shaped my thinking on technology, investing, and the future.
       </p>
     </header>
 
-    {booksWithReviews.length > 0 ? (
-      <div class="books-grid">
-        {booksWithReviews.map(book => (
-          <BookCard
-            title={book.data.title}
-            author={book.data.author}
-            cover={book.data.cover}
-            rating={book.data.rating}
-            review={book.body || ''}
-            purchaseUrl={book.data.purchaseUrl}
-          />
-        ))}
-      </div>
-    ) : (
-      <div class="empty-state">
-        <p>Book recommendations coming soon!</p>
-      </div>
-    )}
+    <div class="books-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+      {books.map(book => (
+        <div class="book-card" style="width: 100%;">
+          <div class="book-cover">
+            <img
+              src={book.image}
+              alt={book.title}
+              loading="lazy"
+            />
+          </div>
+          <div class="book-info">
+            <h3 class="book-title">{book.title}</h3>
+            <p class="book-author">{book.author}</p>
+          </div>
+        </div>
+      ))}
+    </div>
   </div>
 </BaseLayout>
 
 <style>
   .books-page {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
   }
 
   .page-header {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
   }
 
   .page-header h1 {
     font-size: 2.5rem;
     margin-bottom: var(--spacing-sm);
+    color: #ffffff;
   }
 
   .page-subtitle {
     font-size: 1.1rem;
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.7);
     line-height: 1.7;
   }
 
   .books-grid {
-    display: grid;
-    gap: var(--spacing-lg);
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 24px !important;
+    width: 100% !important;
   }
 
-  .empty-state {
+  .book-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding: var(--spacing-2xl);
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
+    width: 100%;
   }
 
-  .empty-state p {
-    color: var(--color-text-muted);
+  .book-cover {
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 2 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: var(--spacing-sm);
+    transition: all 0.3s ease;
+  }
+
+  .book-card:hover .book-cover {
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .book-info {
+    padding: 0 var(--spacing-xs);
+  }
+
+  .book-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+  }
+
+  .book-author {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
     margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .books-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .books-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 16px;
+    }
+
+    .book-title {
+      font-size: 0.85rem;
+    }
+
+    .book-author {
+      font-size: 0.75rem;
+    }
   }
 </style>
