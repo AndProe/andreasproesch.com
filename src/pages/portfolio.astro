@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const investments = [
+  { name: "Physical Robotics", description: "Humanoid robotics", url: "https://www.physicalrobotics.com/" },
+  { name: "Minerva Robotics", description: "Humanoid robotics (Oil & Gas, Defence)", url: "https://www.minervahumanoids.com/" },
+  { name: "Novatron", description: "Nuclear fusion energy", url: "https://www.novatronfusion.com/" },
+  { name: "Ori", description: "Sovereign cloud infrastructure", url: "https://www.ori.co/" },
+  { name: "Blykalla", description: "Nuclear SMR technology", url: "https://www.blykalla.com/" },
+  { name: "Livity", description: "Digital health services", url: "https://www.livity.no/en" },
+  { name: "OctaiPipe", description: "Data center energy optimization", url: "https://octaipipe.ai/" },
+  { name: "GrabrFi", description: "Cross-border fintech & banking", url: "https://www.grabrfi.com/en" },
+  { name: "Intella", description: "AI voice & conversational agents", url: "https://intella.me/" },
+  { name: "Cognite", description: "Industrial AI & data platforms", url: "https://www.cognite.com/en" },
+  { name: "SpaceX", description: "Space launch & satellite systems", url: "https://www.spacex.com/" },
+];
+---
+
+<BaseLayout title="Portfolio" description="Early stage companies I am excited about, and have taken a very small part in their journey.">
+  <div class="portfolio-page">
+    <header class="page-header">
+      <h1>Portfolio</h1>
+      <p class="page-subtitle">
+        Early stage companies I am excited about, and have taken a very small part in their journey.
+      </p>
+    </header>
+
+    <div class="investments-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {investments.map(company => (
+            <tr>
+              <td>
+                <a href={company.url} target="_blank" rel="noopener noreferrer" class="company-link">
+                  {company.name}
+                </a>
+              </td>
+              <td class="description">{company.description}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .portfolio-page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    color: #ffffff;
+  }
+
+  .page-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+  }
+
+  .investments-table {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  th {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  td {
+    color: #ffffff;
+  }
+
+  .company-link {
+    color: var(--color-accent);
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .company-link:hover {
+    color: var(--color-accent-hover);
+  }
+
+  .description {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  @media (max-width: 600px) {
+    th, td {
+      padding: 0.75rem 0.5rem;
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
