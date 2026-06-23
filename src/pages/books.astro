@@ -1,157 +1,70 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/pages.css';
 
 const books = [
-  { title: "The Venture Mindset", author: "Ilya Strebulaev", image: "/images/books/venture-mindset.jpg" },
-  { title: "Boom", author: "Byrne Hobart", image: "/images/books/boom.jpg" },
-  { title: "Aiming High", author: "Atsuo Inoue", image: "/images/books/aiming-high.jpg" },
-  { title: "Hacking Darwin", author: "Jamie Metzl", image: "/images/books/hacking-darwin.jpg" },
-  { title: "Project Hail Mary", author: "Andy Weir", image: "/images/books/project-hail-mary.jpg" },
-  { title: "The Inevitable", author: "Kevin Kelly", image: "/images/books/the-inevitable.jpg" },
-  { title: "Material World", author: "Ed Conway", image: "/images/books/material-world.jpg" },
-  { title: "The Dark Forest", author: "Cixin Liu", image: "/images/books/dark-forest.jpg" },
-  { title: "The Power Law", author: "Sebastian Mallaby", image: "/images/books/power-law.jpg" },
-  { title: "Startup Boards", author: "Brad Feld", image: "/images/books/startup-boards.jpg" },
-  { title: "VC: An American History", author: "Thomas Nicholas", image: "/images/books/vc-american-history.jpg" },
-  { title: "Build", author: "Tony Fadell", image: "/images/books/build.jpg" },
-  { title: "Chip War", author: "Chris Miller", image: "/images/books/chip-war.jpg" },
-  { title: "How The World Really Works", author: "Vaclav Smil", image: "/images/books/how-world-works.jpg" },
-  { title: "Amp It Up", author: "Frank Slootman", image: "/images/books/amp-it-up.jpg" },
-  { title: "The Square and the Tower", author: "Niall Ferguson", image: "/images/books/square-tower.jpg" },
-  { title: "The Pleasure of Finding Things Out", author: "Richard Feynman", image: "/images/books/finding-things-out.jpg" },
-  { title: "Snow Crash", author: "Neal Stephenson", image: "/images/books/snow-crash.jpg" },
-  { title: "The Singularity is Near", author: "Ray Kurzweil", image: "/images/books/singularity-near.jpg" },
-  { title: "Blitzscaling", author: "Reid Hoffman", image: "/images/books/blitzscaling.jpg" },
-  { title: "Thinking in Bets", author: "Annie Duke", image: "/images/books/thinking-bets.jpg" }
+  { t: "The Venture Mindset", a: "Ilya Strebulaev", s: "venture-mindset" },
+  { t: "Boom", a: "Byrne Hobart", s: "boom" },
+  { t: "Aiming High", a: "Atsuo Inoue", s: "aiming-high" },
+  { t: "Hacking Darwin", a: "Jamie Metzl", s: "hacking-darwin" },
+  { t: "Project Hail Mary", a: "Andy Weir", s: "project-hail-mary" },
+  { t: "The Inevitable", a: "Kevin Kelly", s: "the-inevitable" },
+  { t: "Material World", a: "Ed Conway", s: "material-world" },
+  { t: "The Dark Forest", a: "Cixin Liu", s: "dark-forest" },
+  { t: "The Power Law", a: "Sebastian Mallaby", s: "power-law" },
+  { t: "Startup Boards", a: "Brad Feld", s: "startup-boards" },
+  { t: "VC: An American History", a: "Thomas Nicholas", s: "vc-american-history" },
+  { t: "Build", a: "Tony Fadell", s: "build" },
+  { t: "Chip War", a: "Chris Miller", s: "chip-war" },
+  { t: "How The World Really Works", a: "Vaclav Smil", s: "how-world-works" },
+  { t: "Amp It Up", a: "Frank Slootman", s: "amp-it-up" },
+  { t: "The Square and the Tower", a: "Niall Ferguson", s: "square-tower" },
+  { t: "The Pleasure of Finding Things Out", a: "Richard Feynman", s: "finding-things-out" },
+  { t: "Snow Crash", a: "Neal Stephenson", s: "snow-crash" },
+  { t: "The Singularity is Near", a: "Ray Kurzweil", s: "singularity-near" },
+  { t: "Blitzscaling", a: "Reid Hoffman", s: "blitzscaling" },
+  { t: "Thinking in Bets", a: "Annie Duke", s: "thinking-bets" },
 ];
 ---
 
-<BaseLayout title="Recommendations" description="Books that have shaped my thinking on technology, investing, and the future.">
-  <div class="books-page">
-    <header class="page-header">
-      <h1>Recommendations</h1>
-      <p class="page-subtitle">
+<BaseLayout
+  title="Reading"
+  description="Books that have shaped Andreas Proesch's thinking on technology, investing, and the future."
+>
+
+  <section class="phero section">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>Recommendations</p>
+      <h1 data-reveal data-delay="0.05">Reading</h1>
+      <p class="phero__intro" data-reveal data-delay="0.1">
         Books that have shaped my thinking on technology, investing, and the future.
       </p>
-    </header>
-
-    <div class="books-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
-      {books.map(book => (
-        <div class="book-card" style="width: 100%;">
-          <div class="book-cover">
-            <img
-              src={book.image}
-              alt={book.title}
-              loading="lazy"
-            />
-          </div>
-          <div class="book-info">
-            <h3 class="book-title">{book.title}</h3>
-            <p class="book-author">{book.author}</p>
-          </div>
-        </div>
-      ))}
     </div>
-  </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="books" data-reveal-group>
+        {books.map((b, i) => (
+          <div class="book" data-reveal>
+            <div class="book__frame">
+              <div class="book__cover">
+                <span class="book__badge">{String(i + 1).padStart(2, "0")}</span>
+                <div class="ph">
+                  <img src={`/images/books/${b.s}.jpg`} alt={`${b.t} by ${b.a}`} loading="lazy" decoding="async"
+                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                  <span class="ph__label" style="display:none;"><b>{b.s}.jpg</b>Cover · 2:3</span>
+                </div>
+              </div>
+            </div>
+            <div class="book__meta">
+              <div class="book__title">{b.t}</div>
+              <div class="book__author">{b.a}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
-
-<style>
-  .books-page {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .page-header {
-    margin-bottom: var(--spacing-2xl);
-  }
-
-  .page-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: var(--spacing-sm);
-    color: #ffffff;
-  }
-
-  .page-subtitle {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.7;
-  }
-
-  .books-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 24px !important;
-    width: 100% !important;
-  }
-
-  .book-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-  }
-
-  .book-cover {
-    width: 100%;
-    max-width: 200px;
-    aspect-ratio: 2 / 3;
-    border-radius: 8px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: var(--spacing-sm);
-    transition: all 0.3s ease;
-  }
-
-  .book-card:hover .book-cover {
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  }
-
-  .book-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .book-info {
-    padding: 0 var(--spacing-xs);
-  }
-
-  .book-title {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 0.25rem;
-    line-height: 1.3;
-  }
-
-  .book-author {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.5);
-    margin: 0;
-  }
-
-  @media (max-width: 900px) {
-    .books-grid {
-      grid-template-columns: repeat(3, 1fr) !important;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .books-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 16px;
-    }
-
-    .book-title {
-      font-size: 0.85rem;
-    }
-
-    .book-author {
-      font-size: 0.75rem;
-    }
-  }
-</style>

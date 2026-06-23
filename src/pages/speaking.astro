@@ -1,351 +1,129 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/pages.css';
+
+// Gallery is data-driven so captions (event + year) can be filled in one place.
+// Set `event` and `year` on an item to label its photo; leave them off to show
+// the "caption coming" placeholder.
+const events = [
+  { src: "speaking-event-1", ext: "jpg" },
+  { src: "speaking-event-2", ext: "jpg" },
+  { src: "speaking-event-3", ext: "jpg" },
+  { src: "speaking-event-4", ext: "jpg" },
+  { src: "speaking-event-6", ext: "jpg" },
+  { src: "speaking-event-7", ext: "jpg" },
+  { src: "speaking-event-8", ext: "jpg" },
+  { src: "speaking-event-9", ext: "webp" },
+] as { src: string; ext: string; event?: string; year?: string }[];
 ---
 
-<BaseLayout title="Speaking" description="Public speaking on AI Adoption, Digital Transformation, and Tech Trends.">
-  <div class="speaking-page">
-    <header class="page-header">
-      <h1>Public Speaking</h1>
-      <p class="page-subtitle">
-        I've seen tech and digital transformations accelerate and win, and I have seen them stall and fail. In the last few years, I have given presentations on the topics of AI transformations and digital adoptions at Corporate Conferences, Board of Director's Strategy Meetings, Executive Leadership Trainings, and other events across Europe and the Middle East.
+<BaseLayout
+  title="Speaking"
+  description="Andreas Proesch speaks on AI adoption, digital transformation, and tech trends at corporate conferences, board strategy meetings, and executive trainings across Europe and the Middle East."
+  image="/images/speaking-main.jpg"
+>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="phero section">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>Speaking</p>
+      <h1 data-reveal data-delay="0.05">Public Speaking</h1>
+      <p class="phero__intro" data-reveal data-delay="0.1">
+        I've seen tech and digital transformations accelerate and win, and I have seen them stall and fail.
+        In the last few years, I've given presentations on AI transformations and digital adoption at corporate
+        conferences, board strategy meetings, executive leadership trainings, and other events across Europe and
+        the Middle East.
       </p>
-      <a href="/contact" class="contact-link">Contact me &rarr;</a>
-    </header>
+    </div>
+  </section>
 
-    <section class="featured-image-section">
-      <div class="featured-image">
-        <img src="/images/speaking-main.jpg" alt="Andreas Proesch speaking at conference" />
+  <!-- ===================== HERO IMAGE ===================== -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap speak-hero" data-reveal>
+      <div class="framed">
+        <span class="brk tl"></span><span class="brk br"></span>
+        <div class="ph" style="aspect-ratio: 21/9;">
+          <img src="/images/speaking-main.jpg" alt="Andreas Proesch speaking on stage" loading="lazy"
+               style="width:100%;height:100%;object-fit:cover;"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <span class="ph__label" style="display:none;"><b>speaking-main.jpg</b>On-stage hero · 21:9</span>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="topics-section">
-      <h2 class="section-title">Speaking Topics</h2>
-      <div class="topics-grid">
-        <div class="topic-card">
-          <div class="topic-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-              <line x1="12" y1="22.08" x2="12" y2="12"/>
-            </svg>
-          </div>
+  <!-- ===================== TOPICS ===================== -->
+  <section class="section" id="topics">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="sec-head__num">01 / Topics</span>
+        <h2>What I speak about</h2>
+      </div>
+      <div class="topics" data-reveal-group>
+        <div class="card" data-reveal>
+          <span class="num">/01</span>
           <h3>AI Adoption</h3>
-          <p>Moving from AI experimentation to production-grade systems that deliver real business impact.</p>
+          <p>Moving organizations from experimentation to production-grade systems that hold up under real operational load.</p>
         </div>
-        <div class="topic-card">
-          <div class="topic-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-          </div>
+        <div class="card" data-reveal>
+          <span class="num">/02</span>
           <h3>Digital Transformation</h3>
-          <p>How organizations can leverage technology to fundamentally change how they operate and deliver value.</p>
+          <p>Leveraging technology to genuinely change how organizations operate — not just digitize what already exists.</p>
         </div>
-        <div class="topic-card">
-          <div class="topic-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-            </svg>
-          </div>
+        <div class="card" data-reveal>
+          <span class="num">/03</span>
           <h3>Tech Trends</h3>
-          <p>Emerging technologies with asymmetric potential for disruption across markets and industries.</p>
+          <p>Emerging technologies with asymmetric disruption potential — where to pay attention, and where not to.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="carousel-section">
-      <h2 class="section-title">From Past Events</h2>
-      <div class="carousel">
-        <div class="carousel-track">
-          <div class="carousel-slide">
-            <img src="/images/speaking-event-1.jpg" alt="Speaking event" />
-          </div>
-          <div class="carousel-slide">
-            <img src="/images/speaking-event-2.jpg" alt="Speaking event" />
-          </div>
-          <div class="carousel-slide">
-            <img src="/images/speaking-event-3.jpg" alt="Speaking event" />
-          </div>
-          <div class="carousel-slide">
-            <img src="/images/speaking-event-4.jpg" alt="Speaking event" />
-          </div>
-          <div class="carousel-slide">
-            <img src="/images/speaking-event-5.jpg" alt="Speaking event" />
-          </div>
-          <div class="carousel-slide">
-            <img src="/images/speaking-event-6.jpg" alt="Speaking event" />
-          </div>
-          <div class="carousel-slide">
-            <img src="/images/speaking-event-7.jpg" alt="Speaking event" />
-          </div>
-          <div class="carousel-slide">
-            <img src="/images/speaking-event-8.jpg" alt="Speaking event" />
-          </div>
-          <div class="carousel-slide">
-            <img src="/images/speaking-event-9.webp" alt="Speaking event" />
+  <!-- ===================== GALLERY ===================== -->
+  <section class="section" id="events">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="sec-head__num">02 / From Past Events</span>
+        <p>A selection from recent talks across Europe and the Middle East.</p>
+      </div>
+      <div class="gallery" data-reveal-group>
+        {events.map((e, i) => (
+          <figure data-reveal>
+            <div class="ph" style="aspect-ratio:4/3;">
+              <img src={`/images/${e.src}.${e.ext}`} alt={`On stage — event ${String(i + 1).padStart(2, "0")}`} loading="lazy" decoding="async"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <span class="ph__label" style="display:none;"><b>{e.src}.{e.ext}</b>Event {String(i + 1).padStart(2, "0")} · 4:3</span>
+            </div>
+            <figcaption>
+              {e.event ? `${e.event} · ${e.year ?? ""}` : <span class="cap-soon">◆ Event name · Year</span>}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BOOKING ===================== -->
+  <section class="section" id="invite">
+    <div class="wrap">
+      <div class="booking" data-reveal>
+        <div>
+          <p class="eyebrow">Invite me to speak</p>
+          <h2>Bring this to your audience</h2>
+          <p>Conferences, board sessions, and executive teams — available for keynotes, panels, and private briefings on AI transformation.</p>
+          <div class="fmt">
+            <span>Keynotes</span>
+            <span>Conference Talks</span>
+            <span>Workshops</span>
+            <span>Panels</span>
+            <span>Board Strategy Sessions</span>
           </div>
         </div>
-        <button class="carousel-btn carousel-btn-prev" aria-label="Previous">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="15 18 9 12 15 6"/>
-          </svg>
-        </button>
-        <button class="carousel-btn carousel-btn-next" aria-label="Next">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="9 18 15 12 9 6"/>
-          </svg>
-        </button>
+        <div style="display:flex;justify-content:flex-end;">
+          <a class="btn btn--primary" href="/contact">Get in touch <span class="arr">→</span></a>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="cta-section">
-      <div class="cta-content">
-        <h2>Invite Me to Speak</h2>
-        <p>
-          I'm available for keynotes, conference talks, workshops, and panel discussions.
-          Whether it's a corporate event, industry conference, or academic setting,
-          I share my insights and experiences on technology and business transformation.
-        </p>
-        <a href="/contact" class="btn">Get in Touch</a>
-      </div>
-    </section>
-  </div>
 </BaseLayout>
-
-<style>
-  .speaking-page {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .page-header {
-    margin-bottom: var(--spacing-xl);
-  }
-
-  .page-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .page-subtitle {
-    font-size: 1.1rem;
-    color: var(--color-text-muted);
-    line-height: 1.7;
-    max-width: 700px;
-    margin-bottom: var(--spacing-md);
-  }
-
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: var(--color-accent);
-  }
-
-  .contact-link:hover {
-    color: var(--color-accent-hover);
-  }
-
-  .featured-image-section {
-    margin-bottom: var(--spacing-2xl);
-  }
-
-  .featured-image {
-    width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .featured-image img {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    border-radius: 12px;
-  }
-
-  .topics-section {
-    margin-bottom: var(--spacing-2xl);
-  }
-
-  .section-title {
-    font-size: 1.5rem;
-    margin-bottom: var(--spacing-lg);
-    position: relative;
-    display: inline-block;
-  }
-
-  .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background: var(--color-accent);
-    border-radius: 2px;
-  }
-
-  .topics-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-md);
-  }
-
-  .topic-card {
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    padding: var(--spacing-md);
-    transition: all 0.3s ease;
-  }
-
-  .topic-card:hover {
-    border-color: var(--color-accent);
-    transform: translateY(-2px);
-  }
-
-  .topic-icon {
-    width: 48px;
-    height: 48px;
-    background: rgba(99, 102, 241, 0.1);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-accent);
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .topic-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: var(--spacing-xs);
-  }
-
-  .topic-card p {
-    font-size: 0.9rem;
-    color: var(--color-text-muted);
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  .carousel-section {
-    margin-bottom: var(--spacing-2xl);
-  }
-
-  .carousel {
-    position: relative;
-  }
-
-  .carousel-track {
-    display: flex;
-    gap: var(--spacing-md);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: var(--spacing-xs) 0;
-  }
-
-  .carousel-track::-webkit-scrollbar {
-    display: none;
-  }
-
-  .carousel-slide {
-    flex: 0 0 calc(33.333% - var(--spacing-md) * 2 / 3);
-    scroll-snap-align: start;
-  }
-
-  .carousel-slide img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-
-  .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text);
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .carousel-btn:hover {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-  }
-
-  .carousel-btn-prev {
-    left: -22px;
-  }
-
-  .carousel-btn-next {
-    right: -22px;
-  }
-
-  .cta-section {
-    padding: var(--spacing-2xl) 0;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .cta-content {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .cta-content h2 {
-    font-size: 1.75rem;
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .cta-content p {
-    color: var(--color-text-muted);
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: var(--spacing-lg);
-  }
-
-  @media (max-width: 768px) {
-    .topics-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .carousel-slide {
-      flex: 0 0 calc(100% - var(--spacing-md));
-    }
-
-    .carousel-btn {
-      display: none;
-    }
-  }
-</style>
-
-<script>
-  const track = document.querySelector('.carousel-track');
-  const prevBtn = document.querySelector('.carousel-btn-prev');
-  const nextBtn = document.querySelector('.carousel-btn-next');
-
-  if (track && prevBtn && nextBtn) {
-    const slideWidth = track.querySelector('.carousel-slide')?.offsetWidth || 0;
-    const gap = 24; // var(--spacing-md)
-
-    prevBtn.addEventListener('click', () => {
-      track.scrollBy({ left: -(slideWidth + gap), behavior: 'smooth' });
-    });
-
-    nextBtn.addEventListener('click', () => {
-      track.scrollBy({ left: slideWidth + gap, behavior: 'smooth' });
-    });
-  }
-</script>
