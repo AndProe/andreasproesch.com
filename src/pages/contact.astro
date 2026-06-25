@@ -23,32 +23,20 @@ import '../styles/pages.css';
     <div class="wrap contact-grid">
 
       <!-- ============ FORM ============
-           Wired for Web3Forms (free, routes submissions to your inbox; works on a
-           static host — no backend). Get a free access key at https://web3forms.com
-           (just enter your email) and replace YOUR_WEB3FORMS_KEY below. The key is
-           not secret — it only permits submitting to your form. Spam protection:
-           free zero-config hCaptcha + a honeypot. Until a real key is set, submit
-           shows a friendly notice instead of failing. -->
+           Web3Forms (free, routes submissions to the inbox tied to the access key;
+           works on a static host — no backend). Access key is configured below; it
+           is not secret — it only permits submitting to this form. Spam protection:
+           free zero-config hCaptcha + a honeypot. To change the destination inbox,
+           generate a new key at https://web3forms.com and swap the access_key value. -->
       <form class="form" id="contactForm"
             action="https://api.web3forms.com/submit" method="POST" data-reveal>
-        <!-- ◆ Replace with your free key from web3forms.com -->
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" />
+        <!-- Web3Forms access key (not secret — only permits submitting to this form) -->
+        <input type="hidden" name="access_key" value="cb41e0ff-e8d5-4ce6-a35a-cc9b42f68c11" />
         <input type="hidden" name="subject" value="New enquiry from andreasproesch.com" />
         <input type="hidden" name="from_name" value="andreasproesch.com" />
         <!-- Honeypot: hidden from humans; bots that tick it are rejected -->
         <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-        <div class="field">
-          <label for="regarding">Regarding</label>
-          <select id="regarding" name="regarding" required>
-            <option value="" disabled selected>Select a topic…</option>
-            <option>Speaking</option>
-            <option>Advisory</option>
-            <option>Startup or investment</option>
-            <option>Media</option>
-            <option>Something else</option>
-          </select>
-        </div>
         <div class="field">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name" />
