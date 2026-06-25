@@ -12,7 +12,7 @@ interface Props {
 const {
   title,
   description = "Andreas Proesch — Tech Operator, Advisor, and Angel Investor working where AI meets industry and capital. Head of Programs, Applied AI Products at AI71, Abu Dhabi.",
-  image = "/images/andreas-portrait.jpg"
+  image = "/images/og-card.png"
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -51,6 +51,7 @@ const structuredData = {
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0B0D0F" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
 

@@ -11,7 +11,7 @@
   --bg-3:       #15191D;  /* card hover */
   --text:       #ECEAE4;  /* warm off-white body text */
   --muted:      #9AA0A6;  /* secondary text */
-  --faint:      #646A70;  /* tertiary / mono labels */
+  --faint:      #7C838B;  /* tertiary / mono labels (WCAG AA on --bg) */
   --line:       #1F252B;  /* hairline borders, grid */
   --line-2:     #2B333A;  /* stronger borders */
   --amber:      #F0893C;  /* THE accent — signal orange */

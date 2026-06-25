@@ -94,9 +94,9 @@ const events = [
                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <span class="ph__label" style="display:none;"><b>{e.src}.{e.ext}</b>Event {String(i + 1).padStart(2, "0")} · 4:3</span>
             </div>
-            <figcaption>
-              {e.event ? `${e.event} · ${e.year ?? ""}` : <span class="cap-soon">◆ Event name · Year</span>}
-            </figcaption>
+            {e.event && (
+              <figcaption>{e.event} · {e.year ?? ""}</figcaption>
+            )}
           </figure>
         ))}
       </div>
