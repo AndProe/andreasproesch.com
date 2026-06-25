@@ -1,309 +1,152 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/pages.css';
 ---
 
-<BaseLayout title="About" description="Andreas Proesch - Technology operator, advisor, and angel investor working at the intersection of frontier technologies and business model development.">
-  <div class="about-page">
-    <header class="page-header">
-      <h1>About Me</h1>
-      <p class="page-subtitle">Working at the interface between frontier technologies and business model development.</p>
-    </header>
+<BaseLayout
+  title="About"
+  description="Andreas Proesch works at the intersection of AI, industry, and capital — tech operator, advisor, and angel investor. Head of Programs, Applied AI Products at AI71."
+>
 
-    <div class="about-content">
-      <aside class="about-sidebar">
-        <div class="profile-image">
-          <img src="/images/andreas-about.webp" alt="Andreas Proesch" />
-        </div>
-        <div class="social-links">
-          <a href="https://linkedin.com/in/andreasproesch" target="_blank" rel="noopener noreferrer" class="social-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-            LinkedIn
-          </a>
-          <a href="https://twitter.com/andreasproesch" target="_blank" rel="noopener noreferrer" class="social-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-            Twitter
-          </a>
+  <!-- ===================== HERO + LEAD ===================== -->
+  <section class="phero section">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>About</p>
+      <h1 data-reveal data-delay="0.05">Andreas Proesch</h1>
+    </div>
+  </section>
+
+  <section class="section--tight section" style="padding-top:0;">
+    <div class="wrap about-lead">
+      <div class="prose" data-reveal>
+        <p>I work at the intersection of AI, industry, and capital — as a tech operator, advisor, and early-stage investor.</p>
+        <p>I'm trained as a robotics engineer, but most of my career has been spent putting advanced technology to practical use. Over the past decade, I've worked with executive teams, investors, operators, and technologists across energy, manufacturing, commodities, and data-intensive industries.</p>
+        <p>Today, I'm <span class="amber">Head of Programs, Applied AI Products at AI71</span> in Abu Dhabi, where I focus on moving organizations from AI experimentation to AI-first operating models. My work sits where AI meets physical assets, regulation, legacy systems, and scale — particularly in industrial and sovereign contexts.</p>
+        <p>A recurring theme in my work is what I call the <span class="amber">Supply Chains of Intelligence</span>: how energy, compute, data, models, software, and decision-making fit together — and where value, risk, and leverage actually sit.</p>
+        <p>Alongside my advisory work, I'm an active angel investor in early-stage companies building foundational AI, data, and industrial software.</p>
+        <p>I speak and advise on AI, industrial transformation, and technology strategy.</p>
+      </div>
+
+      <aside class="about-portrait" data-reveal data-delay="0.1">
+        <div class="framed">
+          <span class="brk tl"></span><span class="brk br"></span>
+          <div class="ph" style="aspect-ratio: 4/5;">
+            <img src="/images/andreas-proesch.jpg" alt="Andreas Proesch" loading="lazy"
+                 style="width:100%;height:100%;object-fit:cover;"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <span class="ph__label" style="display:none;"><b>andreas-proesch.jpg</b>Portrait · 4:5</span>
+          </div>
         </div>
       </aside>
-
-      <main class="about-main">
-        <section class="bio-section">
-          <h2>Background</h2>
-          <p>
-            I work at the intersection of AI, industry, and capital—as an operator, advisor, and early-stage investor.
-          </p>
-          <p>
-            I'm trained as a robotics engineer, but most of my career has been spent translating advanced technology into real-world impact. Over the past decade, I've worked closely with executive teams, investors, operators, and technologists across energy, manufacturing, commodities, and data-intensive industries—helping turn strategy into execution.
-          </p>
-          <p>
-            Today, I'm Senior Director of AI Advisory at AI71 in Abu Dhabi, where I focus on helping organizations move from AI experimentation to AI-first operating models. My work sits where AI meets physical assets, regulation, legacy systems, and scale—particularly in industrial and sovereign contexts.
-          </p>
-          <p>
-            A recurring theme in my work is what I call the Supply Chains of Intelligence: how energy, compute, data, models, software, and decision-making fit together—and where value, risk, and leverage actually sit. I spend a lot of time thinking about how these supply chains are being rebuilt, especially in the Middle East.
-          </p>
-          <p>
-            Alongside my advisory work, I'm an active angel investor in early-stage companies building foundational AI, data, and industrial software. I enjoy working closely with founders on product, strategy, and long-term technical direction.
-          </p>
-          <p>
-            I speak and advise on AI, industrial transformation, and technology strategy—with a bias toward what actually works, not what sounds good in a slide deck.
-          </p>
-        </section>
-
-        <section class="bio-section">
-          <h2>Who I Work With</h2>
-          <div class="clients-list">
-            <div class="client-item">
-              <div class="client-type">Private Equity & Venture Capital Funds</div>
-              <div class="client-desc">Supporting AI strategy, diligence, value-creation, and long-term platform thinking.</div>
-            </div>
-            <div class="client-item">
-              <div class="client-type">Governments & Ministries</div>
-              <div class="client-desc">Advising on sovereign AI, industrial policy, and large-scale digital transformation.</div>
-            </div>
-            <div class="client-item">
-              <div class="client-type">Large-Scale Enterprises</div>
-              <div class="client-desc">Helping leadership teams move from pilots to production-grade AI systems.</div>
-            </div>
-            <div class="client-item">
-              <div class="client-type">Industrial Conglomerates</div>
-              <div class="client-desc">Working at the intersection of AI, operations, safety, and physical infrastructure.</div>
-            </div>
-            <div class="client-item">
-              <div class="client-type">Boards of Directors & Management Teams</div>
-              <div class="client-desc">Providing strategic perspective on AI risk, opportunity, and organizational readiness.</div>
-            </div>
-            <div class="client-item">
-              <div class="client-type">Startup Founders & Founding Teams</div>
-              <div class="client-desc">Partnering early on product direction, technical strategy, and go-to-market.</div>
-            </div>
-          </div>
-        </section>
-
-        <section class="bio-section">
-          <h2>Experience</h2>
-          <div class="experience-list">
-            <div class="experience-item">
-              <div class="experience-role">Senior Director of AI Advisory</div>
-              <div class="experience-company">AI17</div>
-              <div class="experience-desc">Sovereign Agentic AI</div>
-            </div>
-            <div class="experience-item">
-              <div class="experience-role">Vice President & Head of AKER AI Unit</div>
-              <div class="experience-company">Cognite & AKER ASA</div>
-              <div class="experience-desc">B2B SaaS in Industrial AI & DataOps</div>
-            </div>
-            <div class="experience-item">
-              <div class="experience-role">Snr. Finance Professional (Digital Investments)</div>
-              <div class="experience-company">AkerBP</div>
-              <div class="experience-desc">Energy</div>
-            </div>
-            <div class="experience-item">
-              <div class="experience-role">Project Leader</div>
-              <div class="experience-company">Boston Consulting Group</div>
-              <div class="experience-desc">Management Consulting</div>
-            </div>
-          </div>
-        </section>
-
-        <section class="bio-section">
-          <h2>Education</h2>
-          <div class="education-list">
-            <div class="education-item">
-              <div class="education-degree">MBA</div>
-              <div class="education-school">INSEAD</div>
-            </div>
-            <div class="education-item">
-              <div class="education-degree">MEng Mechanical Engineering</div>
-              <div class="education-school">Imperial College London</div>
-            </div>
-          </div>
-        </section>
-
-        <section class="bio-section">
-          <h2>Speaking</h2>
-          <p>
-            I speak on topics of Digital Transformations, Tech Trends, AI & Robotics, and
-            Industrial Tech. Interested in having me speak at your event?
-            <a href="/contact">Get in touch</a>.
-          </p>
-        </section>
-      </main>
     </div>
-  </div>
+  </section>
+
+  <!-- ===================== WHO I WORK WITH ===================== -->
+  <section class="section" id="work-with">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="sec-head__num">01 / Who I Work With</span>
+        <h2>Across the value chain</h2>
+      </div>
+      <div class="grid6" data-reveal-group>
+        <div class="cell" data-reveal>
+          <span class="idx">001</span>
+          <h3>PE &amp; VC Funds</h3>
+          <p>AI strategy, diligence, value-creation, and long-term platform thinking.</p>
+        </div>
+        <div class="cell" data-reveal>
+          <span class="idx">002</span>
+          <h3>Governments &amp; Ministries</h3>
+          <p>Sovereign AI, industrial policy, and large-scale digital transformation.</p>
+        </div>
+        <div class="cell" data-reveal>
+          <span class="idx">003</span>
+          <h3>Large-Scale Enterprises</h3>
+          <p>Moving leadership teams from pilots to production-grade AI.</p>
+        </div>
+        <div class="cell" data-reveal>
+          <span class="idx">004</span>
+          <h3>Industrial Conglomerates</h3>
+          <p>AI at the intersection of operations, safety, and physical infrastructure.</p>
+        </div>
+        <div class="cell" data-reveal>
+          <span class="idx">005</span>
+          <h3>Boards &amp; Management</h3>
+          <p>Strategic perspective on AI risk, opportunity, and organizational readiness.</p>
+        </div>
+        <div class="cell" data-reveal>
+          <span class="idx">006</span>
+          <h3>Startup Founders</h3>
+          <p>Partnering early on product direction, technical strategy, and go-to-market.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section class="section" id="experience">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="sec-head__num">02 / Experience</span>
+        <h2>Professional background</h2>
+      </div>
+      <ol class="timeline" data-reveal-group>
+        <li data-reveal>
+          <span class="when">Present</span>
+          <div class="role"><h3>Head of Programs, Applied AI Products</h3><span class="org">AI71</span></div>
+          <span class="tag">Sovereign Agentic AI</span>
+        </li>
+        <li data-reveal>
+          <span class="when">Prev</span>
+          <div class="role"><h3>Vice President &amp; Head of Aker AI Unit</h3><span class="org">Cognite &amp; Aker ASA</span></div>
+          <span class="tag">B2B SaaS · Industrial AI &amp; DataOps</span>
+        </li>
+        <li data-reveal>
+          <span class="when">Prev</span>
+          <div class="role"><h3>Snr. Finance Professional, Digital Investments</h3><span class="org">AkerBP</span></div>
+          <span class="tag">Energy</span>
+        </li>
+        <li data-reveal>
+          <span class="when">Prev</span>
+          <div class="role"><h3>Project Leader</h3><span class="org">Boston Consulting Group</span></div>
+          <span class="tag">Management Consulting</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== EDUCATION ===================== -->
+  <section class="section section--tight" id="education">
+    <div class="wrap">
+      <div class="block-label" data-reveal>
+        <span class="n">03 / Education</span>
+        <h2>Foundations</h2>
+      </div>
+      <div class="edu" data-reveal-group>
+        <div class="card" data-reveal>
+          <span class="idx">/01</span>
+          <div class="deg">MBA</div>
+          <div class="school">INSEAD</div>
+        </div>
+        <div class="card" data-reveal>
+          <span class="idx">/02</span>
+          <div class="deg">MEng, Mechanical Engineering</div>
+          <div class="school">Imperial College London</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT CTA ===================== -->
+  <section class="section contact-cta">
+    <div class="wrap contact-cta__inner" data-reveal>
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 class="contact-cta__h">Get in touch</h2>
+        <p class="contact-cta__p">For advisory, a board perspective, or early-stage companies.</p>
+      </div>
+      <a class="btn btn--primary" href="/contact">Get in touch <span class="arr">→</span></a>
+    </div>
+  </section>
+
 </BaseLayout>
-
-<style>
-  .about-page {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .page-header {
-    margin-bottom: var(--spacing-2xl);
-  }
-
-  .page-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .page-subtitle {
-    font-size: 1.2rem;
-    color: var(--color-text-muted);
-  }
-
-  .about-content {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: var(--spacing-2xl);
-  }
-
-  .about-sidebar {
-    position: sticky;
-    top: calc(60px + var(--spacing-lg));
-    align-self: start;
-  }
-
-  .profile-image {
-    margin-bottom: var(--spacing-lg);
-  }
-
-  .profile-image img {
-    width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    border-radius: 16px;
-  }
-
-  .social-links {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
-  }
-
-  .social-link {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    padding: 0.75rem 1rem;
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    color: var(--color-text-muted);
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
-  }
-
-  .social-link:hover {
-    border-color: var(--color-accent);
-    color: var(--color-text);
-  }
-
-  .about-main {
-    min-width: 0;
-  }
-
-  .bio-section {
-    margin-bottom: var(--spacing-xl);
-  }
-
-  .bio-section h2 {
-    font-size: 1.5rem;
-    margin-bottom: var(--spacing-md);
-    color: var(--color-text);
-  }
-
-  .bio-section p {
-    color: var(--color-text-muted);
-    line-height: 1.8;
-    font-size: 1.05rem;
-  }
-
-  .bio-section a {
-    color: var(--color-accent);
-  }
-
-  .experience-list,
-  .education-list,
-  .clients-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-  }
-
-  .experience-item,
-  .education-item,
-  .client-item {
-    padding: var(--spacing-md);
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 10px;
-    transition: border-color 0.2s ease;
-  }
-
-  .experience-item:hover,
-  .education-item:hover,
-  .client-item:hover {
-    border-color: var(--color-accent);
-  }
-
-  .experience-role,
-  .education-degree {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: 0.25rem;
-  }
-
-  .experience-company,
-  .education-school {
-    font-size: 1rem;
-    color: var(--color-accent);
-    margin-bottom: 0.25rem;
-  }
-
-  .experience-desc {
-    font-size: 0.9rem;
-    color: var(--color-text-muted);
-  }
-
-  .client-type {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: 0.25rem;
-  }
-
-  .client-desc {
-    font-size: 0.95rem;
-    color: var(--color-text-muted);
-    line-height: 1.5;
-  }
-
-  @media (max-width: 768px) {
-    .about-content {
-      grid-template-columns: 1fr;
-    }
-
-    .about-sidebar {
-      position: static;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .profile-image {
-      width: 200px;
-    }
-
-    .social-links {
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-  }
-</style>

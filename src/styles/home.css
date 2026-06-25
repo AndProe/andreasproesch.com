@@ -1,0 +1,138 @@
+/* ============================================================
+   Home page styles — andreasproesch.com
+   ============================================================ */
+
+/* ---------- HERO ---------- */
+.hero { padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(56px, 7vw, 104px); }
+.hero__grid {
+  display: grid; grid-template-columns: 1.35fr 0.85fr;
+  gap: clamp(32px, 5vw, 80px); align-items: center;
+}
+.hero__name {
+  font-size: clamp(64px, 11vw, 148px); font-weight: 900; line-height: 0.86;
+  letter-spacing: -0.03em; text-transform: uppercase; margin: 0 0 26px;
+}
+.hero__name .ln { display: block; }
+.hero__name .ln--out {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--line-2);
+  text-stroke: 1.5px var(--line-2);
+}
+.hero__role { font-size: 14px; color: var(--amber); margin: 0 0 26px; letter-spacing: 0.06em; }
+.hero__intro { font-size: clamp(17px, 1.5vw, 19px); color: var(--muted); max-width: 52ch; margin: 0 0 34px; text-wrap: pretty; }
+
+.facts { display: grid; gap: 0; margin: 0 0 36px; border-top: 1px solid var(--line); max-width: 460px; }
+.facts__row {
+  display: grid; grid-template-columns: 130px 1fr; gap: 16px; align-items: baseline;
+  padding: 13px 0; border-bottom: 1px solid var(--line);
+}
+.facts__row dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); margin: 0; }
+.facts__row dd { margin: 0; font-size: 15px; color: var(--text); font-weight: 500; }
+
+.hero__cta { display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* portrait */
+.hero__portrait { justify-self: end; width: 100%; max-width: 360px; }
+.portrait__cap { margin: 14px 0 0; text-align: right; font-size: 10.5px; }
+
+/* ---------- DIRECTORY HUB ---------- */
+.dir { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.dir__item {
+  display: flex; flex-direction: column; padding: 30px 28px 26px; min-height: 210px;
+  background: var(--bg-2);
+}
+.dir__num { font-family: var(--font-mono); font-size: 12px; color: var(--amber); letter-spacing: 0.1em; }
+.dir__title { font-size: 26px; font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; margin: 14px 0 10px; }
+.dir__desc { color: var(--muted); font-size: 15px; line-height: 1.55; flex: 1; }
+.dir__go { margin-top: 18px; color: var(--faint); display: inline-flex; gap: 8px; align-items: center; transition: color 0.25s var(--ease); }
+.dir__item:hover .dir__go { color: var(--amber); }
+.dir__go .arr { transition: transform 0.25s var(--ease); }
+.dir__item:hover .dir__go .arr { transform: translateX(4px); }
+
+/* ---------- ROLE CARDS ---------- */
+.roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.role { padding: 28px 26px 30px; display: flex; flex-direction: column; }
+.role__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+.role__idx { color: var(--amber); font-size: 12px; }
+.role__verb { color: var(--faint); font-size: 11px; }
+.role__name { font-size: 30px; font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; margin: 0 0 14px; }
+.role__body { color: var(--muted); font-size: 15.5px; margin: 0; }
+
+/* ---------- EXPERIENCE (home anchor) ---------- */
+.xp { list-style: none; margin: 0 0 28px; padding: 0; border-top: 1px solid var(--line); }
+.xp__item {
+  display: grid; grid-template-columns: 110px 1fr auto; gap: 24px; align-items: center;
+  padding: 22px 4px; border-bottom: 1px solid var(--line); transition: padding-left 0.3s var(--ease);
+}
+.xp__item:hover { padding-left: 16px; }
+.xp__when { color: var(--amber); font-size: 11px; }
+.xp__main { display: flex; flex-direction: column; gap: 3px; }
+.xp__main h3 { font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+.xp__org { color: var(--muted); font-size: 14px; }
+.xp__tag { color: var(--faint); font-size: 11px; text-align: right; }
+
+/* ---------- THE LENS ---------- */
+.lens__grid { display: grid; grid-template-columns: 1fr 0.9fr; gap: clamp(36px, 6vw, 84px); align-items: center; }
+.lens__p { color: var(--muted); font-size: 17px; margin: 0 0 20px; max-width: 50ch; text-wrap: pretty; }
+.lens__diagram { display: flex; justify-content: center; }
+.lens__diagram svg { width: 100%; max-width: 420px; height: auto; }
+.gnode circle { fill: #0B0D0F; stroke: #2B333A; stroke-width: 1.5; }
+.gnode text { fill: var(--muted); font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; text-anchor: middle; }
+.core { fill: var(--amber); font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; text-anchor: middle; font-weight: 700; }
+.pulse { opacity: 0.9; }
+@media (prefers-reduced-motion: reduce) { .pulse { display: none; } }
+
+/* ---------- FOCUS CHIPS ---------- */
+.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 12px; margin: 0; padding: 0; }
+.chips li {
+  font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.04em;
+  padding: 11px 18px; border: 1px solid var(--line-2); color: var(--muted);
+  background: var(--bg-2); transition: color 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.chips li:hover { color: var(--amber); border-color: var(--amber); transform: translateY(-2px); }
+
+/* ---------- WRITING ---------- */
+.writing__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.posts { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 0; padding: 0; }
+.post a { display: flex; flex-direction: column; padding: 26px 24px 28px; height: 100%; }
+.post__date { color: var(--amber); font-size: 12px; }
+.post__title { font-size: 20px; font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; margin: 16px 0 22px; flex: 1; }
+.post__go { color: var(--faint); display: inline-flex; gap: 8px; align-items: center; transition: color 0.25s var(--ease); }
+.post:hover .post__go { color: var(--amber); }
+
+/* ---------- TEASERS ---------- */
+.teasers { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.teaser { padding: 34px 30px 32px; display: flex; flex-direction: column; }
+.teaser__num { color: var(--amber); font-size: 12px; }
+.teaser h3 { font-size: 28px; font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; margin: 16px 0 12px; }
+.teaser p { color: var(--muted); font-size: 15.5px; margin: 0 0 22px; flex: 1; }
+.teaser__go { color: var(--faint); display: inline-flex; gap: 8px; align-items: center; transition: color 0.25s var(--ease); }
+.teaser:hover .teaser__go { color: var(--amber); }
+.teaser__go .arr, .post__go .arr, .writing__head .arr { transition: transform 0.25s var(--ease); }
+.teaser:hover .teaser__go .arr, .post:hover .post__go .arr { transform: translateX(4px); }
+
+/* ---------- CONTACT CTA ---------- */
+.contact-cta { padding-block: clamp(56px, 7vw, 96px); }
+.contact-cta__inner {
+  display: flex; justify-content: space-between; align-items: center; gap: 32px;
+  border: 1px solid var(--line); background: var(--bg-2); padding: clamp(32px, 4vw, 56px);
+}
+.contact-cta__h { font-size: clamp(26px, 3.4vw, 40px); font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; margin: 0 0 10px; }
+.contact-cta__p { color: var(--muted); margin: 0; max-width: 46ch; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 920px) {
+  .hero__grid { grid-template-columns: 1fr; }
+  .hero__portrait { justify-self: start; max-width: 320px; order: -1; }
+  .portrait__cap { text-align: left; }
+  .dir, .roles, .posts { grid-template-columns: 1fr; }
+  .lens__grid { grid-template-columns: 1fr; }
+  .teasers { grid-template-columns: 1fr; }
+  .xp__item { grid-template-columns: 80px 1fr; }
+  .xp__tag { grid-column: 2; text-align: left; }
+  .writing__head { flex-direction: column; align-items: flex-start; }
+  .contact-cta__inner { flex-direction: column; align-items: flex-start; }
+}
+@media (min-width: 921px) and (max-width: 1120px) {
+  .dir { grid-template-columns: repeat(2, 1fr); }
+}

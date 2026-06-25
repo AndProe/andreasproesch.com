@@ -1,307 +1,306 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BlogCard from '../components/BlogCard.astro';
-import { getCollection } from 'astro:content';
+import { posts } from '../data/posts';
+import '../styles/home.css';
 
-const allPosts = await getCollection('blog', ({ data }) => !data.draft);
-const recentPosts = allPosts
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+const recentPosts = posts.slice(0, 3);
 ---
 
-<BaseLayout title="Home">
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-text">
-        <p class="hero-intro">Hi, I'm</p>
-        <h1 class="hero-title">Andreas Proesch</h1>
-        <p class="hero-description">
-          For 15+ years I have worked at the intersection of technology and adoption.
-          I have worked in AI advisory, Strategic AI development, strategy, consulting,
-          and commodity trading. Now, I advise governments, enterprises, investors,
-          and startups on identifying and resolving painpoints and opportunities emerging from new technologies.
+<BaseLayout
+  title="Home"
+  description="Andreas Proesch works where AI meets industry and capital — tech operator, advisor, and angel investor. Head of Programs, Applied AI Products at AI71, Abu Dhabi."
+>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero section">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow" data-reveal>Tech Operator · Advisor · Angel Investor</p>
+        <h1 class="hero__name" data-reveal data-delay="0.05">
+          <span class="ln">Andreas</span>
+          <span class="ln ln--out">Proesch</span>
+        </h1>
+        <p class="hero__role mono" data-reveal data-delay="0.1">// Working where AI meets industry &amp; capital</p>
+        <p class="hero__intro" data-reveal data-delay="0.15">
+          Robotics engineer by training; now <span class="amber">Head of Programs, Applied AI Products at AI71</span>
+          in Abu Dhabi — helping organizations move from AI experimentation to AI-first operating models.
         </p>
-        <div class="hero-cta">
-          <a href="/about" class="btn">Learn More</a>
-          <a href="/contact" class="btn btn-outline">Get in Touch</a>
+
+        <dl class="facts" data-reveal data-delay="0.2">
+          <div class="facts__row"><dt>Current</dt><dd>Applied AI · AI71</dd></div>
+          <div class="facts__row"><dt>Based in</dt><dd>Abu Dhabi, UAE</dd></div>
+          <div class="facts__row"><dt>Focus</dt><dd>Industrial &amp; Sovereign AI</dd></div>
+        </dl>
+
+        <div class="hero__cta" data-reveal data-delay="0.25">
+          <a class="btn" href="/about#experience">View experience</a>
+          <a class="btn btn--primary" href="/contact">Get in touch <span class="arr">→</span></a>
         </div>
       </div>
-      <div class="hero-image">
-        <img src="/images/andreas-proesch.jpg" alt="Andreas Proesch" class="profile-photo" />
+
+      <div class="hero__portrait" data-reveal data-delay="0.1">
+        <div class="framed">
+          <span class="brk tl"></span><span class="brk br"></span>
+          <div class="ph" style="aspect-ratio: 4/5;">
+            <img src="/images/andreas-portrait.jpg" alt="Portrait of Andreas Proesch" loading="eager"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <span class="ph__label" style="display:none;"><b>andreas-portrait.jpg</b>Portrait · 4:5</span>
+          </div>
+        </div>
+        <p class="portrait__cap mono">FIG. 01 — A. PROESCH / ABU DHABI</p>
       </div>
     </div>
   </section>
 
-  <section class="section featured">
-    <h2 class="section-title">What I Do</h2>
-    <div class="grid grid-3">
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="3"/>
-            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-          </svg>
-        </div>
-        <h3>Technology Operator</h3>
-        <p>Leading frontier industrial DataOps software initiatives, building autonomous industries that are more sustainable, efficient, and productive.</p>
+  <!-- ===================== 01 / INDEX (directory hub) ===================== -->
+  <section class="section" id="index">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="sec-head__num">01 / Index</span>
+        <h2>A map of my work</h2>
+        <p>Each section below is its own page. The site grows as the work does.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-            <polyline points="2 17 12 22 22 17"/>
-            <polyline points="2 12 12 17 22 12"/>
-          </svg>
-        </div>
-        <h3>Advisor</h3>
-        <p>Helping executive management teams, private equity investors, and venture capitalists turn business strategy into business impact.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="12" y1="1" x2="12" y2="23"/>
-            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-          </svg>
-        </div>
-        <h3>Angel Investor</h3>
-        <p>Investing in early-stage companies at the interface between frontier technologies and business model development.</p>
+
+      <div class="dir" data-reveal-group>
+        <a class="card dir__item" href="/about" data-reveal>
+          <span class="dir__num">001</span>
+          <span class="dir__title">About</span>
+          <span class="dir__desc">Who I am, who I work with, and how I got here.</span>
+          <span class="dir__go mono">Open <span class="arr">→</span></span>
+        </a>
+        <a class="card dir__item" href="/blog" data-reveal>
+          <span class="dir__num">002</span>
+          <span class="dir__title">Writing</span>
+          <span class="dir__desc">Asymmetric — a newsletter on AI, industry, and capital.</span>
+          <span class="dir__go mono">Open <span class="arr">→</span></span>
+        </a>
+        <a class="card dir__item" href="/about#experience" data-reveal>
+          <span class="dir__num">003</span>
+          <span class="dir__title">Experience</span>
+          <span class="dir__desc">AI71, Cognite &amp; Aker, AkerBP, BCG.</span>
+          <span class="dir__go mono">Open <span class="arr">→</span></span>
+        </a>
+        <a class="card dir__item" href="/portfolio" data-reveal>
+          <span class="dir__num">004</span>
+          <span class="dir__title">Portfolio</span>
+          <span class="dir__desc">Early-stage companies I've invested in.</span>
+          <span class="dir__go mono">Open <span class="arr">→</span></span>
+        </a>
+        <a class="card dir__item" href="/books" data-reveal>
+          <span class="dir__num">005</span>
+          <span class="dir__title">Reading</span>
+          <span class="dir__desc">Books that shaped how I think.</span>
+          <span class="dir__go mono">Open <span class="arr">→</span></span>
+        </a>
+        <a class="card dir__item" href="/contact" data-reveal>
+          <span class="dir__num">006</span>
+          <span class="dir__title">Contact</span>
+          <span class="dir__desc">Speaking, advisory, or something to discuss.</span>
+          <span class="dir__go mono">Open <span class="arr">→</span></span>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="section expertise">
-    <h2 class="section-title">Areas of Expertise</h2>
-    <div class="expertise-grid">
-      <div class="expertise-item">
-        <span class="expertise-label">AI Transformation</span>
+  <!-- ===================== 02 / WHAT I DO ===================== -->
+  <section class="section section--tight" id="what">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="sec-head__num">02 / What I Do</span>
+        <h2>How I spend my time</h2>
       </div>
-      <div class="expertise-item">
-        <span class="expertise-label">Co-Innovation</span>
-      </div>
-      <div class="expertise-item">
-        <span class="expertise-label">Agentic AI Adoption</span>
-      </div>
-      <div class="expertise-item">
-        <span class="expertise-label">Robotics & Automation</span>
-      </div>
-      <div class="expertise-item">
-        <span class="expertise-label">Industrial AI</span>
-      </div>
-      <div class="expertise-item">
-        <span class="expertise-label">Energy & Manufacturing</span>
-      </div>
-      <div class="expertise-item">
-        <span class="expertise-label">Tech Trends</span>
-      </div>
-      <div class="expertise-item">
-        <span class="expertise-label">Commodity Markets</span>
+      <div class="roles" data-reveal-group>
+        <div class="card role" data-reveal>
+          <div class="role__top">
+            <span class="role__idx mono">/01</span>
+            <span class="role__verb mono">Building</span>
+          </div>
+          <h3 class="role__name">Tech Operator</h3>
+          <p class="role__body">Head of Programs, Applied AI Products at AI71 — building AI-first operating models where AI meets physical assets, regulation, legacy systems, and scale.</p>
+        </div>
+        <div class="card role" data-reveal>
+          <div class="role__top">
+            <span class="role__idx mono">/02</span>
+            <span class="role__verb mono">Advising</span>
+          </div>
+          <h3 class="role__name">Advisor</h3>
+          <p class="role__body">Working with boards, management teams, funds, and founders on AI strategy, diligence, and the path from pilots to production-grade systems.</p>
+        </div>
+        <div class="card role" data-reveal>
+          <div class="role__top">
+            <span class="role__idx mono">/03</span>
+            <span class="role__verb mono">Backing</span>
+          </div>
+          <h3 class="role__name">Investor</h3>
+          <p class="role__body">Active angel investor in early-stage companies building foundational AI, data, and industrial software.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  {recentPosts.length > 0 && (
-    <section class="section recent-posts">
-      <div class="section-header">
-        <h2 class="section-title">Recent Posts</h2>
-        <a href="/blog" class="view-all">View all &rarr;</a>
+  <!-- ===================== 03 / EXPERIENCE (anchor) ===================== -->
+  <section class="section section--tight" id="experience">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="sec-head__num">03 / Experience</span>
+        <h2>Professional background</h2>
       </div>
-      <div class="grid grid-3">
+      <ol class="xp" data-reveal-group>
+        <li class="xp__item" data-reveal>
+          <span class="xp__when mono">Present</span>
+          <div class="xp__main"><h3>Head of Programs, Applied AI Products</h3><span class="xp__org">AI71</span></div>
+          <span class="xp__tag mono">Sovereign Agentic AI</span>
+        </li>
+        <li class="xp__item" data-reveal>
+          <span class="xp__when mono">Prev</span>
+          <div class="xp__main"><h3>VP &amp; Head of Aker AI Unit</h3><span class="xp__org">Cognite &amp; Aker ASA</span></div>
+          <span class="xp__tag mono">Industrial AI · DataOps</span>
+        </li>
+        <li class="xp__item" data-reveal>
+          <span class="xp__when mono">Prev</span>
+          <div class="xp__main"><h3>Snr. Finance, Digital Investments</h3><span class="xp__org">AkerBP</span></div>
+          <span class="xp__tag mono">Energy</span>
+        </li>
+        <li class="xp__item" data-reveal>
+          <span class="xp__when mono">Prev</span>
+          <div class="xp__main"><h3>Project Leader</h3><span class="xp__org">Boston Consulting Group</span></div>
+          <span class="xp__tag mono">Management Consulting</span>
+        </li>
+      </ol>
+      <a class="btn xp__more" href="/about#experience">Full background &amp; education <span class="arr">→</span></a>
+    </div>
+  </section>
+
+  <!-- ===================== 04 / THE LENS ===================== -->
+  <section class="section lens" id="lens">
+    <div class="wrap lens__grid">
+      <div class="lens__copy">
+        <div class="sec-head" data-reveal>
+          <span class="sec-head__num">04 / The Lens</span>
+          <h2>Supply Chains of Intelligence</h2>
+        </div>
+        <p class="lens__p" data-reveal data-delay="0.05">
+          Energy, compute, data, models, software, and decision-making aren't separate markets — they're
+          one chain. Each layer feeds the next, and a constraint in any single layer caps the whole.
+        </p>
+        <p class="lens__p" data-reveal data-delay="0.1">
+          I track where value, risk, and leverage relocate as the chain matures — which layer becomes
+          scarce, which gets commoditized, and where one decision compounds across everything downstream.
+        </p>
+      </div>
+
+      <div class="lens__diagram" data-reveal data-delay="0.1">
+        <svg viewBox="0 0 420 420" role="img" aria-label="Node graph: Energy, Compute, Data, Models and Software wired into a central Decision-making node">
+          <defs>
+            <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#F0893C" stop-opacity="0.35" />
+              <stop offset="100%" stop-color="#F0893C" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+          <!-- wires -->
+          <g stroke="#2B333A" stroke-width="1" fill="none">
+            <line x1="210" y1="210" x2="210" y2="58" />
+            <line x1="210" y1="210" x2="354" y2="138" />
+            <line x1="210" y1="210" x2="330" y2="320" />
+            <line x1="210" y1="210" x2="90" y2="320" />
+            <line x1="210" y1="210" x2="66" y2="138" />
+          </g>
+          <!-- animated pulses along wires -->
+          <g fill="#F0893C">
+            <circle r="2.5" class="pulse"><animateMotion dur="3.2s" repeatCount="indefinite" path="M210,210 L210,58" /></circle>
+            <circle r="2.5" class="pulse"><animateMotion dur="3.8s" repeatCount="indefinite" path="M210,210 L354,138" /></circle>
+            <circle r="2.5" class="pulse"><animateMotion dur="3.4s" repeatCount="indefinite" path="M210,210 L330,320" /></circle>
+            <circle r="2.5" class="pulse"><animateMotion dur="4.1s" repeatCount="indefinite" path="M210,210 L90,320" /></circle>
+            <circle r="2.5" class="pulse"><animateMotion dur="3.6s" repeatCount="indefinite" path="M210,210 L66,138" /></circle>
+          </g>
+          <!-- outer nodes -->
+          <g class="gnode"><circle cx="210" cy="58" r="6" /><text x="210" y="38">Energy</text></g>
+          <g class="gnode"><circle cx="354" cy="138" r="6" /><text x="354" y="118">Compute</text></g>
+          <g class="gnode"><circle cx="330" cy="320" r="6" /><text x="330" y="346">Data</text></g>
+          <g class="gnode"><circle cx="90" cy="320" r="6" /><text x="90" y="346">Models</text></g>
+          <g class="gnode"><circle cx="66" cy="138" r="6" /><text x="66" y="118">Software</text></g>
+          <!-- core -->
+          <circle cx="210" cy="210" r="60" fill="url(#coreGlow)" />
+          <circle cx="210" cy="210" r="34" fill="#0B0D0F" stroke="#F0893C" stroke-width="1.5" />
+          <text class="core" x="210" y="206">Decision-</text>
+          <text class="core" x="210" y="220">making</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 05 / FOCUS AREAS ===================== -->
+  <section class="section section--tight" id="focus">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="sec-head__num">05 / Focus Areas</span>
+        <h2>Where I spend my attention</h2>
+      </div>
+      <ul class="chips" data-reveal>
+        <li>AI Transformation</li>
+        <li>Co-Innovation</li>
+        <li>Agentic AI Adoption</li>
+        <li>Robotics &amp; Automation</li>
+        <li>Industrial AI</li>
+        <li>Energy &amp; Manufacturing</li>
+        <li>Tech Trends</li>
+        <li>Commodity Markets</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== 06 / WRITING — ASYMMETRIC ===================== -->
+  <section class="section" id="writing">
+    <div class="wrap">
+      <div class="sec-head writing__head" data-reveal>
+        <div>
+          <span class="sec-head__num">06 / Writing — Asymmetric</span>
+          <h2>Notes on AI, industry &amp; capital</h2>
+        </div>
+        <a class="btn" href="https://proesch.substack.com" target="_blank" rel="noopener">Subscribe <span class="arr">→</span></a>
+      </div>
+      <ul class="posts" data-reveal-group>
         {recentPosts.map(post => (
-          <BlogCard
-            title={post.data.title}
-            date={post.data.date}
-            description={post.data.description}
-            slug={post.id}
-            image={post.data.image}
-          />
+          <li class="card post" data-reveal>
+            <a href={post.url} target="_blank" rel="noopener">
+              <span class="post__date mono">{post.date}</span>
+              <h3 class="post__title">{post.title}</h3>
+              <span class="post__go mono">Read on Substack <span class="arr">→</span></span>
+            </a>
+          </li>
         ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== PORTFOLIO + READING TEASERS ===================== -->
+  <section class="section section--tight">
+    <div class="wrap teasers" data-reveal-group>
+      <a class="card teaser" href="/portfolio" data-reveal>
+        <span class="teaser__num mono">07 / Portfolio</span>
+        <h3>Startups I work with</h3>
+        <p>From humanoid robotics and nuclear fusion to sovereign cloud — early-stage companies I've invested in.</p>
+        <span class="teaser__go mono">View portfolio <span class="arr">→</span></span>
+      </a>
+      <a class="card teaser" href="/books" data-reveal>
+        <span class="teaser__num mono">08 / Reading</span>
+        <h3>Books I recommend to friends</h3>
+        <p>The titles that shaped my thinking on technology, investing, and the future.</p>
+        <span class="teaser__go mono">View reading list <span class="arr">→</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT (lightweight) ===================== -->
+  <section class="section contact-cta">
+    <div class="wrap contact-cta__inner" data-reveal>
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 class="contact-cta__h">Get in touch</h2>
+        <p class="contact-cta__p">For questions, speaking enquiries, or early-stage companies.</p>
       </div>
-    </section>
-  )}
+      <a class="btn btn--primary" href="/contact">Get in touch <span class="arr">→</span></a>
+    </div>
+  </section>
 
 </BaseLayout>
-
-<style>
-  .hero {
-    padding: var(--spacing-2xl) 0;
-  }
-
-  .hero-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-2xl);
-    align-items: center;
-  }
-
-  .hero-intro {
-    font-size: 1.1rem;
-    color: var(--color-accent);
-    margin-bottom: var(--spacing-xs);
-    font-weight: 500;
-  }
-
-  .hero-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: var(--spacing-sm);
-    background: linear-gradient(135deg, var(--color-text) 0%, var(--color-text-muted) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-subtitle {
-    font-size: 1.35rem;
-    color: var(--color-text);
-    font-weight: 500;
-    margin-bottom: var(--spacing-md);
-    line-height: 1.4;
-  }
-
-  .hero-description {
-    font-size: 1.1rem;
-    color: var(--color-text-muted);
-    line-height: 1.7;
-    margin-bottom: var(--spacing-lg);
-    max-width: 520px;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: var(--spacing-sm);
-  }
-
-  .hero-image {
-    display: flex;
-    justify-content: center;
-  }
-
-  .profile-photo {
-    width: 350px;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 16px;
-  }
-
-  .featured {
-    border-top: 1px solid var(--color-border);
-  }
-
-  .feature-card {
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    padding: var(--spacing-lg);
-    transition: all 0.3s ease;
-  }
-
-  .feature-card:hover {
-    border-color: var(--color-accent);
-    transform: translateY(-4px);
-  }
-
-  .feature-icon {
-    width: 56px;
-    height: 56px;
-    background: rgba(99, 102, 241, 0.1);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-accent);
-    margin-bottom: var(--spacing-md);
-  }
-
-  .feature-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: var(--spacing-xs);
-  }
-
-  .feature-card p {
-    color: var(--color-text-muted);
-    font-size: 0.95rem;
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  .expertise {
-    border-top: 1px solid var(--color-border);
-  }
-
-  .expertise-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-  }
-
-  .expertise-item {
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    padding: 0.75rem 1.25rem;
-    transition: all 0.2s ease;
-  }
-
-  .expertise-item:hover {
-    border-color: var(--color-accent);
-    background: rgba(99, 102, 241, 0.1);
-  }
-
-  .expertise-label {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--color-text);
-  }
-
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--spacing-lg);
-  }
-
-  .section-header .section-title {
-    margin-bottom: 0;
-  }
-
-  .view-all {
-    font-size: 0.95rem;
-    font-weight: 500;
-  }
-
-  @media (max-width: 768px) {
-    .hero-content {
-      grid-template-columns: 1fr;
-      text-align: center;
-    }
-
-    .hero-title {
-      font-size: 2.5rem;
-    }
-
-    .hero-subtitle {
-      font-size: 1.15rem;
-    }
-
-    .hero-description {
-      max-width: 100%;
-    }
-
-    .hero-cta {
-      justify-content: center;
-    }
-
-    .hero-image {
-      order: -1;
-    }
-
-    .profile-photo {
-      width: 250px;
-      height: 300px;
-    }
-
-    .expertise-grid {
-      justify-content: center;
-    }
-  }
-</style>

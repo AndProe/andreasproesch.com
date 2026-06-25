@@ -1,43 +1,50 @@
-# Astro Starter Kit: Minimal
+# andreasproesch.com
 
-```sh
-npm create astro@latest -- --template minimal
+Personal site for Andreas Proesch — tech operator, advisor, and angel investor.
+Dark, industrial design. Built as a static site with **Astro** and deployed to
+**GitHub Pages** at the custom domain [andreasproesch.com](https://andreasproesch.com).
+
+## Stack
+
+- **[Astro](https://astro.build) 5** — static output (`output: 'static'`), no client framework
+- **[@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/)** — auto-generated sitemap
+- Plain CSS design system (Archivo + Space Mono, amber accent) — no build tooling beyond Astro
+- **[GoatCounter](https://www.goatcounter.com/)** for privacy-friendly analytics
+- Contact form via **[Web3Forms](https://web3forms.com)** (+ hCaptcha) — no backend required
+
+## Project structure
+
+```
+src/
+  layouts/BaseLayout.astro   Shared HTML shell: SEO/OG/structured data, fonts,
+                             atmosphere, nav + footer, scroll-reveal behaviour
+  components/                Header, Footer
+  pages/                     index, about, speaking, portfolio, books, contact,
+                             blog (Writing → Substack), 404
+  data/posts.ts              Substack post index (home teaser + /blog share it)
+  styles/                    site.css (design system), home.css, pages.css
+public/images/               Portraits, speaking photos, book covers, OG card
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Page content and lists (books, portfolio, speaking events) live as small arrays in
+each page's frontmatter. Writing routes out to the **Asymmetric** Substack.
 
-## 🚀 Project Structure
+## Commands
 
-Inside of your Astro project, you'll see the following folders and files:
+| Command           | Action                                        |
+| :---------------- | :-------------------------------------------- |
+| `npm install`     | Install dependencies                          |
+| `npm run dev`     | Start the dev server at `localhost:4321`      |
+| `npm run build`   | Build the production site to `./dist/`        |
+| `npm run preview` | Preview the production build locally          |
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Deployment
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site and
+publishes `./dist` to GitHub Pages. The `CNAME` file pins the custom domain.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Contact form
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The contact form posts to Web3Forms. The access key in `src/pages/contact.astro`
+determines the destination inbox; generate a new key at web3forms.com to change it.
+The key is not secret (it only permits submitting to this form).
