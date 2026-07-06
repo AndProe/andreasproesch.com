@@ -1,12 +1,22 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { posts, SUBSTACK_URL } from '../../data/posts';
+import { getCollection } from 'astro:content';
+import { posts as substackPosts, SUBSTACK_URL } from '../../data/posts';
 import '../../styles/pages.css';
+
+const nativePosts = (await getCollection('writing', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+function fmt(d: Date): string {
+  return d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+const hasNative = nativePosts.length > 0;
 ---
 
 <BaseLayout
   title="Writing — Asymmetric"
-  description="Asymmetric — Andreas Proesch's newsletter on AI, industry, and capital."
+  description="Essays and a newsletter on AI, industry, and capital — with a focus on the Middle East, the GCC, and the UAE."
 >
 
   <section class="phero section">
@@ -14,23 +24,47 @@ import '../../styles/pages.css';
       <p class="eyebrow" data-reveal>Writing — Asymmetric</p>
       <h1 data-reveal data-delay="0.05">Asymmetric</h1>
       <p class="phero__intro" data-reveal data-delay="0.1">
-        A newsletter on AI, industry, and capital.
+        Essays and a newsletter on AI, industry, and capital — with a focus on the Middle East, the GCC, and the UAE.
       </p>
     </div>
   </section>
 
-  <section class="section" style="padding-top:clamp(20px,3vw,36px);">
+  {hasNative && (
+    <section class="section" style="padding-top:clamp(20px,3vw,36px);">
+      <div class="wrap">
+        <div class="blog-head" data-reveal>
+          <div class="block-label" style="margin:0;">
+            <span class="n">01 / Essays</span>
+            <h2>Latest writing</h2>
+          </div>
+          <a class="btn btn--primary" href={SUBSTACK_URL} target="_blank" rel="noopener">Subscribe <span class="arr">→</span></a>
+        </div>
+        <div class="blog-list" data-reveal-group>
+          {nativePosts.map(post => (
+            <a class="post-row" href={`/blog/${post.id}/`} data-reveal>
+              <span class="date">{fmt(post.data.date)}</span>
+              <span class="ptitle">{post.data.title}</span>
+              <span class="read">Read <span class="arr">→</span></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section" style={`padding-top:${hasNative ? 'clamp(20px,3vw,36px)' : 'clamp(20px,3vw,36px)'};`}>
     <div class="wrap">
       <div class="blog-head" data-reveal>
         <div class="block-label" style="margin:0;">
-          <span class="n">01 / Recent</span>
-          <h2>Latest posts</h2>
+          <span class="n">{hasNative ? '02' : '01'} / From the newsletter</span>
+          <h2>On Substack</h2>
         </div>
-        <a class="btn btn--primary" href={SUBSTACK_URL} target="_blank" rel="noopener">Subscribe <span class="arr">→</span></a>
+        {!hasNative && (
+          <a class="btn btn--primary" href={SUBSTACK_URL} target="_blank" rel="noopener">Subscribe <span class="arr">→</span></a>
+        )}
       </div>
-
       <div class="blog-list" data-reveal-group>
-        {posts.map(post => (
+        {substackPosts.map(post => (
           <a class="post-row" href={post.url} target="_blank" rel="noopener" data-reveal>
             <span class="date">{post.date}</span>
             <span class="ptitle">{post.title}</span>

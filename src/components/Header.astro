@@ -2,16 +2,18 @@
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
-  { href: '/about', label: 'About' },
-  { href: '/blog', label: 'Writing' },
-  { href: '/speaking', label: 'Speaking' },
-  { href: '/portfolio', label: 'Portfolio' },
-  { href: '/books', label: 'Reading' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/about/', label: 'About' },
+  { href: '/blog/', label: 'Writing' },
+  { href: '/speaking/', label: 'Speaking' },
+  { href: '/portfolio/', label: 'Portfolio' },
+  { href: '/books/', label: 'Reading' },
+  { href: '/contact/', label: 'Contact' },
 ];
 
 function isActive(href: string): boolean {
-  return currentPath === href || currentPath === href + '/' || currentPath.startsWith(href + '/');
+  const base = href.endsWith('/') ? href : href + '/';
+  // Active on the section root and any nested page (e.g. /blog/ for /blog/a-post/).
+  return currentPath === base || currentPath.startsWith(base);
 }
 
 const isHome = currentPath === '/';
