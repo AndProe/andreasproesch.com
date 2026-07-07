@@ -7,42 +7,85 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  /** Extra JSON-LD blocks for this page (e.g. Article, FAQPage, BreadcrumbList). */
+  jsonLd?: Record<string, any>[];
 }
 
 const {
   title,
   description = "Andreas Proesch — Tech Operator, Advisor, and Angel Investor working where AI meets industry and capital. Head of Programs, Applied AI Products at AI71, Abu Dhabi.",
-  image = "/images/og-card.png"
+  image = "/images/og-card.png",
+  jsonLd = [],
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
 const fullTitle = `${title} | Andreas Proesch`;
 
-// Structured data for Person
-const structuredData = {
+// Stable @id so page-level Article/FAQ blocks can reference the same Person entity.
+const PERSON_ID = "https://andreasproesch.com/#andreas";
+
+const person = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": PERSON_ID,
   "name": "Andreas Proesch",
   "url": "https://andreasproesch.com",
   "image": "https://andreasproesch.com/images/andreas-portrait.jpg",
-  "jobTitle": "Head of Programs, Applied AI Products at AI71",
-  "description": "Tech operator, advisor, and angel investor working where AI meets industry and capital.",
+  "jobTitle": "Head of Programs, Applied AI Products",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "AI71",
+    "url": "https://ai71.ai"
+  },
+  "homeLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Abu Dhabi",
+      "addressCountry": "AE"
+    }
+  },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "INSEAD" },
+    { "@type": "CollegeOrUniversity", "name": "Imperial College London" }
+  ],
+  "description": "Tech operator, advisor, and angel investor working where AI meets industry and capital, with a focus on the Middle East, the GCC, and the UAE.",
   "sameAs": [
     "https://www.linkedin.com/in/andreasproesch",
     "https://x.com/andreasproesch",
-    "https://proesch.substack.com"
+    "https://proesch.substack.com",
+    "https://linktr.ee/andreasproesch",
+    "https://www.instagram.com/andreasproesch"
+    // TODO (Workstream E): add Wikidata item URL once created.
   ],
   "knowsAbout": [
     "Artificial Intelligence",
-    "AI Transformation",
-    "Industrial AI",
     "Sovereign AI",
+    "Agentic AI",
+    "AI Adoption",
+    "AI Governance",
+    "Industrial AI",
     "Robotics",
     "Technology Strategy",
-    "Angel Investing"
+    "Angel Investing",
+    "AI in the Middle East",
+    "AI in the GCC",
+    "AI in the UAE"
   ]
 };
+
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://andreasproesch.com/#website",
+  "url": "https://andreasproesch.com",
+  "name": "Andreas Proesch",
+  "publisher": { "@id": PERSON_ID }
+};
+
+// Default entity graph + any page-specific blocks.
+const schemas = [person, website, ...jsonLd];
 ---
 
 <!DOCTYPE html>
@@ -73,8 +116,8 @@ const structuredData = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <!-- Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <!-- Structured Data (Person + WebSite + any page-specific blocks) -->
+    {schemas.map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
 
     <title>{fullTitle}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
