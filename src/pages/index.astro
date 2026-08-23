@@ -34,34 +34,34 @@ const stripPhotos = [
 >
 
   <!-- ===================== HERO ===================== -->
-  <section class="hero section">
+  <section class="hero hero--intro section">
     <div class="wrap hero__grid">
       <div class="hero__copy">
-        <p class="eyebrow" data-reveal>Turning AI ambition into shipped systems</p>
-        <h1 class="hero__name" data-reveal data-delay="0.05">
-          <span class="ln">Andreas</span>
-          <span class="ln ln--out">Proesch</span>
+        <p class="eyebrow">Turning AI ambition into shipped systems</p>
+        <h1 class="hero__name">
+          <span class="ln"><span class="ln__in">Andreas</span></span>
+          <span class="ln ln--out"><span class="ln__in">Proesch</span></span>
         </h1>
-        <p class="hero__role mono" data-reveal data-delay="0.1">// For governments, enterprises, investors &amp; founders</p>
-        <p class="hero__intro" data-reveal data-delay="0.15">
+        <p class="hero__role mono">// For governments, enterprises, investors &amp; founders</p>
+        <p class="hero__intro">
           I'm <span class="amber">Head of Programs, Applied AI Products at AI71</span> in Abu Dhabi.
           I help organizations move from AI experimentation to AI-first operating models — and I speak,
           advise, and invest where AI meets industry and capital.
         </p>
 
-        <dl class="facts" data-reveal data-delay="0.2">
+        <dl class="facts">
           <div class="facts__row"><dt>Current</dt><dd>Applied AI · AI71</dd></div>
           <div class="facts__row"><dt>Based in</dt><dd>Abu Dhabi, UAE</dd></div>
           <div class="facts__row"><dt>Focus</dt><dd>Industrial &amp; Sovereign AI</dd></div>
         </dl>
 
-        <div class="hero__cta" data-reveal data-delay="0.25">
+        <div class="hero__cta">
           <a class="btn btn--primary" href="/contact/">Work with me <span class="arr">→</span></a>
           <a class="btn" href="/speaking/">Invite me to speak</a>
         </div>
       </div>
 
-      <div class="hero__portrait" data-reveal data-delay="0.1">
+      <div class="hero__portrait">
         <div class="framed">
           <span class="brk tl"></span><span class="brk br"></span>
           <div class="ph" style="aspect-ratio: 4/5;">
@@ -77,7 +77,7 @@ const stripPhotos = [
   <!-- ===================== EXPERIENCE MARKS + STATS ===================== -->
   <section class="section proof" id="proof">
     <div class="wrap">
-      <div class="marks" data-reveal>
+      <div class="marks" data-reveal="fade">
         <span class="marks__label mono">Experience across</span>
         <ul class="marks__list">
           {experienceMarks.map(m => <li>{m}</li>)}
@@ -98,7 +98,7 @@ const stripPhotos = [
   <!-- ===================== 01 / WORK WITH ME (buyer-segmented offers) ===================== -->
   <section class="section section--tight" id="work">
     <div class="wrap">
-      <div class="sec-head" data-reveal>
+      <div class="sec-head" data-reveal="clip">
         <span class="sec-head__num">01 / Work With Me</span>
         <h2>Three ways in</h2>
       </div>
@@ -138,7 +138,7 @@ const stripPhotos = [
   <section class="section lens" id="lens">
     <div class="wrap lens__grid">
       <div class="lens__copy">
-        <div class="sec-head" data-reveal>
+        <div class="sec-head" data-reveal="clip">
           <span class="sec-head__num">02 / The Lens</span>
           <h2>Supply Chains of Intelligence</h2>
         </div>
@@ -152,7 +152,7 @@ const stripPhotos = [
         </p>
       </div>
 
-      <div class="lens__diagram" data-reveal data-delay="0.1">
+      <div class="lens__diagram" data-reveal="scale" data-delay="0.1">
         <svg viewBox="0 0 420 420" role="img" aria-label="Node graph: Energy, Compute, Data, Models and Software wired into a central Decision-making node">
           <defs>
             <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
@@ -195,7 +195,7 @@ const stripPhotos = [
   <!-- ===================== 03 / EXPERIENCE ===================== -->
   <section class="section section--tight" id="experience">
     <div class="wrap">
-      <div class="sec-head" data-reveal>
+      <div class="sec-head" data-reveal="clip">
         <span class="sec-head__num">03 / Experience</span>
         <h2>Professional background</h2>
       </div>
@@ -228,7 +228,7 @@ const stripPhotos = [
   <!-- ===================== 04 / FOCUS AREAS ===================== -->
   <section class="section section--tight" id="focus">
     <div class="wrap">
-      <div class="sec-head" data-reveal>
+      <div class="sec-head" data-reveal="clip">
         <span class="sec-head__num">04 / Focus Areas</span>
         <h2>Where I spend my attention</h2>
       </div>
@@ -248,7 +248,7 @@ const stripPhotos = [
   <!-- ===================== 05 / WRITING — ASYMMETRIC ===================== -->
   <section class="section" id="writing">
     <div class="wrap">
-      <div class="sec-head writing__head" data-reveal>
+      <div class="sec-head writing__head" data-reveal="clip">
         <div>
           <span class="sec-head__num">05 / Writing — Asymmetric</span>
           <h2>Notes on AI, industry &amp; capital</h2>
@@ -284,7 +284,7 @@ const stripPhotos = [
   <!-- ===================== 06 / ON STAGE ===================== -->
   <section class="section section--tight" id="stage">
     <div class="wrap">
-      <div class="sec-head" data-reveal>
+      <div class="sec-head" data-reveal="clip">
         <span class="sec-head__num">06 / On Stage</span>
         <h2>From past events</h2>
       </div>

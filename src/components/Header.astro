@@ -31,6 +31,7 @@ const isHome = currentPath === '/';
           {...(isActive(link.href) ? { 'aria-current': 'page' } : {})}
         >{link.label}</a>
       ))}
+      <span class="nav__ind" aria-hidden="true"></span>
     </nav>
 
     <div class="nav__right">
