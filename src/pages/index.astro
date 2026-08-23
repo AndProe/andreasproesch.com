@@ -77,10 +77,10 @@ const stripPhotos = [
   <!-- ===================== EXPERIENCE MARKS + STATS ===================== -->
   <section class="section proof" id="proof">
     <div class="wrap">
-      <div class="marks" data-reveal="fade">
-        <span class="marks__label mono">Experience across</span>
+      <div class="marks" data-reveal-group>
+        <span class="marks__label mono" data-reveal="fade">Experience across</span>
         <ul class="marks__list">
-          {experienceMarks.map(m => <li>{m}</li>)}
+          {experienceMarks.map(m => <li data-reveal="fade">{m}</li>)}
         </ul>
       </div>
 
@@ -153,40 +153,49 @@ const stripPhotos = [
       </div>
 
       <div class="lens__diagram" data-reveal="scale" data-delay="0.1">
-        <svg viewBox="0 0 420 420" role="img" aria-label="Node graph: Energy, Compute, Data, Models and Software wired into a central Decision-making node">
+        <svg viewBox="0 0 420 420" role="img" aria-label="Node graph: Energy, Compute, Data, Models and Software chained together and wired into a central Decision-making node">
           <defs>
             <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stop-color="#F0893C" stop-opacity="0.35" />
               <stop offset="100%" stop-color="#F0893C" stop-opacity="0" />
             </radialGradient>
           </defs>
-          <!-- wires -->
-          <g stroke="#2B333A" stroke-width="1" fill="none">
-            <line x1="210" y1="210" x2="210" y2="58" />
-            <line x1="210" y1="210" x2="354" y2="138" />
-            <line x1="210" y1="210" x2="330" y2="320" />
-            <line x1="210" y1="210" x2="90" y2="320" />
-            <line x1="210" y1="210" x2="66" y2="138" />
+          <!-- chain ring: each layer feeds the next (open-ended — the chain resolves in decision-making) -->
+          <g class="chain" stroke="#2B333A" stroke-width="1" fill="none" stroke-dasharray="3 5">
+            <line class="wire" pathLength="1" x1="210" y1="58"  x2="354" y2="138" />
+            <line class="wire" pathLength="1" x1="354" y1="138" x2="330" y2="320" />
+            <line class="wire" pathLength="1" x1="330" y1="320" x2="90"  y2="320" />
+            <line class="wire" pathLength="1" x1="90"  y1="320" x2="66"  y2="138" />
           </g>
-          <!-- animated pulses along wires -->
+          <!-- spokes into the core -->
+          <g class="spokes" stroke="#2B333A" stroke-width="1" fill="none">
+            <line class="wire" pathLength="1" x1="210" y1="58"  x2="210" y2="210" />
+            <line class="wire" pathLength="1" x1="354" y1="138" x2="210" y2="210" />
+            <line class="wire" pathLength="1" x1="330" y1="320" x2="210" y2="210" />
+            <line class="wire" pathLength="1" x1="90"  y1="320" x2="210" y2="210" />
+            <line class="wire" pathLength="1" x1="66"  y1="138" x2="210" y2="210" />
+          </g>
+          <!-- pulses travel inward: layers feed decision-making -->
           <g fill="#F0893C">
-            <circle r="2.5" class="pulse"><animateMotion dur="3.2s" repeatCount="indefinite" path="M210,210 L210,58" /></circle>
-            <circle r="2.5" class="pulse"><animateMotion dur="3.8s" repeatCount="indefinite" path="M210,210 L354,138" /></circle>
-            <circle r="2.5" class="pulse"><animateMotion dur="3.4s" repeatCount="indefinite" path="M210,210 L330,320" /></circle>
-            <circle r="2.5" class="pulse"><animateMotion dur="4.1s" repeatCount="indefinite" path="M210,210 L90,320" /></circle>
-            <circle r="2.5" class="pulse"><animateMotion dur="3.6s" repeatCount="indefinite" path="M210,210 L66,138" /></circle>
+            <circle r="2.5" class="pulse"><animateMotion dur="3.2s" repeatCount="indefinite" path="M210,58 L210,210" /></circle>
+            <circle r="2.5" class="pulse"><animateMotion dur="3.8s" repeatCount="indefinite" path="M354,138 L210,210" /></circle>
+            <circle r="2.5" class="pulse"><animateMotion dur="3.4s" repeatCount="indefinite" path="M330,320 L210,210" /></circle>
+            <circle r="2.5" class="pulse"><animateMotion dur="4.1s" repeatCount="indefinite" path="M90,320 L210,210" /></circle>
+            <circle r="2.5" class="pulse"><animateMotion dur="3.6s" repeatCount="indefinite" path="M66,138 L210,210" /></circle>
           </g>
           <!-- outer nodes -->
-          <g class="gnode"><circle cx="210" cy="58" r="6" /><text x="210" y="38">Energy</text></g>
-          <g class="gnode"><circle cx="354" cy="138" r="6" /><text x="354" y="118">Compute</text></g>
-          <g class="gnode"><circle cx="330" cy="320" r="6" /><text x="330" y="346">Data</text></g>
-          <g class="gnode"><circle cx="90" cy="320" r="6" /><text x="90" y="346">Models</text></g>
-          <g class="gnode"><circle cx="66" cy="138" r="6" /><text x="66" y="118">Software</text></g>
+          <g class="gnode" style="--i:0"><circle cx="210" cy="58" r="6" /><text x="210" y="38">Energy</text></g>
+          <g class="gnode" style="--i:1"><circle cx="354" cy="138" r="6" /><text x="354" y="118">Compute</text></g>
+          <g class="gnode" style="--i:2"><circle cx="330" cy="320" r="6" /><text x="330" y="346">Data</text></g>
+          <g class="gnode" style="--i:3"><circle cx="90" cy="320" r="6" /><text x="90" y="346">Models</text></g>
+          <g class="gnode" style="--i:4"><circle cx="66" cy="138" r="6" /><text x="66" y="118">Software</text></g>
           <!-- core -->
-          <circle cx="210" cy="210" r="60" fill="url(#coreGlow)" />
-          <circle cx="210" cy="210" r="34" fill="#0B0D0F" stroke="#F0893C" stroke-width="1.5" />
-          <text class="core" x="210" y="206">Decision-</text>
-          <text class="core" x="210" y="220">making</text>
+          <g class="gcore">
+            <circle class="core-glow" cx="210" cy="210" r="60" fill="url(#coreGlow)" />
+            <circle cx="210" cy="210" r="34" fill="#0B0D0F" stroke="#F0893C" stroke-width="1.5" />
+            <text class="core" x="210" y="206">Decision-</text>
+            <text class="core" x="210" y="220">making</text>
+          </g>
         </svg>
       </div>
     </div>
@@ -199,7 +208,7 @@ const stripPhotos = [
         <span class="sec-head__num">03 / Experience</span>
         <h2>Professional background</h2>
       </div>
-      <ol class="xp" data-reveal-group>
+      <ol class="xp rail" data-reveal="fade" data-reveal-group>
         <li class="xp__item" data-reveal>
           <span class="xp__when mono">Present</span>
           <div class="xp__main"><h3>Head of Programs, Applied AI Products</h3><span class="xp__org">AI71</span></div>
@@ -232,15 +241,15 @@ const stripPhotos = [
         <span class="sec-head__num">04 / Focus Areas</span>
         <h2>Where I spend my attention</h2>
       </div>
-      <ul class="chips" data-reveal>
-        <li>AI Transformation</li>
-        <li>Co-Innovation</li>
-        <li>Agentic AI Adoption</li>
-        <li>Robotics &amp; Automation</li>
-        <li>Industrial AI</li>
-        <li>Energy &amp; Manufacturing</li>
-        <li>Tech Trends</li>
-        <li>Commodity Markets</li>
+      <ul class="chips" data-reveal-group>
+        <li data-reveal="scale">AI Transformation</li>
+        <li data-reveal="scale">Co-Innovation</li>
+        <li data-reveal="scale">Agentic AI Adoption</li>
+        <li data-reveal="scale">Robotics &amp; Automation</li>
+        <li data-reveal="scale">Industrial AI</li>
+        <li data-reveal="scale">Energy &amp; Manufacturing</li>
+        <li data-reveal="scale">Tech Trends</li>
+        <li data-reveal="scale">Commodity Markets</li>
       </ul>
     </div>
   </section>
@@ -290,7 +299,7 @@ const stripPhotos = [
       </div>
       <a class="photostrip" href="/speaking/" data-reveal aria-label="See the speaking page">
         {stripPhotos.map((p, i) => (
-          <span class="photostrip__cell">
+          <span class="photostrip__cell" data-i={String(i + 1).padStart(2, '0')}>
             <img src={p.src} alt="" width="1000" height="750" loading="lazy" decoding="async" />
           </span>
         ))}

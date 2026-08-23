@@ -326,6 +326,24 @@ html:not(.js) .nav__links a.active::after {
 .footer__base .mono { color: var(--faint); }
 
 /* ============================================================
+   RAIL — a vertical amber line traced as a list scrolls into view
+   (CSS scroll-driven when supported; otherwise drawn once on reveal)
+   ============================================================ */
+.rail { position: relative; }
+.rail::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 1px;
+  background: var(--amber); transform: scaleY(0); transform-origin: top;
+  transition: transform 1.4s var(--ease) 0.2s;
+}
+.rail.in::before, html:not(.js) .rail::before { transform: scaleY(1); }
+@supports (animation-timeline: view()) {
+  .js .rail::before { transition: none; animation: rail-grow linear both; animation-timeline: view(); animation-range: entry 15% cover 60%; }
+  .js .rail.in::before { transform: none; }
+  @keyframes rail-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+}
+@media (prefers-reduced-motion: reduce) { .rail::before { transform: scaleY(1) !important; animation: none !important; } }
+
+/* ============================================================
    CONTACT CTA (shared closer — home + inner pages)
    ============================================================ */
 .contact-cta { padding-block: clamp(56px, 7vw, 96px); }
