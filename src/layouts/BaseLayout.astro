@@ -130,8 +130,9 @@ const schemas = [person, website, ...jsonLd];
       <div class="grain"></div>
     </div>
 
+    <a class="skip" href="#main">Skip to content</a>
     <Header />
-    <main class="page">
+    <main class="page" id="main" tabindex="-1">
       <slot />
     </main>
     <Footer />
@@ -153,8 +154,12 @@ const schemas = [person, website, ...jsonLd];
             burger.classList.toggle("open", open);
             burger.setAttribute("aria-expanded", String(open));
           });
-          drawer.addEventListener("click", function (e) {
-            if (e.target.tagName === "A") { drawer.classList.remove("open"); burger.classList.remove("open"); }
+          function closeDrawer() {
+            drawer.classList.remove("open"); burger.classList.remove("open"); burger.setAttribute("aria-expanded", "false");
+          }
+          drawer.addEventListener("click", function (e) { if (e.target.tagName === "A") closeDrawer(); });
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && drawer.classList.contains("open")) { closeDrawer(); burger.focus(); }
           });
         }
 
