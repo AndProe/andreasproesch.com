@@ -51,7 +51,7 @@ const books = [
               <div class="book__cover">
                 <span class="book__badge">{String(i + 1).padStart(2, "0")}</span>
                 <div class="ph">
-                  <img src={`/images/books/${b.s}.jpg`} alt={`${b.t} by ${b.a}`} loading="lazy" decoding="async"
+                  <img src={`/images/books/${b.s}.jpg`} alt={`${b.t} by ${b.a}`} width="333" height="500" loading="lazy" decoding="async"
                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
                   <span class="ph__label" style="display:none;"><b>{b.s}.jpg</b>Cover · 2:3</span>
                 </div>

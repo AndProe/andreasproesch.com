@@ -1,29 +1,52 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { posts } from '../data/posts';
+import { getCollection } from 'astro:content';
+import { portfolio } from '../data/portfolio';
 import '../styles/home.css';
 
-const recentPosts = posts.slice(0, 3);
+// Latest native essays (canonical on this domain).
+const recentPosts = (await getCollection('writing', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+const ymd = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
+
+// Proof points. Numeric values count up on reveal (data-count); text values are static.
+const stats: { value: string; label: string; count?: number; suffix?: string }[] = [
+  { value: '15+', count: 15, suffix: '+', label: 'Years at the intersection of tech & industry' },
+  { value: 'EU · GCC', label: 'Keynotes & briefings across Europe and the Middle East' },
+  { value: 'Gov · Ent · VC', label: 'Advisory for governments, enterprises & funds' },
+  { value: String(portfolio.length), count: portfolio.length, label: 'Early-stage companies backed as an angel' },
+];
+
+const experienceMarks = ['AI71', 'Cognite', 'Aker', 'AkerBP', 'BCG'];
+
+const stripPhotos = [
+  { src: '/images/speaking-event-1.jpg' },
+  { src: '/images/speaking-event-6.jpg' },
+  { src: '/images/speaking-event-8.jpg' },
+  { src: '/images/speaking-event-4.jpg' },
+];
 ---
 
 <BaseLayout
-  title="Home"
-  description="Andreas Proesch works where AI meets industry and capital — tech operator, advisor, and angel investor. Head of Programs, Applied AI Products at AI71, Abu Dhabi."
+  title="AI Advisor, Speaker & Angel Investor · Abu Dhabi"
+  description="Andreas Proesch helps governments, enterprises, and investors turn AI ambition into shipped systems. Head of Programs, Applied AI Products at AI71, Abu Dhabi. Advisory, keynotes, and angel investing."
 >
 
   <!-- ===================== HERO ===================== -->
   <section class="hero section">
     <div class="wrap hero__grid">
       <div class="hero__copy">
-        <p class="eyebrow" data-reveal>Tech Operator · Advisor · Angel Investor</p>
+        <p class="eyebrow" data-reveal>Turning AI ambition into shipped systems</p>
         <h1 class="hero__name" data-reveal data-delay="0.05">
           <span class="ln">Andreas</span>
           <span class="ln ln--out">Proesch</span>
         </h1>
-        <p class="hero__role mono" data-reveal data-delay="0.1">// Working where AI meets industry &amp; capital</p>
+        <p class="hero__role mono" data-reveal data-delay="0.1">// For governments, enterprises, investors &amp; founders</p>
         <p class="hero__intro" data-reveal data-delay="0.15">
-          Robotics engineer by training; now <span class="amber">Head of Programs, Applied AI Products at AI71</span>
-          in Abu Dhabi — helping organizations move from AI experimentation to AI-first operating models.
+          I'm <span class="amber">Head of Programs, Applied AI Products at AI71</span> in Abu Dhabi.
+          I help organizations move from AI experimentation to AI-first operating models — and I speak,
+          advise, and invest where AI meets industry and capital.
         </p>
 
         <dl class="facts" data-reveal data-delay="0.2">
@@ -33,8 +56,8 @@ const recentPosts = posts.slice(0, 3);
         </dl>
 
         <div class="hero__cta" data-reveal data-delay="0.25">
-          <a class="btn" href="/about#experience">View experience</a>
-          <a class="btn btn--primary" href="/contact">Get in touch <span class="arr">→</span></a>
+          <a class="btn btn--primary" href="/contact/">Work with me <span class="arr">→</span></a>
+          <a class="btn" href="/speaking/">Invite me to speak</a>
         </div>
       </div>
 
@@ -42,7 +65,7 @@ const recentPosts = posts.slice(0, 3);
         <div class="framed">
           <span class="brk tl"></span><span class="brk br"></span>
           <div class="ph" style="aspect-ratio: 4/5;">
-            <img src="/images/andreas-portrait.jpg" alt="Portrait of Andreas Proesch" loading="eager"
+            <img src="/images/andreas-portrait.jpg" alt="Portrait of Andreas Proesch" width="498" height="623" loading="eager"
                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
             <span class="ph__label" style="display:none;"><b>andreas-portrait.jpg</b>Portrait · 4:5</span>
           </div>
@@ -51,131 +74,72 @@ const recentPosts = posts.slice(0, 3);
     </div>
   </section>
 
-  <!-- ===================== 01 / INDEX (directory hub) ===================== -->
-  <section class="section" id="index">
+  <!-- ===================== EXPERIENCE MARKS + STATS ===================== -->
+  <section class="section proof" id="proof">
     <div class="wrap">
-      <div class="sec-head" data-reveal>
-        <span class="sec-head__num">01 / Index</span>
-        <h2>A map of my work</h2>
-        <p>Each section below is its own page. The site grows as the work does.</p>
+      <div class="marks" data-reveal>
+        <span class="marks__label mono">Experience across</span>
+        <ul class="marks__list">
+          {experienceMarks.map(m => <li>{m}</li>)}
+        </ul>
       </div>
 
-      <div class="dir" data-reveal-group>
-        <a class="card dir__item" href="/about" data-reveal>
-          <span class="dir__num">001</span>
-          <span class="dir__title">About</span>
-          <span class="dir__desc">Who I am, who I work with, and how I got here.</span>
-          <span class="dir__go mono">Open <span class="arr">→</span></span>
-        </a>
-        <a class="card dir__item" href="/blog" data-reveal>
-          <span class="dir__num">002</span>
-          <span class="dir__title">Writing</span>
-          <span class="dir__desc">Asymmetric — a newsletter on AI, industry, and capital.</span>
-          <span class="dir__go mono">Open <span class="arr">→</span></span>
-        </a>
-        <a class="card dir__item" href="/about#experience" data-reveal>
-          <span class="dir__num">003</span>
-          <span class="dir__title">Experience</span>
-          <span class="dir__desc">AI71, Cognite &amp; Aker, AkerBP, BCG.</span>
-          <span class="dir__go mono">Open <span class="arr">→</span></span>
-        </a>
-        <a class="card dir__item" href="/portfolio" data-reveal>
-          <span class="dir__num">004</span>
-          <span class="dir__title">Portfolio</span>
-          <span class="dir__desc">Early-stage companies I've invested in.</span>
-          <span class="dir__go mono">Open <span class="arr">→</span></span>
-        </a>
-        <a class="card dir__item" href="/books" data-reveal>
-          <span class="dir__num">005</span>
-          <span class="dir__title">Reading</span>
-          <span class="dir__desc">Books that shaped how I think.</span>
-          <span class="dir__go mono">Open <span class="arr">→</span></span>
-        </a>
-        <a class="card dir__item" href="/contact" data-reveal>
-          <span class="dir__num">006</span>
-          <span class="dir__title">Contact</span>
-          <span class="dir__desc">Speaking, advisory, or something to discuss.</span>
-          <span class="dir__go mono">Open <span class="arr">→</span></span>
-        </a>
-      </div>
+      <dl class="stats" data-reveal-group>
+        {stats.map(s => (
+          <div class="stats__item" data-reveal>
+            <dt class="stats__label">{s.label}</dt>
+            <dd class="stats__value" data-count={s.count} data-suffix={s.suffix}>{s.value}</dd>
+          </div>
+        ))}
+      </dl>
     </div>
   </section>
 
-  <!-- ===================== 02 / WHAT I DO ===================== -->
-  <section class="section section--tight" id="what">
+  <!-- ===================== 01 / WORK WITH ME (buyer-segmented offers) ===================== -->
+  <section class="section section--tight" id="work">
     <div class="wrap">
       <div class="sec-head" data-reveal>
-        <span class="sec-head__num">02 / What I Do</span>
-        <h2>How I spend my time</h2>
+        <span class="sec-head__num">01 / Work With Me</span>
+        <h2>Three ways in</h2>
       </div>
       <div class="roles" data-reveal-group>
-        <div class="card role" data-reveal>
+        <a class="card role" href="/contact/" data-reveal>
           <div class="role__top">
             <span class="role__idx mono">/01</span>
-            <span class="role__verb mono">Building</span>
+            <span class="role__verb mono">For enterprises, governments &amp; funds</span>
           </div>
-          <h3 class="role__name">Tech Operator</h3>
-          <p class="role__body">Head of Programs, Applied AI Products at AI71 — building AI-first operating models where AI meets physical assets, regulation, legacy systems, and scale.</p>
-        </div>
-        <div class="card role" data-reveal>
+          <h3 class="role__name">Advisory</h3>
+          <p class="role__body">AI strategy, diligence, and the path from pilots to production-grade systems — grounded in operating experience, not slideware.</p>
+          <span class="role__go mono">Start a conversation <span class="arr">→</span></span>
+        </a>
+        <a class="card role" href="/speaking/" data-reveal>
           <div class="role__top">
             <span class="role__idx mono">/02</span>
-            <span class="role__verb mono">Advising</span>
+            <span class="role__verb mono">For conferences, boards &amp; executive teams</span>
           </div>
-          <h3 class="role__name">Advisor</h3>
-          <p class="role__body">Working with boards, management teams, funds, and founders on AI strategy, diligence, and the path from pilots to production-grade systems.</p>
-        </div>
-        <div class="card role" data-reveal>
+          <h3 class="role__name">Speaking</h3>
+          <p class="role__body">Keynotes, panels, and private briefings on AI adoption, sovereign AI, and what it takes to actually ship — across Europe and the Middle East.</p>
+          <span class="role__go mono">Book a talk <span class="arr">→</span></span>
+        </a>
+        <a class="card role" href="/portfolio/" data-reveal>
           <div class="role__top">
             <span class="role__idx mono">/03</span>
-            <span class="role__verb mono">Backing</span>
+            <span class="role__verb mono">For founders</span>
           </div>
-          <h3 class="role__name">Investor</h3>
-          <p class="role__body">Active angel investor in early-stage companies building foundational AI, data, and industrial software.</p>
-        </div>
+          <h3 class="role__name">Angel</h3>
+          <p class="role__body">Early cheques and hands-on help with product direction, technical strategy, and go-to-market — from humanoid robotics to nuclear fusion.</p>
+          <span class="role__go mono">See the portfolio <span class="arr">→</span></span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 03 / EXPERIENCE (anchor) ===================== -->
-  <section class="section section--tight" id="experience">
-    <div class="wrap">
-      <div class="sec-head" data-reveal>
-        <span class="sec-head__num">03 / Experience</span>
-        <h2>Professional background</h2>
-      </div>
-      <ol class="xp" data-reveal-group>
-        <li class="xp__item" data-reveal>
-          <span class="xp__when mono">Present</span>
-          <div class="xp__main"><h3>Head of Programs, Applied AI Products</h3><span class="xp__org">AI71</span></div>
-          <span class="xp__tag mono">Sovereign Agentic AI</span>
-        </li>
-        <li class="xp__item" data-reveal>
-          <span class="xp__when mono">Prev</span>
-          <div class="xp__main"><h3>VP &amp; Head of Aker AI Unit</h3><span class="xp__org">Cognite &amp; Aker ASA</span></div>
-          <span class="xp__tag mono">Industrial AI · DataOps</span>
-        </li>
-        <li class="xp__item" data-reveal>
-          <span class="xp__when mono">Prev</span>
-          <div class="xp__main"><h3>Snr. Finance, Digital Investments</h3><span class="xp__org">AkerBP</span></div>
-          <span class="xp__tag mono">Energy</span>
-        </li>
-        <li class="xp__item" data-reveal>
-          <span class="xp__when mono">Prev</span>
-          <div class="xp__main"><h3>Project Leader</h3><span class="xp__org">Boston Consulting Group</span></div>
-          <span class="xp__tag mono">Management Consulting</span>
-        </li>
-      </ol>
-      <a class="btn xp__more" href="/about#experience">Full background &amp; education <span class="arr">→</span></a>
-    </div>
-  </section>
-
-  <!-- ===================== 04 / THE LENS ===================== -->
+  <!-- ===================== 02 / THE LENS ===================== -->
   <section class="section lens" id="lens">
     <div class="wrap lens__grid">
       <div class="lens__copy">
         <div class="sec-head" data-reveal>
-          <span class="sec-head__num">04 / The Lens</span>
+          <span class="sec-head__num">02 / The Lens</span>
           <h2>Supply Chains of Intelligence</h2>
         </div>
         <p class="lens__p" data-reveal data-delay="0.05">
@@ -228,11 +192,44 @@ const recentPosts = posts.slice(0, 3);
     </div>
   </section>
 
-  <!-- ===================== 05 / FOCUS AREAS ===================== -->
+  <!-- ===================== 03 / EXPERIENCE ===================== -->
+  <section class="section section--tight" id="experience">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="sec-head__num">03 / Experience</span>
+        <h2>Professional background</h2>
+      </div>
+      <ol class="xp" data-reveal-group>
+        <li class="xp__item" data-reveal>
+          <span class="xp__when mono">Present</span>
+          <div class="xp__main"><h3>Head of Programs, Applied AI Products</h3><span class="xp__org">AI71</span></div>
+          <span class="xp__tag mono">Sovereign Agentic AI</span>
+        </li>
+        <li class="xp__item" data-reveal>
+          <span class="xp__when mono">Prev</span>
+          <div class="xp__main"><h3>VP &amp; Head of Aker AI Unit</h3><span class="xp__org">Cognite &amp; Aker ASA</span></div>
+          <span class="xp__tag mono">Industrial AI · DataOps</span>
+        </li>
+        <li class="xp__item" data-reveal>
+          <span class="xp__when mono">Prev</span>
+          <div class="xp__main"><h3>Snr. Finance, Digital Investments</h3><span class="xp__org">AkerBP</span></div>
+          <span class="xp__tag mono">Energy</span>
+        </li>
+        <li class="xp__item" data-reveal>
+          <span class="xp__when mono">Prev</span>
+          <div class="xp__main"><h3>Project Leader</h3><span class="xp__org">Boston Consulting Group</span></div>
+          <span class="xp__tag mono">Management Consulting</span>
+        </li>
+      </ol>
+      <a class="btn xp__more" href="/about/#experience">Full background &amp; education <span class="arr">→</span></a>
+    </div>
+  </section>
+
+  <!-- ===================== 04 / FOCUS AREAS ===================== -->
   <section class="section section--tight" id="focus">
     <div class="wrap">
       <div class="sec-head" data-reveal>
-        <span class="sec-head__num">05 / Focus Areas</span>
+        <span class="sec-head__num">04 / Focus Areas</span>
         <h2>Where I spend my attention</h2>
       </div>
       <ul class="chips" data-reveal>
@@ -248,57 +245,69 @@ const recentPosts = posts.slice(0, 3);
     </div>
   </section>
 
-  <!-- ===================== 06 / WRITING — ASYMMETRIC ===================== -->
+  <!-- ===================== 05 / WRITING — ASYMMETRIC ===================== -->
   <section class="section" id="writing">
     <div class="wrap">
       <div class="sec-head writing__head" data-reveal>
         <div>
-          <span class="sec-head__num">06 / Writing — Asymmetric</span>
+          <span class="sec-head__num">05 / Writing — Asymmetric</span>
           <h2>Notes on AI, industry &amp; capital</h2>
         </div>
-        <a class="btn" href="https://proesch.substack.com" target="_blank" rel="noopener">Subscribe <span class="arr">→</span></a>
+        <a class="btn" href="/blog/">All writing <span class="arr">→</span></a>
       </div>
       <ul class="posts" data-reveal-group>
         {recentPosts.map(post => (
           <li class="card post" data-reveal>
-            <a href={post.url} target="_blank" rel="noopener">
-              <span class="post__date mono">{post.date}</span>
-              <h3 class="post__title">{post.title}</h3>
-              <span class="post__go mono">Read on Substack <span class="arr">→</span></span>
+            <a href={`/blog/${post.id}/`}>
+              <span class="post__date mono"><time datetime={post.data.date.toISOString()}>{ymd(post.data.date)}</time></span>
+              <h3 class="post__title">{post.data.title}</h3>
+              <span class="post__go mono">Read the essay <span class="arr">→</span></span>
             </a>
           </li>
         ))}
       </ul>
+
+      <div class="newsletter" data-reveal>
+        <div class="newsletter__copy">
+          <p class="eyebrow">Subscribe</p>
+          <h3 class="newsletter__h">Asymmetric — AI, industry &amp; capital</h3>
+          <p class="newsletter__p">Essays and signals for operators and investors. No noise — delivered when they're worth your time.</p>
+        </div>
+        <div class="newsletter__embed">
+          <iframe src="https://proesch.substack.com/embed" title="Subscribe to Asymmetric on Substack"
+                  frameborder="0" scrolling="no" loading="lazy"></iframe>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ===================== PORTFOLIO + READING TEASERS ===================== -->
-  <section class="section section--tight">
-    <div class="wrap teasers" data-reveal-group>
-      <a class="card teaser" href="/portfolio" data-reveal>
-        <span class="teaser__num mono">07 / Portfolio</span>
-        <h3>Startups I work with</h3>
-        <p>From humanoid robotics and nuclear fusion to sovereign cloud — early-stage companies I've invested in.</p>
-        <span class="teaser__go mono">View portfolio <span class="arr">→</span></span>
+  <!-- ===================== 06 / ON STAGE ===================== -->
+  <section class="section section--tight" id="stage">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <span class="sec-head__num">06 / On Stage</span>
+        <h2>From past events</h2>
+      </div>
+      <a class="photostrip" href="/speaking/" data-reveal aria-label="See the speaking page">
+        {stripPhotos.map((p, i) => (
+          <span class="photostrip__cell">
+            <img src={p.src} alt="" width="1000" height="750" loading="lazy" decoding="async" />
+          </span>
+        ))}
       </a>
-      <a class="card teaser" href="/books" data-reveal>
-        <span class="teaser__num mono">08 / Reading</span>
-        <h3>Books I recommend to friends</h3>
-        <p>The titles that shaped my thinking on technology, investing, and the future.</p>
-        <span class="teaser__go mono">View reading list <span class="arr">→</span></span>
-      </a>
+      <p class="mono photostrip__more" data-reveal><a href="/speaking/">Topics, formats &amp; booking <span class="arr">→</span></a></p>
     </div>
   </section>
 
-  <!-- ===================== CONTACT (lightweight) ===================== -->
+  <!-- ===================== CONTACT ===================== -->
   <section class="section contact-cta">
     <div class="wrap contact-cta__inner" data-reveal>
       <div>
         <p class="eyebrow">Contact</p>
         <h2 class="contact-cta__h">Get in touch</h2>
-        <p class="contact-cta__p">For questions, speaking enquiries, or early-stage companies.</p>
+        <p class="contact-cta__p">Advisory for enterprises, governments &amp; funds · keynotes and briefings · early-stage companies.</p>
       </div>
-      <a class="btn btn--primary" href="/contact">Get in touch <span class="arr">→</span></a>
+      <a class="btn btn--primary" href="/contact/">Work with me <span class="arr">→</span></a>
     </div>
   </section>
 

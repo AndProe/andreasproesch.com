@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { SUBSTACK_URL } from '../../data/posts';
+import { SUBSTACK_URL } from '../../data/site';
 import '../../styles/pages.css';
 
 const nativePosts = (await getCollection('writing', ({ data }) => !data.draft))
