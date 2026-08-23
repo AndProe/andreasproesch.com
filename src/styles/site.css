@@ -24,7 +24,14 @@
 
   --reveal-y: 22px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 0.2s;
+  --dur: 0.45s;
+  --dur-slow: 0.8s;
+  --amber-glow: rgba(240, 137, 60, 0.12);
+  --nav-h: 68px;
 }
+html[data-scrolled] { --nav-h: 56px; }
+html { scroll-padding-top: calc(var(--nav-h) + 16px); }
 
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -70,6 +77,26 @@ button { font-family: inherit; }
   -webkit-mask-image: radial-gradient(120% 80% at 50% 0%, #000 0%, #000 38%, transparent 72%);
           mask-image: radial-gradient(120% 80% at 50% 0%, #000 0%, #000 38%, transparent 72%);
 }
+/* Cursor-reactive spot: brighter amber grid lines that follow the pointer.
+   Lives inside .grid so it inherits the same top-fade mask. Fine pointers only. */
+.atmosphere .grid__spot {
+  display: none; position: absolute; top: 0; left: 0;
+  width: 560px; height: 560px; margin: -280px 0 0 -280px;
+  background-image:
+    linear-gradient(to right, rgba(240,137,60,0.36) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(240,137,60,0.36) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-attachment: fixed;
+  -webkit-mask-image: radial-gradient(closest-side, #000, transparent);
+          mask-image: radial-gradient(closest-side, #000, transparent);
+  transform: translate3d(var(--mx, -999px), var(--my, -999px), 0);
+  opacity: var(--spot, 0);
+  transition: opacity 0.6s var(--ease);
+  will-change: transform;
+}
+html.fine .atmosphere .grid__spot { display: block; }
+.nav-sentinel { position: absolute; top: 0; left: 0; width: 1px; height: 1px; pointer-events: none; }
+
 .atmosphere .grain {
   position: absolute; inset: 0;
   opacity: 0.04;
@@ -107,7 +134,13 @@ button { font-family: inherit; }
 }
 
 /* ---------- Section header (numbered) ---------- */
-.sec-head { margin-bottom: clamp(32px, 4vw, 56px); }
+.sec-head { margin-bottom: clamp(32px, 4vw, 56px); position: relative; padding-top: 22px; }
+.sec-head::before {
+  content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 1px;
+  background: var(--line-2); transform: scaleX(0); transform-origin: left;
+  transition: transform 1s var(--ease) 0.1s;
+}
+.sec-head.in::before, html:not(.js) .sec-head::before { transform: scaleX(1); }
 .sec-head__num {
   font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em;
   color: var(--amber); display: block; margin-bottom: 14px;
@@ -158,10 +191,20 @@ h1, h2, h3 { letter-spacing: -0.02em; }
 }
 .card:hover { background: var(--bg-3); border-color: var(--line-2); }
 .card:hover::before { transform: scaleX(1); }
+/* cursor-following amber spotlight (fine pointers) — ::after because ::before is the top bar */
+.card { isolation: isolate; }
+.card::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; pointer-events: none;
+  background: radial-gradient(320px circle at var(--cx, 50%) var(--cy, 50%), rgba(240,137,60,0.11), transparent 65%);
+  transition: opacity 0.35s var(--ease);
+}
+html.fine .card:hover::after { opacity: 1; }
 
 /* ---------- Corner brackets (frame portraits) ---------- */
 .framed { position: relative; }
-.framed .brk { position: absolute; width: 26px; height: 26px; pointer-events: none; z-index: 2; }
+.framed .brk { position: absolute; width: 26px; height: 26px; pointer-events: none; z-index: 2; transition: transform 0.35s var(--ease); }
+.framed:hover .brk.tl { transform: translate(-4px, -4px); }
+.framed:hover .brk.br { transform: translate(4px, 4px); }
 .framed .brk::before, .framed .brk::after { content: ""; position: absolute; background: var(--amber); }
 .framed .brk::before { width: 100%; height: 2px; }
 .framed .brk::after  { height: 100%; width: 2px; }
@@ -201,14 +244,16 @@ h1, h2, h3 { letter-spacing: -0.02em; }
 }
 .nav__inner {
   display: flex; align-items: center; justify-content: space-between;
-  height: 68px; gap: 24px;
+  height: var(--nav-h); gap: 24px;
+  transition: height 0.3s var(--ease);
 }
+html[data-scrolled] .nav { background: rgba(11,13,15,0.84); }
 .brand {
   font-weight: 900; font-size: 19px; letter-spacing: -0.02em;
   text-transform: uppercase; white-space: nowrap;
 }
 .brand .dot { color: var(--amber); }
-.nav__links { display: flex; align-items: center; gap: 30px; }
+.nav__links { display: flex; align-items: center; gap: 30px; position: relative; }
 .nav__links a {
   font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.06em;
   text-transform: uppercase; color: var(--muted);
@@ -216,9 +261,15 @@ h1, h2, h3 { letter-spacing: -0.02em; }
 }
 .nav__links a:hover { color: var(--text); }
 .nav__links a.active { color: var(--amber); }
-.nav__links a.active::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px;
-  background: var(--amber);
+/* sliding indicator: rests under the active link, follows hover/focus */
+.nav__ind {
+  position: absolute; bottom: 2px; height: 1px; background: var(--amber);
+  left: var(--ix, 0px); width: var(--iw, 0px); opacity: var(--io, 0);
+  pointer-events: none;
+}
+.nav__links--ready .nav__ind { transition: left 0.35s var(--ease), width 0.35s var(--ease), opacity 0.2s var(--ease); }
+html:not(.js) .nav__links a.active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px; background: var(--amber);
 }
 .nav__right { display: flex; align-items: center; gap: 22px; }
 
@@ -245,7 +296,7 @@ h1, h2, h3 { letter-spacing: -0.02em; }
 
 /* mobile drawer */
 .nav__mobile {
-  display: none; position: fixed; inset: 68px 0 auto 0; z-index: 49;
+  display: none; position: fixed; inset: var(--nav-h) 0 auto 0; z-index: 49;
   background: var(--bg-2); border-bottom: 1px solid var(--line);
   flex-direction: column; padding: 12px var(--gutter) 26px;
   transform: translateY(-12px); opacity: 0; pointer-events: none;
@@ -288,24 +339,34 @@ h1, h2, h3 { letter-spacing: -0.02em; }
 
 /* ============================================================
    SCROLL REVEAL
-   Robust by design. Content is visible by default (no-JS safe).
-   Only once <html class="js"> is present do un-revealed items hide.
-   Motion runs as a TRANSITION; JS then stamps `.done` after the
-   duration, which statically forces the final visible state with
-   no transition — so even an environment that freezes animations
-   still ends fully visible (never stuck on the hidden frame).
+   Content is visible by default (no-JS safe). Only once <html class="js">
+   is present (inline in <head>) do un-revealed items hide. Motion runs as a
+   KEYFRAME so an element's own hover `transition` is never overridden.
+   A delayed safety animation reveals everything even if the bundle never
+   arrives. JS stamps `.done` afterwards to drop the animation entirely.
+   Variants: data-reveal="" | "fade" | "scale" | "clip" | "left"
    ============================================================ */
-.js [data-reveal]:not(.in) { opacity: 0; transform: translateY(var(--reveal-y)); }
-[data-reveal].in {
-  opacity: 1; transform: none;
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
-}
-[data-reveal].in.done { transition: none; opacity: 1; transform: none; }
+.js [data-reveal]:not(.in) { opacity: 0; animation: rv-safety 0.6s var(--ease) 2.2s forwards; }
+[data-reveal].in { animation: rv-up 0.75s var(--ease) var(--d, 0s) both; }
+[data-reveal="fade"].in  { animation-name: rv-fade; }
+[data-reveal="scale"].in { animation-name: rv-scale; }
+[data-reveal="clip"].in  { animation-name: rv-clip; animation-duration: 0.9s; }
+[data-reveal="left"].in  { animation-name: rv-left; }
+[data-reveal].in.done    { animation: none; opacity: 1; }
+
+@keyframes rv-safety { to { opacity: 1; } }
+@keyframes rv-up    { from { opacity: 0; transform: translateY(var(--reveal-y)); } to { opacity: 1; transform: none; } }
+@keyframes rv-fade  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rv-scale { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes rv-clip  { from { opacity: 1; clip-path: inset(0 0 100% 0); } to { opacity: 1; clip-path: inset(0 0 -2% 0); } }
+@keyframes rv-left  { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
-  .js [data-reveal]:not(.in), [data-reveal].in { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .js [data-reveal]:not(.in), [data-reveal].in { opacity: 1 !important; transform: none !important; clip-path: none !important; animation: none !important; }
   .status__dot::after { display: none; }
+  .atmosphere .grid__spot { display: none !important; }
+  .sec-head::before { transform: scaleX(1); }
 }
 
 /* ============================================================

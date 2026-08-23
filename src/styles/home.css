@@ -3,7 +3,16 @@
    ============================================================ */
 
 /* ---------- HERO ---------- */
-.hero { padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(56px, 7vw, 104px); }
+.hero { padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(56px, 7vw, 104px); overflow: clip; }
+.hero > .wrap { position: relative; z-index: 1; }
+/* ambient amber glow — radial gradient (no filter), transform-only drift */
+.hero::before {
+  content: ""; position: absolute; z-index: 0; pointer-events: none;
+  width: 70vmax; height: 70vmax; right: -22vmax; top: -34vmax; border-radius: 50%;
+  background: radial-gradient(closest-side, var(--amber-glow), rgba(240,137,60,0) 70%);
+  animation: glow-drift 38s ease-in-out infinite alternate;
+}
+@keyframes glow-drift { to { transform: translate3d(-14vmax, 12vmax, 0) scale(1.15); } }
 .hero__grid {
   display: grid; grid-template-columns: 1.35fr 0.85fr;
   gap: clamp(32px, 5vw, 80px); align-items: center;
@@ -12,7 +21,8 @@
   font-size: clamp(64px, 11vw, 148px); font-weight: 900; line-height: 0.86;
   letter-spacing: -0.03em; text-transform: uppercase; margin: 0 0 26px;
 }
-.hero__name .ln { display: block; }
+.hero__name .ln { display: block; clip-path: inset(-0.08em 0 -0.04em 0); }
+.hero__name .ln__in { display: block; }
 .hero__name .ln--out {
   color: transparent;
   -webkit-text-stroke: 1.5px var(--line-2);
@@ -30,6 +40,23 @@
 .facts__row dd { margin: 0; font-size: 15px; color: var(--text); font-weight: 500; }
 
 .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* ---------- HERO ENTRANCE (first paint choreography; gated on html.js) ---------- */
+.js .hero--intro .ln__in { animation: line-up 0.95s var(--ease) 0.05s both; }
+.js .hero--intro .ln--out .ln__in { animation-delay: 0.17s; }
+.js .hero--intro .eyebrow { animation: rv-fade 0.6s var(--ease) both; }
+.js .hero--intro .eyebrow::before { transform-origin: left; animation: draw-x 0.7s var(--ease) 0.1s both; }
+.js .hero--intro .hero__role  { animation: rv-up 0.7s var(--ease) 0.45s both; }
+.js .hero--intro .hero__intro { animation: rv-up 0.7s var(--ease) 0.55s both; }
+.js .hero--intro .facts       { animation: rv-up 0.7s var(--ease) 0.65s both; }
+.js .hero--intro .hero__cta   { animation: rv-up 0.7s var(--ease) 0.75s both; }
+.js .hero--intro .hero__portrait .ph { animation: rv-scale 1s var(--ease) 0.3s both; }
+.js .hero--intro .brk.tl { animation: brk-tl 0.5s var(--ease) 0.85s both; }
+.js .hero--intro .brk.br { animation: brk-br 0.5s var(--ease) 0.95s both; }
+@keyframes line-up { from { transform: translateY(108%); } to { transform: none; } }
+@keyframes draw-x  { from { transform: scaleX(0); } to { transform: none; } }
+@keyframes brk-tl  { from { opacity: 0; transform: translate(-10px, -10px); } to { opacity: 1; transform: none; } }
+@keyframes brk-br  { from { opacity: 0; transform: translate(10px, 10px); } to { opacity: 1; transform: none; } }
 
 /* portrait */
 .hero__portrait { justify-self: end; width: 100%; max-width: 360px; }
@@ -127,6 +154,7 @@
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 920px) {
+  .hero::before { animation: none; }
   .hero__grid { grid-template-columns: 1fr; }
   .hero__portrait { justify-self: start; max-width: 320px; order: -1; }
   .roles, .posts { grid-template-columns: 1fr; }

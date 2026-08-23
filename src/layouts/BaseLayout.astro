@@ -98,6 +98,14 @@ const schemas = [person, website, ...jsonLd];
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Capability flags before first paint: .js gates reveal hiding, .fine gates pointer effects -->
+    <script is:inline>
+      (function (h) {
+        h.classList.add("js");
+        if (matchMedia("(hover: hover) and (pointer: fine)").matches) h.classList.add("fine");
+      })(document.documentElement);
+    </script>
+
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
 
@@ -125,8 +133,9 @@ const schemas = [person, website, ...jsonLd];
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <div class="nav-sentinel" aria-hidden="true"></div>
     <div class="atmosphere" aria-hidden="true">
-      <div class="grid"></div>
+      <div class="grid"><span class="grid__spot"></span></div>
       <div class="grain"></div>
     </div>
 
@@ -140,95 +149,7 @@ const schemas = [person, website, ...jsonLd];
     <script data-goatcounter="https://andreasproesch.goatcounter.com/count"
         async src="//gc.zgo.at/count.js" is:inline></script>
 
-    <!-- Shared site behaviour: mobile menu, live status clock, scroll-reveal -->
-    <script is:inline>
-      (function () {
-        "use strict";
-
-        // ---- Mobile menu ----
-        var burger = document.getElementById("burger");
-        var drawer = document.getElementById("navMobile");
-        if (burger && drawer) {
-          burger.addEventListener("click", function () {
-            var open = drawer.classList.toggle("open");
-            burger.classList.toggle("open", open);
-            burger.setAttribute("aria-expanded", String(open));
-          });
-          function closeDrawer() {
-            drawer.classList.remove("open"); burger.classList.remove("open"); burger.setAttribute("aria-expanded", "false");
-          }
-          drawer.addEventListener("click", function (e) { if (e.target.tagName === "A") closeDrawer(); });
-          document.addEventListener("keydown", function (e) {
-            if (e.key === "Escape" && drawer.classList.contains("open")) { closeDrawer(); burger.focus(); }
-          });
-        }
-
-        // ---- Live status clock (Abu Dhabi · UTC+4) ----
-        var statusTxt = document.getElementById("statusTxt");
-        function tick() {
-          if (!statusTxt) return;
-          try {
-            var t = new Date().toLocaleTimeString("en-GB", {
-              timeZone: "Asia/Dubai", hour: "2-digit", minute: "2-digit", hour12: false
-            });
-            statusTxt.textContent = "Abu Dhabi · " + t + " · UTC+4";
-          } catch (e) { /* keep static fallback */ }
-        }
-        tick(); setInterval(tick, 30000);
-
-        // ---- Scroll reveal (robust, multi-layer fallback) ----
-        document.documentElement.classList.add("js");
-
-        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        var items = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));
-
-        document.querySelectorAll("[data-reveal-group]").forEach(function (g) {
-          g.querySelectorAll("[data-reveal]").forEach(function (k, i) {
-            if (!k.hasAttribute("data-delay")) k.setAttribute("data-delay", (i * 0.06).toFixed(2));
-          });
-        });
-        function applyDelay(el) {
-          var d = parseFloat(el.getAttribute("data-delay") || "0");
-          if (d) el.style.transitionDelay = d + "s";
-          return d;
-        }
-        function reveal(el) {
-          if (el.classList.contains("in")) return;
-          var d = applyDelay(el);
-          el.classList.add("in");
-          setTimeout(function () { el.classList.add("done"); }, 760 + d * 1000);
-        }
-        function revealAll() { items.forEach(reveal); }
-
-        if (reduce || !items.length) {
-          revealAll();
-        } else {
-          function inView(el) {
-            var r = el.getBoundingClientRect();
-            return r.top < (window.innerHeight || 800) * 0.92 && r.bottom > -40;
-          }
-          function revealInView() {
-            items.forEach(function (el) { if (inView(el)) reveal(el); });
-          }
-          revealInView();
-
-          var ioWorks = false;
-          if ("IntersectionObserver" in window) {
-            var io = new IntersectionObserver(function (entries) {
-              ioWorks = true;
-              entries.forEach(function (en) {
-                if (en.isIntersecting) { reveal(en.target); io.unobserve(en.target); }
-              });
-            }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-            items.forEach(function (el) { if (!el.classList.contains("in")) io.observe(el); });
-          }
-
-          window.addEventListener("scroll", revealInView, { passive: true });
-          window.addEventListener("resize", revealInView);
-
-          setTimeout(function () { if (!ioWorks) revealAll(); }, 700);
-        }
-      })();
-    </script>
+    <!-- Shared site behaviour (bundled): menu, clock, reveal, pointer effects, counters -->
+    <script src="../scripts/main.ts"></script>
   </body>
 </html>
