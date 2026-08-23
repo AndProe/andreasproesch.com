@@ -19,8 +19,14 @@
 /* Rendered Markdown (articles / pillars) */
 .prose h2 { font-size: clamp(22px, 2.6vw, 30px); font-weight: 800; letter-spacing: -0.01em; line-height: 1.15; margin: 44px 0 16px; color: var(--text); }
 .prose h3 { font-size: clamp(18px, 2vw, 22px); font-weight: 700; margin: 32px 0 12px; color: var(--text); }
-.prose a { color: var(--amber); text-decoration: underline; text-underline-offset: 3px; }
-.prose a:hover { color: var(--amber-deep); }
+.prose a {
+  color: var(--amber); text-decoration: none;
+  background-image: linear-gradient(var(--amber), var(--amber));
+  background-repeat: no-repeat; background-position: 0 100%; background-size: 100% 1px;
+  transition: background-size 0.3s var(--ease), color 0.2s var(--ease);
+}
+.prose a:hover { color: var(--text); background-size: 100% 2px; }
+.essay__h1 { font-size: clamp(30px, 4.4vw, 52px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.06; text-wrap: balance; margin: 0; }
 .prose ul, .prose ol { color: var(--muted); font-size: 17.5px; line-height: 1.75; margin: 0 0 22px; padding-left: 1.3em; max-width: 64ch; }
 .prose li { margin-bottom: 8px; }
 .prose strong { color: var(--text); font-weight: 700; }
@@ -50,7 +56,11 @@
 .grid6 .cell p { color: var(--muted); font-size: 14.5px; line-height: 1.55; margin: 0; }
 
 /* ---------- Experience timeline ---------- */
-.timeline { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.timeline { list-style: none; margin: 0; padding: 0 0 0 22px; border-top: 1px solid var(--line); }
+.timeline li { transition: padding-left 0.3s var(--ease), background-color 0.3s var(--ease); }
+.timeline li:hover { background: var(--bg-2); }
+.timeline .role h3 { transition: color 0.25s var(--ease); }
+.timeline li:hover .role h3 { color: var(--amber); }
 .timeline li { display: grid; grid-template-columns: 120px 1fr auto; gap: 26px; align-items: center; padding: 26px 4px; border-bottom: 1px solid var(--line); transition: padding-left 0.3s var(--ease); }
 .timeline li:hover { padding-left: 16px; }
 .timeline .when { font-family: var(--font-mono); font-size: 11px; color: var(--amber); letter-spacing: 0.06em; }
@@ -92,6 +102,13 @@
 }
 .gallery figure:hover figcaption { opacity: 1; transform: none; }
 .gallery .cap-soon { color: var(--faint); }
+.gallery figure::after {
+  content: attr(data-i); position: absolute; left: 10px; top: 10px; z-index: 2;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--amber);
+  background: rgba(11,13,15,0.85); padding: 4px 8px;
+  opacity: 0; transform: translateY(-6px); transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.gallery figure:hover::after { opacity: 1; transform: none; }
 
 /* ---------- Booking closer ---------- */
 .booking { border: 1px solid var(--line); background: var(--bg-2); padding: clamp(32px, 4vw, 56px); display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
@@ -140,7 +157,12 @@
 .blog-list a.post-row:hover { padding-left: 18px; background: var(--bg-2); }
 .blog-list a.post-row:hover::before { transform: scaleY(1); }
 .post-row .date { font-family: var(--font-mono); font-size: 12.5px; color: var(--amber); letter-spacing: 0.04em; }
+.post-row .pmain { display: flex; flex-direction: column; min-width: 0; }
 .post-row .ptitle { font-size: clamp(18px, 2vw, 24px); font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; }
+.post-row .pdesc { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 0.4s var(--ease), opacity 0.3s var(--ease); }
+.post-row .pdesc > span { overflow: hidden; color: var(--muted); font-size: 15px; line-height: 1.55; max-width: 62ch; }
+.post-row .pdesc > span::before { content: ""; display: block; height: 8px; }
+.post-row:hover .pdesc, .post-row:focus-visible .pdesc { grid-template-rows: 1fr; opacity: 1; }
 .post-row .read { font-family: var(--font-mono); font-size: 12px; color: var(--faint); display: inline-flex; gap: 8px; align-items: center; white-space: nowrap; transition: color 0.25s var(--ease); }
 .post-row:hover .read { color: var(--amber); }
 .post-row .read .arr { transition: transform 0.25s var(--ease); }
@@ -175,7 +197,9 @@
 .elsewhere a:hover .go { color: var(--amber); transform: translate(3px, -3px); }
 
 /* ---------- Section label (mono eyebrow standalone) ---------- */
-.block-label { margin-bottom: 26px; }
+.block-label { margin-bottom: 26px; position: relative; padding-top: 18px; }
+.block-label::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: var(--line-2); transform: scaleX(0); transform-origin: left; transition: transform 1s var(--ease) 0.1s; }
+.block-label.in::before, html:not(.js) .block-label::before { transform: scaleX(1); }
 .block-label .n { font-family: var(--font-mono); font-size: 13px; color: var(--amber); letter-spacing: 0.08em; }
 .block-label h2 { font-size: clamp(26px, 3.6vw, 44px); font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; margin: 12px 0 0; }
 

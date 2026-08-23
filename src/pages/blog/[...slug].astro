@@ -11,6 +11,8 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const { title, description, date, updated } = post.data;
+const words = (post.body ?? '').split(/\s+/).filter(Boolean).length;
+const minutes = Math.max(1, Math.round(words / 220));
 
 const canonical = new URL(`/blog/${post.id}/`, Astro.site).href;
 const published = date.toISOString();
@@ -44,13 +46,13 @@ const jsonLd = [
 ];
 ---
 
-<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+<BaseLayout title={title} description={description} jsonLd={jsonLd} progress>
   <article class="section" style="padding-top:clamp(48px,7vw,96px);">
     <div class="wrap" style="max-width:760px;">
       <p class="eyebrow" data-reveal>Writing</p>
-      <h1 data-reveal data-delay="0.05" style="font-size:clamp(30px,4.4vw,52px);font-weight:800;letter-spacing:-0.02em;line-height:1.06;text-wrap:balance;">{title}</h1>
+      <h1 class="essay__h1" data-reveal="clip" data-delay="0.05" transition:name={`essay-${post.id}`}>{title}</h1>
       <p class="mono" data-reveal data-delay="0.1" style="margin:18px 0 0;">
-        <time datetime={published}>{fmt(date)}</time>{updated ? ` · Updated ${fmt(updated)}` : ''}
+        <time datetime={published}>{fmt(date)}</time>{updated ? ` · Updated ${fmt(updated)}` : ''} · {minutes} min read
       </p>
       <div class="prose" data-reveal data-delay="0.15" style="margin-top:36px;">
         <Content />

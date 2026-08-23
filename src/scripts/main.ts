@@ -21,6 +21,12 @@ function ctx(): Ctx {
   };
 }
 
+function flags() {
+  const h = document.documentElement;
+  h.classList.add('js');
+  if (ctx().fine) h.classList.add('fine');
+}
+
 function boot() {
   const c = ctx();
   initReveal(c);
@@ -29,6 +35,10 @@ function boot() {
   initCounters(c);
   initLens(c);
   initProgress(c);
+  // The contact page carries third-party inline scripts (Web3Forms + hCaptcha)
+  // that must run on a full document load — opt those links out of client routing.
+  document.querySelectorAll<HTMLAnchorElement>('a[href="/contact/"], a[href^="/contact/#"]')
+    .forEach((a) => a.setAttribute('data-astro-reload', ''));
 }
 
 if (document.readyState === 'loading') {
@@ -36,4 +46,15 @@ if (document.readyState === 'loading') {
 } else {
   boot();
 }
-document.addEventListener('astro:page-load', boot);
+
+// ---- View Transitions (astro:transitions ClientRouter) ----
+// The router replaces <html> attributes on swap, which drops our capability
+// classes — restore them before the new page paints, then re-boot (idempotent).
+document.addEventListener('astro:after-swap', flags);
+let firstPageLoad = true;
+document.addEventListener('astro:page-load', () => {
+  boot();
+  if (firstPageLoad) { firstPageLoad = false; return; }
+  const gc = (window as any).goatcounter;
+  if (gc && typeof gc.count === 'function') gc.count({ path: location.pathname + location.search });
+});

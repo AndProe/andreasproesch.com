@@ -4,11 +4,12 @@ import type { Ctx } from './main';
 //   --mx / --my on <html>   (lerped; drives the blueprint grid spot)
 //   --cx / --cy on the hovered .card (direct; drives the card spotlight)
 // Mounted only for fine pointers without reduced motion.
+let bound = false;
+
 export function initPointer({ fine, reduce }: Ctx) {
-  if (!fine || reduce) return;
+  if (!fine || reduce || bound) return;
+  bound = true;
   const root = document.documentElement;
-  if (root.dataset.pointerBound) return;
-  root.dataset.pointerBound = '1';
 
   let tx = 0, ty = 0, x = 0, y = 0, raf = 0, first = true;
   let card: HTMLElement | null = null;
