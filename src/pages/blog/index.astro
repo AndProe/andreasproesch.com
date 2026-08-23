@@ -20,7 +20,7 @@ function fmt(d: Date): string {
   <section class="phero section">
     <div class="wrap">
       <p class="eyebrow" data-reveal>Writing — Asymmetric</p>
-      <h1 data-reveal data-delay="0.05">Asymmetric</h1>
+      <h1 data-reveal="clip" data-delay="0.05">Asymmetric</h1>
       <p class="phero__intro" data-reveal data-delay="0.1">
         Essays and a newsletter on AI, industry, and capital — with a focus on the Middle East, the GCC, and the UAE.
       </p>
@@ -40,7 +40,10 @@ function fmt(d: Date): string {
         {nativePosts.map(post => (
           <a class="post-row" href={`/blog/${post.id}/`} data-reveal>
             <span class="date">{fmt(post.data.date)}</span>
-            <span class="ptitle">{post.data.title}</span>
+            <span class="pmain">
+              <span class="ptitle" transition:name={`essay-${post.id}`}>{post.data.title}</span>
+              <span class="pdesc"><span>{post.data.description}</span></span>
+            </span>
             <span class="read">Read <span class="arr">→</span></span>
           </a>
         ))}

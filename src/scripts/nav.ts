@@ -1,9 +1,46 @@
 import type { Ctx } from './main';
 
 // Header: mobile drawer, live Abu Dhabi clock, compact-on-scroll, sliding indicator.
+let sentinelIO: IntersectionObserver | null = null;
+
+/** Runs on every page (the header persists across view transitions). */
+function perPage(nav: HTMLElement) {
+  // Active link follows the current URL.
+  const path = location.pathname;
+  nav.querySelectorAll<HTMLAnchorElement>('.nav__links a, .nav__mobile a').forEach((a) => {
+    const href = a.getAttribute('href') || '';
+    const base = href.endsWith('/') ? href : href + '/';
+    const on = base !== '/' && (path === base || path.startsWith(base));
+    a.classList.toggle('active', on);
+    if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+  });
+  const brand = nav.querySelector<HTMLAnchorElement>('.brand');
+  if (brand) { if (path === '/') brand.setAttribute('aria-current', 'page'); else brand.removeAttribute('aria-current'); }
+
+  // Close the drawer if it was open during navigation.
+  const drawer = document.getElementById('navMobile');
+  const burger = document.getElementById('burger');
+  drawer?.classList.remove('open'); burger?.classList.remove('open'); burger?.setAttribute('aria-expanded', 'false');
+
+  // Compact header after the page scrolls (IO on a 1px sentinel; no scroll listener).
+  sentinelIO?.disconnect();
+  const sentinel = document.querySelector('.nav-sentinel');
+  if (sentinel && 'IntersectionObserver' in window) {
+    sentinelIO = new IntersectionObserver(([en]) => {
+      document.documentElement.toggleAttribute('data-scrolled', !en.isIntersecting);
+    }, { threshold: 0 });
+    sentinelIO.observe(sentinel);
+  } else {
+    document.documentElement.removeAttribute('data-scrolled');
+  }
+}
+
 export function initNav(_c: Ctx) {
   const nav = document.querySelector<HTMLElement>('.nav');
-  if (!nav || nav.dataset.bound) return;
+  if (!nav) return;
+  perPage(nav);
+  nav.dispatchEvent(new CustomEvent('nav:page'));
+  if (nav.dataset.bound) return;
   nav.dataset.bound = '1';
 
   // ---- Mobile drawer ----
@@ -36,14 +73,6 @@ export function initNav(_c: Ctx) {
   tick();
   setInterval(tick, 30000);
 
-  // ---- Compact header after the page scrolls (IO on a 1px sentinel; no scroll listener) ----
-  const sentinel = document.querySelector('.nav-sentinel');
-  if (sentinel && 'IntersectionObserver' in window) {
-    new IntersectionObserver(([en]) => {
-      document.documentElement.toggleAttribute('data-scrolled', !en.isIntersecting);
-    }, { threshold: 0 }).observe(sentinel);
-  }
-
   // ---- Sliding indicator under the primary links ----
   const links = nav.querySelector<HTMLElement>('.nav__links');
   const ind = links?.querySelector<HTMLElement>('.nav__ind');
@@ -69,5 +98,6 @@ export function initNav(_c: Ctx) {
     requestAnimationFrame(() => links.classList.add('nav__links--ready'));
     window.addEventListener('resize', rest);
     document.fonts?.ready.then(rest);
+    nav.addEventListener('nav:page', rest);
   }
 }

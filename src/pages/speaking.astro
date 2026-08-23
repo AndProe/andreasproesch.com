@@ -27,7 +27,7 @@ const events = [
   <section class="phero section">
     <div class="wrap">
       <p class="eyebrow" data-reveal>Speaking</p>
-      <h1 data-reveal data-delay="0.05">Public Speaking</h1>
+      <h1 data-reveal="clip" data-delay="0.05">Public Speaking</h1>
       <p class="phero__intro" data-reveal data-delay="0.1">
         I've seen tech and digital transformations accelerate and win, and I have seen them stall and fail.
         In the last few years, I've given presentations on AI transformations and digital adoption at corporate
@@ -55,7 +55,7 @@ const events = [
   <!-- ===================== TOPICS ===================== -->
   <section class="section" id="topics">
     <div class="wrap">
-      <div class="sec-head" data-reveal>
+      <div class="sec-head" data-reveal="clip">
         <span class="sec-head__num">01 / Topics</span>
         <h2>What I speak about</h2>
       </div>
@@ -82,13 +82,13 @@ const events = [
   <!-- ===================== GALLERY ===================== -->
   <section class="section" id="events">
     <div class="wrap">
-      <div class="sec-head" data-reveal>
+      <div class="sec-head" data-reveal="clip">
         <span class="sec-head__num">02 / From Past Events</span>
         <p>A selection from recent talks across Europe and the Middle East.</p>
       </div>
       <div class="gallery" data-reveal-group>
         {events.map((e, i) => (
-          <figure data-reveal>
+          <figure data-reveal="scale" data-i={String(i + 1).padStart(2, "0")}>
             <div class="ph" style="aspect-ratio:4/3;">
               <img src={`/images/${e.src}.${e.ext}`} alt={`On stage — event ${String(i + 1).padStart(2, "0")}`} width="1000" height="750" loading="lazy" decoding="async"
                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
