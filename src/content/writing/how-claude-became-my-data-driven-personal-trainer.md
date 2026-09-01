@@ -1,5 +1,5 @@
 ---
-title: "How Claude Became My Data-Driven Personal Trainer"
+title: "How I'm Building My Data-Driven HealthOS: Part 1"
 description: "A short example of how to use AI to optimize your personal health — or just if you want to build something with AI that could have some real personal benefits."
 date: 2026-07-03
 tags: ["AI", "Health", "Personal AI", "Agents"]
