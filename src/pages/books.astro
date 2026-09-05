@@ -1,35 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { categories } from '../data/books';
 import '../styles/pages.css';
 
-const books = [
-  { t: "The Venture Mindset", a: "Ilya Strebulaev", s: "venture-mindset" },
-  { t: "Boom", a: "Byrne Hobart", s: "boom" },
-  { t: "Aiming High", a: "Atsuo Inoue", s: "aiming-high" },
-  { t: "Hacking Darwin", a: "Jamie Metzl", s: "hacking-darwin" },
-  { t: "Project Hail Mary", a: "Andy Weir", s: "project-hail-mary" },
-  { t: "The Inevitable", a: "Kevin Kelly", s: "the-inevitable" },
-  { t: "Material World", a: "Ed Conway", s: "material-world" },
-  { t: "The Dark Forest", a: "Cixin Liu", s: "dark-forest" },
-  { t: "The Power Law", a: "Sebastian Mallaby", s: "power-law" },
-  { t: "Startup Boards", a: "Brad Feld", s: "startup-boards" },
-  { t: "VC: An American History", a: "Thomas Nicholas", s: "vc-american-history" },
-  { t: "Build", a: "Tony Fadell", s: "build" },
-  { t: "Chip War", a: "Chris Miller", s: "chip-war" },
-  { t: "How The World Really Works", a: "Vaclav Smil", s: "how-world-works" },
-  { t: "Amp It Up", a: "Frank Slootman", s: "amp-it-up" },
-  { t: "The Square and the Tower", a: "Niall Ferguson", s: "square-tower" },
-  { t: "The Pleasure of Finding Things Out", a: "Richard Feynman", s: "finding-things-out" },
-  { t: "Snow Crash", a: "Neal Stephenson", s: "snow-crash" },
-  { t: "The Singularity is Near", a: "Ray Kurzweil", s: "singularity-near" },
-  { t: "Blitzscaling", a: "Reid Hoffman", s: "blitzscaling" },
-  { t: "Thinking in Bets", a: "Annie Duke", s: "thinking-bets" },
-];
+const total = categories.reduce((n, c) => n + c.books.length, 0);
+
+// Continuous book numbering across all category sections.
+let counter = 0;
+const numbered = categories.map((c, ci) => ({
+  name: c.name,
+  idx: String(ci + 1).padStart(2, '0'),
+  books: c.books.map((b) => ({ ...b, n: String(++counter).padStart(2, '0') })),
+}));
 ---
 
 <BaseLayout
   title="Reading"
-  description="Books that have shaped Andreas Proesch's thinking on technology, investing, and the future."
+  description="Books that have shaped Andreas Proesch's thinking on technology, investing, and the future — from tech and venture capital to energy, history, and science fiction."
 >
 
   <section class="phero section">
@@ -37,34 +24,41 @@ const books = [
       <p class="eyebrow" data-reveal>Recommendations</p>
       <h1 data-reveal="clip" data-delay="0.05">Reading</h1>
       <p class="phero__intro" data-reveal data-delay="0.1">
-        Books that have shaped my thinking on technology, investing, and the future.
+        Books that have shaped my thinking on technology, investing, and the future —
+        {total} of them, from tech and venture to energy, history, and science fiction.
       </p>
     </div>
   </section>
 
-  <section class="section" style="padding-top:0;">
-    <div class="wrap">
-      <div class="books" data-reveal-group>
-        {books.map((b, i) => (
-          <div class="book" data-reveal>
-            <div class="book__frame">
-              <div class="book__cover">
-                <span class="book__badge">{String(i + 1).padStart(2, "0")}</span>
-                <div class="ph">
-                  <img src={`/images/books/${b.s}.jpg`} alt={`${b.t} by ${b.a}`} width="333" height="500" loading="lazy" decoding="async"
-                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-                  <span class="ph__label" style="display:none;"><b>{b.s}.jpg</b>Cover · 2:3</span>
+  {numbered.map((cat) => (
+    <section class="section section--tight" style="padding-top:clamp(20px,3vw,40px);padding-bottom:clamp(20px,3vw,40px);">
+      <div class="wrap">
+        <div class="block-label" data-reveal="clip">
+          <span class="n">{cat.idx} / {String(cat.books.length).padStart(2, '0')} books</span>
+          <h2>{cat.name}</h2>
+        </div>
+        <div class="books" data-reveal-group>
+          {cat.books.map((b) => (
+            <div class="book" data-reveal>
+              <div class="book__frame">
+                <div class="book__cover">
+                  <span class="book__badge">{b.n}</span>
+                  <div class="ph">
+                    <img src={`/images/books/${b.s}.jpg`} alt={`${b.t} by ${b.a}`} width="333" height="500" loading="lazy" decoding="async"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                    <span class="ph__label" style="display:none;"><b>{b.t}</b>Cover · 2:3</span>
+                  </div>
                 </div>
               </div>
+              <div class="book__meta">
+                <div class="book__title">{b.t}</div>
+                <div class="book__author">{b.a}</div>
+              </div>
             </div>
-            <div class="book__meta">
-              <div class="book__title">{b.t}</div>
-              <div class="book__author">{b.a}</div>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  ))}
 
 </BaseLayout>
