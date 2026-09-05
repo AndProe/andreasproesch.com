@@ -72,7 +72,7 @@ export const categories: BookCategory[] = [
     ],
   },
   {
-    name: "Strategy, Management and Skills",
+    name: "Strategy and Management",
     books: [
       { t: "The Goal", a: "Eliyahu M. Goldratt", s: "the-goal" },
       { t: "Business Model You", a: "Alexander Osterwalder", s: "business-model-you" },
@@ -81,11 +81,6 @@ export const categories: BookCategory[] = [
       { t: "Oversubscribed", a: "Daniel Priestley", s: "oversubscribed" },
       { t: "Entrepreneur Revolution", a: "Daniel Priestley", s: "entrepreneur-revolution" },
       { t: "Key Person of Influence", a: "Daniel Priestley", s: "key-person-of-influence" },
-    ],
-  },
-  {
-    name: "Behaviour and Psychology",
-    books: [
       { t: "Misbehaving", a: "Richard Thaler", s: "misbehaving" },
       { t: "Thinking in Bets", a: "Annie Duke", s: "thinking-bets" },
       { t: "The Signal and the Noise", a: "Nate Silver", s: "the-signal-and-the-noise" },
@@ -104,19 +99,18 @@ export const categories: BookCategory[] = [
     ],
   },
   {
-    name: "Space, Maths, Physics, Chemistry, Biology",
+    name: "Space, Maths, and Science",
     books: [
       { t: "Just Six Numbers", a: "Martin Rees", s: "just-six-numbers" },
       { t: "Prisoner's Dilemma", a: "William Poundstone", s: "prisoners-dilemma" },
       { t: "The Case for Mars", a: "Robert Zubrin", s: "the-case-for-mars" },
       { t: "The Pleasure of Finding Things Out", a: "Richard Feynman", s: "finding-things-out" },
-      { t: "Why We Get Sick", a: "Benjamin Bikman", s: "why-we-get-sick" },
       { t: "Dark Matter and Dark Energy", a: "Brian Clegg", s: "dark-matter-and-dark-energy" },
       { t: "Hacking Darwin", a: "Jamie Metzl", s: "hacking-darwin" },
     ],
   },
   {
-    name: "Health & Medicine",
+    name: "Health and Longevity",
     books: [
       { t: "Why We Sleep", a: "Matt Walker", s: "why-we-sleep" },
       { t: "Lifespan: Why We Age — and Why We Don't Have To", a: "David Sinclair", s: "lifespan" },
@@ -124,59 +118,35 @@ export const categories: BookCategory[] = [
       { t: "The Body - A Guide", a: "Bill Bryson", s: "the-body-a-guide" },
       { t: "A Planet of Viruses", a: "Carl Zimmer", s: "a-planet-of-viruses" },
       { t: "Outlive", a: "Peter Attia", s: "outlive" },
+      { t: "Why We Get Sick", a: "Benjamin Bikman", s: "why-we-get-sick" },
     ],
   },
   {
     name: "Science Fiction",
     books: [
+      { t: "The Three-Body Problem", a: "Cixin Liu", s: "the-three-body-problem" },
+      { t: "The Dark Forest", a: "Cixin Liu", s: "dark-forest" },
+      { t: "Death's End", a: "Cixin Liu", s: "deaths-end" },
       { t: "Dune", a: "Frank Herbert", s: "dune" },
       { t: "Dune Messiah", a: "Frank Herbert", s: "dune-messiah" },
       { t: "Snow Crash", a: "Neal Stephenson", s: "snow-crash" },
       { t: "Journey to the Center of the Earth", a: "Jules Verne", s: "journey-to-the-center-of-the-earth" },
-      { t: "The Three-Body Problem", a: "Cixin Liu", s: "the-three-body-problem" },
       { t: "Delta V", a: "Daniel Suarez", s: "delta-v" },
-      { t: "The Dark Forest", a: "Cixin Liu", s: "dark-forest" },
       { t: "Project Hail Mary", a: "Andy Weir", s: "project-hail-mary" },
-      { t: "Death's End", a: "Cixin Liu", s: "deaths-end" },
     ],
   },
   {
-    name: "World History",
+    name: "History",
     books: [
       { t: "Square and the Tower", a: "Niall Fergusson", s: "square-tower" },
       { t: "The Sovereign Individual", a: "James Dale Davidson", s: "the-sovereign-individual" },
       { t: "Merchant Kings", a: "Stephen R. Bown", s: "merchant-kings" },
-    ],
-  },
-  {
-    name: "Middle East History & Society",
-    books: [
-      { t: "The History of Modern Lebanon", a: "Fawwaz Traboulsi", s: "the-history-of-modern-lebanon" },
-      { t: "Goodbye Lebanon: Israel's First Defeat", a: "Odd Karsten Tveit", s: "goodbye-lebanon" },
-      { t: "A Line In The Sand", a: "James Barr", s: "a-line-in-the-sand" },
-    ],
-  },
-  {
-    name: "Asian History & Society",
-    books: [
-      { t: "The Invention of China", a: "Bill Hayton", s: "the-invention-of-china" },
       { t: "Breakneck", a: "Dan Wang", s: "breakneck" },
-    ],
-  },
-  {
-    name: "European History & Society",
-    books: [
       { t: "Landet som ble for rikt", a: "Martin Beck Holte", s: "landet-som-ble-for-rikt" },
     ],
   },
   {
-    name: "Military History",
-    books: [
-      { t: "Jegerånden", a: "Eirik Kristoffersen", s: "jegeranden" },
-    ],
-  },
-  {
-    name: "Poetry / Literature",
+    name: "Literature",
     books: [
       { t: "The Prophet", a: "Kahlil Gibran", s: "the-prophet" },
       { t: "Joy in the Morning", a: "P.G. Woodehouse", s: "joy-in-the-morning" },
@@ -184,18 +154,7 @@ export const categories: BookCategory[] = [
       { t: "Around the World in 80 Days", a: "Jules Verne", s: "around-the-world-in-80-days" },
       { t: "Atlas Shrugged", a: "Ayn Rand", s: "atlas-shrugged" },
       { t: "The Fountainhead", a: "Ayn Rand", s: "the-fountainhead" },
-    ],
-  },
-  {
-    name: "Philosophy",
-    books: [
       { t: "Sophie's World", a: "Jostein Gaarder", s: "sophies-world" },
-    ],
-  },
-  {
-    name: "Wine, Art & Culture",
-    books: [
-      { t: "The Art and Life of Chaouki Chamoun", a: "Chaouki Chamoun", s: "the-art-and-life-of-chaouki-chamoun" },
     ],
   },
 ];
