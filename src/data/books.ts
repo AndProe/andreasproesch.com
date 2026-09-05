@@ -86,6 +86,7 @@ export const categories: BookCategory[] = [
       { t: "The Signal and the Noise", a: "Nate Silver", s: "the-signal-and-the-noise" },
       { t: "Nudge", a: "Richard Thaler", s: "nudge" },
       { t: "Never Split the Difference", a: "Chris Voss", s: "never-split-the-difference" },
+      { t: "The Culture Map", a: "Erin Meyer", s: "the-culture-map" },
     ],
   },
   {
