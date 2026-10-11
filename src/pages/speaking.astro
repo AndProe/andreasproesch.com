@@ -68,12 +68,12 @@ const events = [
         <div class="card" data-reveal>
           <span class="num">/02</span>
           <h3>Digital Transformation</h3>
-          <p>Leveraging technology to genuinely change how organizations operate — not just digitize what already exists.</p>
+          <p>Leveraging technology to genuinely change how organizations operate, not just digitize what already exists.</p>
         </div>
         <div class="card" data-reveal>
           <span class="num">/03</span>
           <h3>Tech Trends</h3>
-          <p>Emerging technologies with asymmetric disruption potential — where to pay attention, and where not to.</p>
+          <p>Emerging technologies with asymmetric disruption potential: where to pay attention, and where not to.</p>
         </div>
       </div>
     </div>
@@ -90,7 +90,7 @@ const events = [
         {events.map((e, i) => (
           <figure data-reveal="scale" data-i={String(i + 1).padStart(2, "0")}>
             <div class="ph" style="aspect-ratio:4/3;">
-              <img src={`/images/${e.src}.${e.ext}`} alt={`On stage — event ${String(i + 1).padStart(2, "0")}`} width="1000" height="750" loading="lazy" decoding="async"
+              <img src={`/images/${e.src}.${e.ext}`} alt={`On stage · event ${String(i + 1).padStart(2, "0")}`} width="1000" height="750" loading="lazy" decoding="async"
                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <span class="ph__label" style="display:none;"><b>{e.src}.{e.ext}</b>Event {String(i + 1).padStart(2, "0")} · 4:3</span>
             </div>
@@ -110,7 +110,7 @@ const events = [
         <div>
           <p class="eyebrow">Invite me to speak</p>
           <h2>Bring this to your audience</h2>
-          <p>Conferences, board sessions, and executive teams — available for keynotes, panels, and private briefings on AI transformation.</p>
+          <p>Conferences, board sessions, and executive teams. Available for keynotes, panels, and private briefings on AI transformation.</p>
           <div class="fmt">
             <span>Keynotes</span>
             <span>Conference Talks</span>

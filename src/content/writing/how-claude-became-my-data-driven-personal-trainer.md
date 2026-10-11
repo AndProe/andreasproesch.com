@@ -1,6 +1,6 @@
 ---
 title: "How I'm Building My Data-Driven HealthOS: Part 1"
-description: "A short example of how to use AI to optimize your personal health — or just if you want to build something with AI that could have some real personal benefits."
+description: "A short example of how to use AI to optimize your personal health, or just if you want to build something with AI that could have some real personal benefits."
 date: 2026-07-03
 tags: ["AI", "Health", "Personal AI", "Agents"]
 ---
@@ -75,7 +75,7 @@ But I wanted to build something for myself. To control my data, and to fully per
 
 So if you are excited by the idea of combining your health data in a single interface, you might stop here and check out what companies like Perplexity are doing.
 
-However — if you're also interested in building your own "Health Operating System" and keep building your own digital twin — read on.
+However, if you're also interested in building your own "Health Operating System" and keep building your own digital twin, read on.
 
 ## Building the Health OS
 
@@ -93,7 +93,7 @@ Over the years, I've also made sure to keep a record of my blood panels and doct
 
 What's powerful these days is that most of these sensors expose quite user-friendly APIs.
 
-The data is there — if you just bother to go and get it.
+The data is there, if you just bother to go and get it.
 
 So Claude and I sat down and mapped it out.
 
@@ -137,7 +137,7 @@ I borrowed a pattern from production AI memory systems: confidence bands.
 
 High-confidence signal gets absorbed automatically, obvious noise gets discarded, and the ambiguous middle gets highlighted to me directly. The system proposes its insights, and I then decide whether my model should actually change.
 
-The most fun I've had with all of this so far is watching how small habits actually change my physiology — and how I can see it directly in the data.
+The most fun I've had with all of this so far is watching how small habits actually change my physiology, and how I can see it directly in the data.
 
 We all make resolutions.
 
@@ -170,7 +170,7 @@ My list of standard tests is the "anchor layer". The AI can reinterpret my sleep
 
 A set of agents then run over all of it and reports back. How this week compares to last week? To five weeks ago? Am I on track for the race, or the PR I want to achieve?
 
-"We" go through it like a training review with a coach who has read every data point. And when I miss workouts etc., it shows — and I feel it when I test myself next time — but I also see it in data.
+"We" go through it like a training review with a coach who has read every data point. And when I miss workouts etc., it shows, and I feel it when I test myself next time, but I also see it in data.
 
 ## The real lesson
 
