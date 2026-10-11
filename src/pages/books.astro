@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { categories } from '../data/books';
+import { productUrl, cartUrl } from '../lib/amazon';
 import '../styles/pages.css';
 
 const total = categories.reduce((n, c) => n + c.books.length, 0);
@@ -12,11 +13,29 @@ const numbered = categories.map((c, ci) => ({
   idx: String(ci + 1).padStart(2, '0'),
   books: c.books.map((b) => ({ ...b, n: String(++counter).padStart(2, '0') })),
 }));
+
+const jsonLd = [{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Reading recommendations by Andreas Proesch",
+  "numberOfItems": total,
+  "itemListElement": numbered.flatMap((c) => c.books).map((b, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "item": {
+      "@type": "Book",
+      "name": b.t,
+      "author": { "@type": "Person", "name": b.a },
+      ...(b.asin ? { "url": `https://www.amazon.com/dp/${b.asin}` } : {}),
+    },
+  })),
+}];
 ---
 
 <BaseLayout
   title="Reading"
   description="Books that have shaped Andreas Proesch's thinking on technology, investing, and the future, from tech and venture capital to energy, history, and science fiction."
+  jsonLd={jsonLd}
 >
 
   <section class="phero section">
@@ -26,6 +45,10 @@ const numbered = categories.map((c, ci) => ({
       <p class="phero__intro" data-reveal data-delay="0.1">
         Books that have shaped my thinking on technology, investing, and the future:
         {total} of them, from tech and venture to energy, history, and science fiction.
+      </p>
+      <p class="phero__note" data-reveal data-delay="0.15">
+        Titles link to the book on Amazon; a cover adds it straight to your cart.
+        As an Amazon Associate I earn from qualifying purchases.
       </p>
     </div>
   </section>
@@ -38,24 +61,41 @@ const numbered = categories.map((c, ci) => ({
           <h2>{cat.name}</h2>
         </div>
         <div class="books" data-reveal-group>
-          {cat.books.map((b) => (
-            <div class="book" data-reveal>
-              <div class="book__frame">
-                <div class="book__cover">
-                  <span class="book__badge">{b.n}</span>
-                  <div class="ph">
-                    <img src={`/images/books/${b.s}.jpg`} alt={`${b.t} by ${b.a}`} width="333" height="500" loading="lazy" decoding="async"
-                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-                    <span class="ph__label" style="display:none;"><b>{b.t}</b>Cover · 2:3</span>
+          {cat.books.map((b) => {
+            const cover = (
+              <div class="ph">
+                <img src={`/images/books/${b.s}.jpg`} alt={`${b.t} by ${b.a}`} width="333" height="500" loading="lazy" decoding="async"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <span class="ph__label" style="display:none;"><b>{b.t}</b>Cover · 2:3</span>
+              </div>
+            );
+            return (
+              <div class="book" data-reveal>
+                <div class="book__frame">
+                  <div class="book__cover">
+                    <span class="book__badge">{b.n}</span>
+                    {b.asin ? (
+                      <a class="book__buy" href={cartUrl(b.asin)} target="_blank" rel="sponsored noopener"
+                         aria-label={`Add ${b.t} to your Amazon cart`}
+                         data-asin={b.asin} data-amzn="cart" data-goatcounter-click={`amazon-cart/${b.s}`}>
+                        {cover}
+                        <span class="book__cta">Add to Amazon cart</span>
+                      </a>
+                    ) : cover}
                   </div>
                 </div>
+                <div class="book__meta">
+                  <div class="book__title">
+                    {b.asin ? (
+                      <a href={productUrl(b.asin)} target="_blank" rel="sponsored noopener"
+                         data-asin={b.asin} data-amzn="dp" data-goatcounter-click={`amazon/${b.s}`}>{b.t}</a>
+                    ) : b.t}
+                  </div>
+                  <div class="book__author">{b.a}</div>
+                </div>
               </div>
-              <div class="book__meta">
-                <div class="book__title">{b.t}</div>
-                <div class="book__author">{b.a}</div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
