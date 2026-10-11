@@ -1,6 +1,6 @@
 ---
 title: "Own the Harness. Rent the Intelligence"
-description: "A short reflection on where agentic AI is going — what gives a company a competitive advantage from AI vs. what should be an outsourcing decision."
+description: "A short reflection on where agentic AI is going: what gives a company a competitive advantage from AI vs. what should be an outsourcing decision."
 date: 2026-07-24
 tags: ["AI", "Agents", "Strategy", "Agentic AI"]
 ---
@@ -39,7 +39,7 @@ The model is the intelligence. The harness is everything else. And "everything e
 
 E.g. if you've used Claude Code, that uses a Claude Model (whichever you chose to run) + a harness specifically built for coding.
 
-That's why Claude Code and Claude Cowork are separate options — they have different harnesses.
+That's why Claude Code and Claude Cowork are separate options. They have different harnesses.
 
 Let's picture a horse: it's a lot of raw power, but it can be pretty wild and nearly useless until you add reins to steer, training, maybe blinders to focus, a saddle to carry weight etc.
 
@@ -121,7 +121,7 @@ So, stop asking only which model to use.
 
 Start asking which layer of your AI stack you want to own yourself when a new and better model comes along.
 
-A new and better model will probably be released tomorrow, and you will want to have the reins ready to wield it to your specific purpose — always.
+A new and better model will probably be released tomorrow, and you will want to have the reins ready to wield it to your specific purpose, always.
 
 ---
 

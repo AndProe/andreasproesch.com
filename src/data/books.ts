@@ -114,7 +114,7 @@ export const categories: BookCategory[] = [
     name: "Health and Longevity",
     books: [
       { t: "Why We Sleep", a: "Matt Walker", s: "why-we-sleep" },
-      { t: "Lifespan: Why We Age — and Why We Don't Have To", a: "David Sinclair", s: "lifespan" },
+      { t: "Lifespan: Why We Age and Why We Don't Have To", a: "David Sinclair", s: "lifespan" },
       { t: "Sjarmen med Tarmen", a: "Giulia Enders", s: "sjarmen-med-tarmen" },
       { t: "The Body - A Guide", a: "Bill Bryson", s: "the-body-a-guide" },
       { t: "A Planet of Viruses", a: "Carl Zimmer", s: "a-planet-of-viruses" },

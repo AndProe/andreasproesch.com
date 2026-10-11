@@ -19,7 +19,7 @@ The actual problem is structural: **capturing digital content is cheap, but main
 
 **"But, can't I now just give it to AI?"**
 
-You can, but the basic approaches — like just doing RAG on a bunch of documents — don't fix it.
+You can, but the basic approaches, like just doing RAG on a bunch of documents, don't fix it.
 
 RAG re-discovers everything from scratch on every question. Nothing accumulates.
 
@@ -67,7 +67,7 @@ This document defines how you curate and maintain this knowledge base in every s
 
 ## Core Principles
 - You are the librarian of this vault. The knowledge base is written and
-  maintained by you, the LLM — I almost never touch wiki files myself.
+  maintained by you, the LLM. I almost never touch wiki files myself.
 - wiki/ belongs to you. Everything inside it is your responsibility to
   create, organize, and keep current.
 - raw/ is the intake tray. I drop unprocessed files there; your job is to
@@ -80,7 +80,7 @@ This document defines how you curate and maintain this knowledge base in every s
 - Every topic lives in its own subfolder (e.g., wiki/ai-agents/) and
   carries a _index.md listing that topic's articles with short descriptions.
 - Connect ideas across the vault using [[wiki links]] whenever concepts
-  relate — the graph matters as much as the pages.
+  relate. The graph matters as much as the pages.
 
 ## Compiling raw material
 When I say "compile", work through everything in raw/ that hasn't yet been processed:
