@@ -55,7 +55,7 @@ export const categories: BookCategory[] = [
     name: "Finance, Venture Capital, Investing & Trading",
     books: [
       { t: "Reminiscences of a Stock Operator", a: "Edwin Lefevre", s: "reminiscences-of-a-stock-operator", asin: "0471059706" },
-      { t: "Portfolio Analysis", a: "David Swanson", s: "portfolio-analysis" },
+      { t: "Pioneering Portfolio Management", a: "David Swensen", s: "pioneering-portfolio-management", asin: "1416544690" },
       { t: "A Man For All Markets", a: "Edward O. Thorp", s: "a-man-for-all-markets", asin: "0812979907" },
       { t: "Real Options", a: "Martha Amram and Nalin Kulatilaka", s: "real-options", asin: "0875848451" },
       { t: "Venture Deals", a: "Brad Feld", s: "venture-deals", asin: "1119594820" },
@@ -120,7 +120,7 @@ export const categories: BookCategory[] = [
     books: [
       { t: "Why We Sleep", a: "Matt Walker", s: "why-we-sleep", asin: "1501144324" },
       { t: "Lifespan: Why We Age and Why We Don't Have To", a: "David Sinclair", s: "lifespan", asin: "1982135875" },
-      { t: "Sjarmen med Tarmen", a: "Giulia Enders", s: "sjarmen-med-tarmen" },
+      { t: "Gut", a: "Giulia Enders", s: "sjarmen-med-tarmen", asin: "1771641495" },
       { t: "The Body - A Guide", a: "Bill Bryson", s: "the-body-a-guide", asin: "0804172722" },
       { t: "A Planet of Viruses", a: "Carl Zimmer", s: "a-planet-of-viruses", asin: "022678259X" },
       { t: "Outlive", a: "Peter Attia", s: "outlive", asin: "0593236599" },
