@@ -6,6 +6,7 @@ import { initPointer } from './pointer';
 import { initCounters } from './counters';
 import { initLens } from './lens';
 import { initProgress } from './progress';
+import { initAmazon } from './amazon';
 
 export interface Ctx {
   /** prefers-reduced-motion: reduce */
@@ -35,6 +36,7 @@ function boot() {
   initCounters(c);
   initLens(c);
   initProgress(c);
+  initAmazon(c);
   // The contact page carries third-party inline scripts (Web3Forms + hCaptcha)
   // that must run on a full document load — opt those links out of client routing.
   document.querySelectorAll<HTMLAnchorElement>('a[href="/contact/"], a[href^="/contact/#"]')
