@@ -120,7 +120,7 @@ export const categories: BookCategory[] = [
     books: [
       { t: "Why We Sleep", a: "Matt Walker", s: "why-we-sleep", asin: "1501144324" },
       { t: "Lifespan: Why We Age and Why We Don't Have To", a: "David Sinclair", s: "lifespan", asin: "1982135875" },
-      { t: "Gut", a: "Giulia Enders", s: "sjarmen-med-tarmen", asin: "1771641495" },
+      { t: "Gut", a: "Giulia Enders", s: "gut", asin: "1771643765" },
       { t: "The Body - A Guide", a: "Bill Bryson", s: "the-body-a-guide", asin: "0804172722" },
       { t: "A Planet of Viruses", a: "Carl Zimmer", s: "a-planet-of-viruses", asin: "022678259X" },
       { t: "Outlive", a: "Peter Attia", s: "outlive", asin: "0593236599" },
