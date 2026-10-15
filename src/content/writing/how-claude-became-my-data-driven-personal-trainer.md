@@ -36,7 +36,7 @@ And my current stack looks like this:
 - <a href="https://www.amazon.com/dp/B0D9WT1S2T?tag=proesch0f-20" target="_blank" rel="sponsored noopener">Oura Ring</a> for sleep tracking, HRV, resting heart rate, movement
 - <a href="https://www.amazon.com/dp/B07QTVMWVL?tag=proesch0f-20" target="_blank" rel="sponsored noopener">Garmin Watch</a> for activity, workouts, steps
 - <a href="https://www.amazon.com/dp/B0H2FXX43M?tag=proesch0f-20" target="_blank" rel="sponsored noopener">Withings Scale</a> for body weight and body composition
-- <a href="https://www.amazon.com/dp/B0DYPDF3JD?tag=proesch0f-20" target="_blank" rel="sponsored noopener">Withings Blood Pressure Monitor</a> for blood pressure, EKG, resting heart rate
+- Withings Blood Pressure Monitor for blood pressure, EKG, resting heart rate
 - Abbott CGM for blood glucose
 
 *Some links above are Amazon affiliate links. As an Amazon Associate I earn from qualifying purchases.*
