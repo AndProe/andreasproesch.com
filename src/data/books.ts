@@ -70,6 +70,7 @@ export const categories: BookCategory[] = [
     books: [
       { t: "Trillion Dollar Baby", a: "Paul Cleary", s: "trillion-dollar-baby", asin: "1785901001" },
       { t: "Crude Volatility", a: "Robert McNally", s: "crude-volatility", asin: "0231178158" },
+      { t: "The Prize", a: "Daniel Yergin", s: "the-prize", asin: "1439110123" },
       { t: "The Quest", a: "Daniel Yergin", s: "the-quest", asin: "0143121944" },
       { t: "The Smartest Guys in the Room", a: "Bethany McLean", s: "the-smartest-guys-in-the-room", asin: "1591846609" },
       { t: "How the World Really Works", a: "Vaclav Smil", s: "how-world-works", asin: "0241989671" },
