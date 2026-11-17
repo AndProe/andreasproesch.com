@@ -142,6 +142,7 @@ export const categories: BookCategory[] = [
       { t: "Journey to the Center of the Earth", a: "Jules Verne", s: "journey-to-the-center-of-the-earth", asin: "0141441976" },
       { t: "Delta V", a: "Daniel Suarez", s: "delta-v", asin: "1524742414" },
       { t: "Project Hail Mary", a: "Andy Weir", s: "project-hail-mary", asin: "0593135229" },
+      { t: "Children of Time", a: "Adrian Tchaikovsky", s: "children-of-time", asin: "1447273303" },
     ],
   },
   {
