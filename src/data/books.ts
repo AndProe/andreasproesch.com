@@ -75,6 +75,7 @@ export const categories: BookCategory[] = [
       { t: "How the World Really Works", a: "Vaclav Smil", s: "how-world-works", asin: "0241989671" },
       { t: "Volt Rush", a: "Henry Sanderson", s: "volt-rush", asin: "0861546199" },
       { t: "Material World", a: "Ed Conway", s: "material-world", asin: "0593467426" },
+      { t: "The King of Oil", a: "Daniel Ammann", s: "the-king-of-oil", asin: "0312570740" },
     ],
   },
   {
