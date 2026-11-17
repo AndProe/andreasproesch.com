@@ -26,7 +26,6 @@ export const categories: BookCategory[] = [
       { t: "How to Create a Mind", a: "Ray Kurzweil", s: "how-to-create-a-mind", asin: "0143124048" },
       { t: "The Singularity is Near", a: "Ray Kurzweil", s: "singularity-near", asin: "0143037889" },
       { t: "Chip War", a: "Chris Miller", s: "chip-war", asin: "1982172010" },
-      { t: "Clean Code", a: "Robert C. Martin", s: "clean-code", asin: "0132350882" },
       { t: "The Coming Wave", a: "Mustafa Suleyman", s: "the-coming-wave", asin: "0593728173" },
       { t: "The Second Machine Age", a: "Erik Brynjolfsson & Andrew McAfee", s: "the-second-machine-age", asin: "0393350649" },
       { t: "How We Got To Now", a: "Steven Johnson", s: "how-we-got-to-now", asin: "1594633932" },
@@ -143,6 +142,7 @@ export const categories: BookCategory[] = [
       { t: "Journey to the Center of the Earth", a: "Jules Verne", s: "journey-to-the-center-of-the-earth", asin: "0141441976" },
       { t: "Delta V", a: "Daniel Suarez", s: "delta-v", asin: "1524742414" },
       { t: "Project Hail Mary", a: "Andy Weir", s: "project-hail-mary", asin: "0593135229" },
+      { t: "Children of Time", a: "Adrian Tchaikovsky", s: "children-of-time", asin: "1447273303" },
     ],
   },
   {
@@ -153,6 +153,7 @@ export const categories: BookCategory[] = [
       { t: "Merchant Kings", a: "Stephen R. Bown", s: "merchant-kings", asin: "0312616112" },
       { t: "Breakneck", a: "Dan Wang", s: "breakneck", asin: "1324106034" },
       { t: "Landet som ble for rikt", a: "Martin Bech Holte", s: "landet-som-ble-for-rikt" },
+      { t: "The Silk Roads", a: "Peter Frankopan", s: "the-silk-roads", asin: "1408839997" },
     ],
   },
   {
