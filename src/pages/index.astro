@@ -22,12 +22,14 @@ const experienceMarks = ['AI71', 'Cognite', 'Aker', 'AkerBP', 'BCG', 'Goldman Sa
 
 // Filterable experience list. `cats` drives the tab filters; `tags` is what's shown.
 // Logos live in /public/images/logos/ — the mono mark renders until a file exists.
-const experienceItems: { org: string; mark: string; logo: string; title: string; tags: string[]; cats: ('advisory' | 'job' | 'project')[] }[] = [
+const experienceItems: { org: string; mark: string; logo: string; title: string; blurb?: string; href?: string; tags: string[]; cats: ('advisory' | 'job' | 'project')[] }[] = [
   {
     org: 'Aker ASA',
     mark: 'AKER',
     logo: '/images/logos/aker-asa.png',
     title: "Establishing the Aker AI Unit at Norway's largest industrial conglomerate",
+    blurb: 'When ChatGPT was only months old, Aker decided to move early on generative AI. I set up and ran the Aker AI Unit, a task force of CDOs and CTOs from across the portfolio, to map where the technology could create value, get the first use cases working in practice, and upskill the organizations to lead on industrial AI.',
+    href: '/work/aker-ai-unit/',
     tags: ['Advisory', 'Real Job'],
     cats: ['advisory', 'job'],
   },
@@ -196,6 +198,8 @@ const stripPhotos = [
               <div class="expf__body">
                 <h3 class="expf__title">{item.title}</h3>
                 <span class="expf__org">{item.org}</span>
+                {item.blurb && <p class="expf__blurb">{item.blurb}</p>}
+                {item.href && <a class="btn btn--primary expf__cta" href={item.href}>Read case study <span class="arr">→</span></a>}
               </div>
               <div class="expf__tags">
                 {item.tags.map((t) => <span class="expf__tagchip">{t}</span>)}

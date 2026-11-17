@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import '../../styles/pages.css';
+
+export async function getStaticPaths() {
+  const studies = await getCollection('work', ({ data }) => !data.draft);
+  return studies.map(study => ({ params: { slug: study.id }, props: { study } }));
+}
+
+const { study } = Astro.props;
+const { Content } = await render(study);
+const { title, description, org } = study.data;
+
+const canonical = new URL(`/work/${study.id}/`, Astro.site).href;
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "author": { "@id": "https://andreasproesch.com/#andreas" },
+    "publisher": { "@id": "https://andreasproesch.com/#andreas" },
+    "mainEntityOfPage": canonical,
+    "url": canonical,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Experience", "item": new URL('/#experience', Astro.site).href },
+      { "@type": "ListItem", "position": 2, "name": title, "item": canonical },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd} progress>
+  <article class="section" style="padding-top:clamp(48px,7vw,96px);">
+    <div class="wrap" style="max-width:760px;">
+      <p class="eyebrow" data-reveal>Case Study · {org}</p>
+      <h1 class="essay__h1" data-reveal="clip" data-delay="0.05">{title}</h1>
+      <div class="prose" data-reveal data-delay="0.15" style="margin-top:36px;">
+        <Content />
+      </div>
+      <p style="margin-top:48px;"><a class="btn" href="/#experience">← All experience</a></p>
+    </div>
+  </article>
+</BaseLayout>

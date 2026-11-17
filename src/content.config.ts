@@ -16,4 +16,16 @@ const writing = defineCollection({
   }),
 });
 
-export const collections = { writing };
+// Case studies behind the homepage Experience section. Rendered at /work/<slug>/.
+const work = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/work' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    org: z.string(),
+    date: z.coerce.date(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { writing, work };

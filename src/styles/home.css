@@ -118,8 +118,8 @@
 .expf__tab.is-active { background: var(--amber); border-color: var(--amber); color: #0B0D0F; font-weight: 700; }
 .expf__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .expf__item {
-  display: grid; grid-template-columns: 72px 1fr auto; gap: 24px; align-items: center;
-  padding: 22px 0; border-bottom: 1px solid var(--line);
+  display: grid; grid-template-columns: 72px 1fr auto; gap: 24px; align-items: start;
+  padding: 26px 0; border-bottom: 1px solid var(--line);
   transition: padding-left 0.3s var(--ease), background 0.3s var(--ease);
 }
 .expf__item[hidden] { display: none; }
@@ -136,6 +136,8 @@
 .expf__title { font-size: 19px; font-weight: 700; margin: 0 0 4px; letter-spacing: -0.01em; transition: color 0.25s var(--ease); }
 .expf__item:hover .expf__title { color: var(--amber); }
 .expf__org { color: var(--muted); font-size: 14px; }
+.expf__blurb { color: var(--muted); font-size: 15px; line-height: 1.6; margin: 14px 0 0; max-width: 62ch; text-wrap: pretty; }
+.expf__cta { margin-top: 20px; }
 .expf__tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
 .expf__tagchip {
   font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;
