@@ -106,33 +106,42 @@
 .xp__org { color: var(--muted); font-size: 14px; }
 .xp__tag { color: var(--faint); font-size: 11px; text-align: right; }
 
-/* ---------- THE LENS ---------- */
-.lens__grid { display: grid; grid-template-columns: 1fr 0.9fr; gap: clamp(36px, 6vw, 84px); align-items: center; }
-.lens__p { color: var(--muted); font-size: 17px; margin: 0 0 20px; max-width: 50ch; text-wrap: pretty; }
-.lens__diagram { display: flex; justify-content: center; }
-.lens__diagram svg { width: 100%; max-width: 420px; height: auto; }
-.gnode circle { fill: #0B0D0F; stroke: #2B333A; stroke-width: 1.5; }
-.gnode text { fill: var(--muted); font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; text-anchor: middle; }
-.core { fill: var(--amber); font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; text-anchor: middle; font-weight: 700; }
-.pulse { opacity: 0.9; }
-.core-glow { animation: breathe 4s ease-in-out infinite alternate; transform-origin: 210px 210px; }
-@keyframes breathe { from { opacity: 0.75; transform: scale(0.96); } to { opacity: 1; transform: scale(1.06); } }
-/* draw-in on reveal: wires trace from their source node, nodes and core follow */
-.js .lens__diagram .wire { stroke-dasharray: 1; stroke-dashoffset: 1; }
-.js .lens__diagram .chain .wire { stroke-dasharray: 0.012 0.02; stroke-dashoffset: 1; }
-.js .lens__diagram .gnode, .js .lens__diagram .gcore, .js .lens__diagram .pulse { opacity: 0; }
-.lens__diagram.in .spokes .wire { animation: wire-draw 1.1s var(--ease) 0.35s both; }
-.lens__diagram.in .chain .wire  { animation: wire-draw 1.4s var(--ease) 0.9s both; }
-.lens__diagram.in .gnode { animation: rv-fade 0.5s var(--ease) calc(0.25s + var(--i, 0) * 0.08s) both; }
-.lens__diagram.in .gcore { animation: rv-scale 0.8s var(--ease) 0.1s both; transform-origin: 210px 210px; }
-.lens__diagram.in .pulse { animation: rv-fade 0.6s var(--ease) 1.5s both; }
-@keyframes wire-draw { to { stroke-dashoffset: 0; } }
-@media (prefers-reduced-motion: reduce) {
-  .pulse { display: none; }
-  .core-glow { animation: none; }
-  .js .lens__diagram .wire { stroke-dashoffset: 0; }
-  .js .lens__diagram .gnode, .js .lens__diagram .gcore { opacity: 1; }
+/* ---------- EXPERIENCE (filterable) ---------- */
+.expf__tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+.expf__tab {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 10px 16px; border: 1px solid var(--line-2); background: var(--bg-2); color: var(--muted);
+  cursor: pointer;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease), background 0.25s var(--ease);
 }
+.expf__tab:hover { color: var(--amber); border-color: var(--amber); }
+.expf__tab.is-active { background: var(--amber); border-color: var(--amber); color: #0B0D0F; font-weight: 700; }
+.expf__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.expf__item {
+  display: grid; grid-template-columns: 72px 1fr auto; gap: 24px; align-items: center;
+  padding: 22px 0; border-bottom: 1px solid var(--line);
+  transition: padding-left 0.3s var(--ease), background 0.3s var(--ease);
+}
+.expf__item[hidden] { display: none; }
+.expf__item:hover { padding-left: 14px; background: var(--bg-2); }
+.expf__logo {
+  /* White tile: the logo files are mostly dark marks on white, which would
+     vanish or clash on the page's dark surfaces. */
+  width: 72px; height: 72px; flex: none; overflow: hidden;
+  border: 1px solid var(--line-2); background: #fff;
+  display: flex; align-items: center; justify-content: center;
+}
+.expf__logo img { width: 100%; height: 100%; object-fit: contain; padding: 12px; box-sizing: border-box; }
+.expf__fallback { font-family: var(--font-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--amber); }
+.expf__title { font-size: 19px; font-weight: 700; margin: 0 0 4px; letter-spacing: -0.01em; transition: color 0.25s var(--ease); }
+.expf__item:hover .expf__title { color: var(--amber); }
+.expf__org { color: var(--muted); font-size: 14px; }
+.expf__tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.expf__tagchip {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--faint); border: 1px solid var(--line-2); padding: 4px 10px; white-space: nowrap;
+}
+.expf__empty { color: var(--faint); font-size: 13px; margin: 24px 0 0; }
 
 /* ---------- FOCUS CHIPS ---------- */
 .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 12px; margin: 0; padding: 0; }
@@ -188,7 +197,10 @@
   .hero__grid { grid-template-columns: 1fr; }
   .hero__portrait { justify-self: start; max-width: 320px; order: -1; }
   .roles, .posts { grid-template-columns: 1fr; }
-  .lens__grid { grid-template-columns: 1fr; }
+  .expf__item { grid-template-columns: 56px 1fr; }
+  .expf__logo { width: 56px; height: 56px; }
+  .expf__logo img { padding: 8px; }
+  .expf__tags { grid-column: 2; justify-content: flex-start; }
   .xp__item { grid-template-columns: 80px 1fr; }
   .xp__tag { grid-column: 2; text-align: left; }
   .writing__head { flex-direction: column; align-items: flex-start; }

@@ -20,6 +20,41 @@ const stats: { value: string; label: string; count?: number; suffix?: string }[]
 
 const experienceMarks = ['AI71', 'Cognite', 'Aker', 'AkerBP', 'BCG', 'Goldman Sachs', 'Glencore'];
 
+// Filterable experience list. `cats` drives the tab filters; `tags` is what's shown.
+// Logos live in /public/images/logos/ — the mono mark renders until a file exists.
+const experienceItems: { org: string; mark: string; logo: string; title: string; tags: string[]; cats: ('advisory' | 'job' | 'project')[] }[] = [
+  {
+    org: 'Aker ASA',
+    mark: 'AKER',
+    logo: '/images/logos/aker-asa.png',
+    title: "Establishing the Aker AI Unit at Norway's largest industrial conglomerate",
+    tags: ['Advisory', 'Real Job'],
+    cats: ['advisory', 'job'],
+  },
+  {
+    org: 'AI71',
+    mark: 'AI71',
+    logo: '/images/logos/ai71.png',
+    title: 'Deploying Sovereign AI in the UAE',
+    tags: ['Real Job'],
+    cats: ['job'],
+  },
+  {
+    org: 'Runway VC',
+    mark: 'RWVC',
+    logo: '/images/logos/runway-vc.png',
+    title: "Investment Advisory to Norway's leading Industrial VC, RunwayVC",
+    tags: ['Advisory'],
+    cats: ['advisory'],
+  },
+];
+const experienceFilters = [
+  { key: 'all', label: 'All' },
+  { key: 'advisory', label: 'Advisory Roles' },
+  { key: 'job', label: 'Real Jobs' },
+  { key: 'project', label: 'Projects' },
+];
+
 const stripPhotos = [
   { src: '/images/speaking-event-1.jpg' },
   { src: '/images/speaking-event-6.jpg' },
@@ -133,78 +168,52 @@ const stripPhotos = [
     </div>
   </section>
 
-  <!-- ===================== 02 / THE LENS ===================== -->
-  <section class="section lens" id="lens">
-    <div class="wrap lens__grid">
-      <div class="lens__copy">
-        <div class="sec-head" data-reveal="clip">
-          <span class="sec-head__num">02 / The Lens</span>
-          <h2>Supply Chains of Intelligence</h2>
-        </div>
-        <p class="lens__p" data-reveal data-delay="0.05">
-          Energy, compute, data, models, software, and decision-making aren't separate markets. They're
-          one chain. Each layer feeds the next, and a constraint in any single layer caps the whole.
-        </p>
-        <p class="lens__p" data-reveal data-delay="0.1">
-          I track where value, risk, and leverage relocate as the chain matures: which layer becomes
-          scarce, which gets commoditized, and where one decision compounds across everything downstream.
-        </p>
+  <!-- ===================== 02 / EXPERIENCE (filterable) ===================== -->
+  <section class="section" id="experience">
+    <div class="wrap">
+      <div class="sec-head" data-reveal="clip">
+        <span class="sec-head__num">02 / Experience</span>
+        <h2>Roles, advisory &amp; projects</h2>
       </div>
 
-      <div class="lens__diagram" data-reveal="scale" data-delay="0.1">
-        <svg viewBox="0 0 420 420" role="img" aria-label="Node graph: Energy, Compute, Data, Models and Software chained together and wired into a central Decision-making node">
-          <defs>
-            <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#F0893C" stop-opacity="0.35" />
-              <stop offset="100%" stop-color="#F0893C" stop-opacity="0" />
-            </radialGradient>
-          </defs>
-          <!-- chain ring: each layer feeds the next (open-ended — the chain resolves in decision-making) -->
-          <g class="chain" stroke="#2B333A" stroke-width="1" fill="none" stroke-dasharray="3 5">
-            <line class="wire" pathLength="1" x1="210" y1="58"  x2="354" y2="138" />
-            <line class="wire" pathLength="1" x1="354" y1="138" x2="330" y2="320" />
-            <line class="wire" pathLength="1" x1="330" y1="320" x2="90"  y2="320" />
-            <line class="wire" pathLength="1" x1="90"  y1="320" x2="66"  y2="138" />
-          </g>
-          <!-- spokes into the core -->
-          <g class="spokes" stroke="#2B333A" stroke-width="1" fill="none">
-            <line class="wire" pathLength="1" x1="210" y1="58"  x2="210" y2="210" />
-            <line class="wire" pathLength="1" x1="354" y1="138" x2="210" y2="210" />
-            <line class="wire" pathLength="1" x1="330" y1="320" x2="210" y2="210" />
-            <line class="wire" pathLength="1" x1="90"  y1="320" x2="210" y2="210" />
-            <line class="wire" pathLength="1" x1="66"  y1="138" x2="210" y2="210" />
-          </g>
-          <!-- pulses travel inward: layers feed decision-making -->
-          <g fill="#F0893C">
-            <circle r="2.5" class="pulse"><animateMotion dur="3.2s" repeatCount="indefinite" path="M210,58 L210,210" /></circle>
-            <circle r="2.5" class="pulse"><animateMotion dur="3.8s" repeatCount="indefinite" path="M354,138 L210,210" /></circle>
-            <circle r="2.5" class="pulse"><animateMotion dur="3.4s" repeatCount="indefinite" path="M330,320 L210,210" /></circle>
-            <circle r="2.5" class="pulse"><animateMotion dur="4.1s" repeatCount="indefinite" path="M90,320 L210,210" /></circle>
-            <circle r="2.5" class="pulse"><animateMotion dur="3.6s" repeatCount="indefinite" path="M66,138 L210,210" /></circle>
-          </g>
-          <!-- outer nodes -->
-          <g class="gnode" style="--i:0"><circle cx="210" cy="58" r="6" /><text x="210" y="38">Energy</text></g>
-          <g class="gnode" style="--i:1"><circle cx="354" cy="138" r="6" /><text x="354" y="118">Compute</text></g>
-          <g class="gnode" style="--i:2"><circle cx="330" cy="320" r="6" /><text x="330" y="346">Data</text></g>
-          <g class="gnode" style="--i:3"><circle cx="90" cy="320" r="6" /><text x="90" y="346">Models</text></g>
-          <g class="gnode" style="--i:4"><circle cx="66" cy="138" r="6" /><text x="66" y="118">Software</text></g>
-          <!-- core -->
-          <g class="gcore">
-            <circle class="core-glow" cx="210" cy="210" r="60" fill="url(#coreGlow)" />
-            <circle cx="210" cy="210" r="34" fill="#0B0D0F" stroke="#F0893C" stroke-width="1.5" />
-            <text class="core" x="210" y="206">Decision-</text>
-            <text class="core" x="210" y="220">making</text>
-          </g>
-        </svg>
+      <div class="expf" data-reveal="fade">
+        <div class="expf__tabs" role="group" aria-label="Filter experience">
+          {experienceFilters.map((f, i) => (
+            <button class:list={['expf__tab', { 'is-active': i === 0 }]} data-filter={f.key} aria-pressed={i === 0 ? 'true' : 'false'}>
+              {f.label}
+            </button>
+          ))}
+        </div>
+
+        <ul class="expf__list">
+          {experienceItems.map((item) => (
+            <li class="expf__item" data-cats={item.cats.join(' ')}>
+              <div class="expf__logo">
+                <img src={item.logo} alt={`${item.org} logo`} loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <span class="expf__fallback" style="display:none">{item.mark}</span>
+              </div>
+              <div class="expf__body">
+                <h3 class="expf__title">{item.title}</h3>
+                <span class="expf__org">{item.org}</span>
+              </div>
+              <div class="expf__tags">
+                {item.tags.map((t) => <span class="expf__tagchip">{t}</span>)}
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <p class="expf__empty mono" hidden>// Nothing here yet.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 03 / EXPERIENCE ===================== -->
-  <section class="section section--tight" id="experience">
+  <!-- ===================== 03 / BACKGROUND ===================== -->
+  <section class="section section--tight" id="background">
     <div class="wrap">
       <div class="sec-head" data-reveal="clip">
-        <span class="sec-head__num">03 / Experience</span>
+        <span class="sec-head__num">03 / Background</span>
         <h2>Professional background</h2>
       </div>
       <ol class="xp rail" data-reveal="fade" data-reveal-group>
