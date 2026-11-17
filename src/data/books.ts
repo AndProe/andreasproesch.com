@@ -70,11 +70,14 @@ export const categories: BookCategory[] = [
     books: [
       { t: "Trillion Dollar Baby", a: "Paul Cleary", s: "trillion-dollar-baby", asin: "1785901001" },
       { t: "Crude Volatility", a: "Robert McNally", s: "crude-volatility", asin: "0231178158" },
+      { t: "The Prize", a: "Daniel Yergin", s: "the-prize", asin: "1439110123" },
       { t: "The Quest", a: "Daniel Yergin", s: "the-quest", asin: "0143121944" },
       { t: "The Smartest Guys in the Room", a: "Bethany McLean", s: "the-smartest-guys-in-the-room", asin: "1591846609" },
       { t: "How the World Really Works", a: "Vaclav Smil", s: "how-world-works", asin: "0241989671" },
       { t: "Volt Rush", a: "Henry Sanderson", s: "volt-rush", asin: "0861546199" },
       { t: "Material World", a: "Ed Conway", s: "material-world", asin: "0593467426" },
+      { t: "The King of Oil", a: "Daniel Ammann", s: "the-king-of-oil", asin: "0312570740" },
+      { t: "Merchants of Grain", a: "Dan Morgan", s: "merchants-of-grain", asin: "0595142109" },
     ],
   },
   {
