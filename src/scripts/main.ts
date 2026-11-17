@@ -4,7 +4,7 @@ import { initReveal } from './reveal';
 import { initNav } from './nav';
 import { initPointer } from './pointer';
 import { initCounters } from './counters';
-import { initLens } from './lens';
+import { initExperience } from './experience';
 import { initProgress } from './progress';
 import { initAmazon } from './amazon';
 
@@ -34,7 +34,7 @@ function boot() {
   initNav(c);
   initPointer(c);
   initCounters(c);
-  initLens(c);
+  initExperience(c);
   initProgress(c);
   initAmazon(c);
   // The contact page carries third-party inline scripts (Web3Forms + hCaptcha)
