@@ -105,6 +105,7 @@ export const categories: BookCategory[] = [
       { t: "Principles for Dealing with the Changing World Order", a: "Ray Dalio", s: "principles-for-dealing-with-the-changing-world-order", asin: "1982160276" },
       { t: "The Great Depression: A Diary", a: "Benjamin Roth", s: "the-great-depression-a-diary", asin: "1586489011" },
       { t: "1929: Inside the Greatest Crash", a: "Andrew Ross Sorkin", s: "1929-inside-the-greatest-crash", asin: "0593296966" },
+      { t: "Against the Gods: The Remarkable Story of Risk", a: "Peter L. Bernstein", s: "against-the-gods", asin: "0471295639" },
     ],
   },
   {
