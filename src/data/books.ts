@@ -82,7 +82,7 @@ export const categories: BookCategory[] = [
       { t: "The Goal", a: "Eliyahu M. Goldratt", s: "the-goal", asin: "0884271951" },
       { t: "Business Model You", a: "Alexander Osterwalder", s: "business-model-you", asin: "1118156315" },
       { t: "One Million Followers", a: "Brendan Kane", s: "one-million-followers", asin: "1946885371" },
-      { t: "$100M Leads", a: "Alex Hormozi", s: "100m-leads", asin: "1737475774" },
+      { t: "Building a Second Brain", a: "Tiago Forte", s: "building-a-second-brain", asin: "1800812221" },
       { t: "Oversubscribed", a: "Daniel Priestley", s: "oversubscribed", asin: "0857086197" },
       { t: "Entrepreneur Revolution", a: "Daniel Priestley", s: "entrepreneur-revolution", asin: "085708416X" },
       { t: "Key Person of Influence", a: "Daniel Priestley", s: "key-person-of-influence", asin: "178133109X" },
@@ -92,6 +92,7 @@ export const categories: BookCategory[] = [
       { t: "Nudge", a: "Richard Thaler", s: "nudge", asin: "014313700X" },
       { t: "Never Split the Difference", a: "Chris Voss", s: "never-split-the-difference", asin: "0062407805" },
       { t: "The Culture Map", a: "Erin Meyer", s: "the-culture-map", asin: "1610392760" },
+      { t: "Unreasonable Hospitality", a: "Will Guidara", s: "unreasonable-hospitality", asin: "0593418573" },
     ],
   },
   {
@@ -102,6 +103,8 @@ export const categories: BookCategory[] = [
       { t: "The Man Who Solved the Market", a: "Gregory Zuckerman", s: "the-man-who-solved-the-market", asin: "073521798X" },
       { t: "Stress Test", a: "Timothy Geithner", s: "stress-test", asin: "0804138613" },
       { t: "Principles for Dealing with the Changing World Order", a: "Ray Dalio", s: "principles-for-dealing-with-the-changing-world-order", asin: "1982160276" },
+      { t: "The Great Depression: A Diary", a: "Benjamin Roth", s: "the-great-depression-a-diary", asin: "1586489011" },
+      { t: "1929: Inside the Greatest Crash", a: "Andrew Ross Sorkin", s: "1929-inside-the-greatest-crash", asin: "0593296966" },
     ],
   },
   {
