@@ -61,6 +61,8 @@ export const categories: BookCategory[] = [
       { t: "VC - An American History", a: "Tom Nicholas", s: "vc-american-history", asin: "0674248260" },
       { t: "The Power Law", a: "Sebastian Mallaby", s: "power-law", asin: "0593491785" },
       { t: "The Venture Mindset", a: "Ilya Strebulaev", s: "venture-mindset", asin: "0593714237" },
+      { t: "Market Wizards", a: "Jack D. Schwager", s: "market-wizards", asin: "1118273052" },
+      { t: "The Greatest Trade Ever", a: "Gregory Zuckerman", s: "the-greatest-trade-ever", asin: "0141043156" },
     ],
   },
   {
