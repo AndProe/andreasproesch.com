@@ -76,6 +76,7 @@ export const categories: BookCategory[] = [
       { t: "Volt Rush", a: "Henry Sanderson", s: "volt-rush", asin: "0861546199" },
       { t: "Material World", a: "Ed Conway", s: "material-world", asin: "0593467426" },
       { t: "The King of Oil", a: "Daniel Ammann", s: "the-king-of-oil", asin: "0312570740" },
+      { t: "Merchants of Grain", a: "Dan Morgan", s: "merchants-of-grain", asin: "0595142109" },
     ],
   },
   {
