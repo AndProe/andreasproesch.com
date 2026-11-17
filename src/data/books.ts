@@ -79,12 +79,8 @@ export const categories: BookCategory[] = [
     name: "Strategy and Management",
     books: [
       { t: "The Goal", a: "Eliyahu M. Goldratt", s: "the-goal", asin: "0884271951" },
-      { t: "Business Model You", a: "Alexander Osterwalder", s: "business-model-you", asin: "1118156315" },
-      { t: "One Million Followers", a: "Brendan Kane", s: "one-million-followers", asin: "1946885371" },
       { t: "Building a Second Brain", a: "Tiago Forte", s: "building-a-second-brain", asin: "1800812221" },
       { t: "Oversubscribed", a: "Daniel Priestley", s: "oversubscribed", asin: "0857086197" },
-      { t: "Entrepreneur Revolution", a: "Daniel Priestley", s: "entrepreneur-revolution", asin: "085708416X" },
-      { t: "Key Person of Influence", a: "Daniel Priestley", s: "key-person-of-influence", asin: "178133109X" },
       { t: "Misbehaving", a: "Richard Thaler", s: "misbehaving", asin: "039335279X" },
       { t: "Thinking in Bets", a: "Annie Duke", s: "thinking-bets", asin: "0735216371" },
       { t: "The Signal and the Noise", a: "Nate Silver", s: "the-signal-and-the-noise", asin: "0143125087" },
