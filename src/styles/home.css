@@ -145,15 +145,6 @@
 }
 .expf__empty { color: var(--faint); font-size: 13px; margin: 24px 0 0; }
 
-/* ---------- FOCUS CHIPS ---------- */
-.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 12px; margin: 0; padding: 0; }
-.chips li {
-  font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.04em;
-  padding: 11px 18px; border: 1px solid var(--line-2); color: var(--muted);
-  background: var(--bg-2); transition: color 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
-}
-.chips li:hover { color: var(--amber); border-color: var(--amber); transform: translateY(-2px); }
-
 /* ---------- WRITING ---------- */
 .writing__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
 .posts { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 0; padding: 0; }
